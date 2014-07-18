@@ -14,21 +14,59 @@
 
 		<link href="css/bootstrap.css" rel="stylesheet">
 		<link href="css/bootstrap-theme.css" rel="stylesheet">
+		
+		<script type="text/javascript">
+			$(function(){
+				positionSecondSection('secFirst','secSection');
+				
+			});
+			
+			function positionSecondSection(id1,id2){
+				var jq1,jq2,oldmar,newmar; 
+				jq1 =$(document.getElementById(id1));
+				jq2 =$(document.getElementById(id2));
+				oldmar =parseInt(jq1.css('margin-bottom'));
+				newmar =oldmar -(jq2.position().top - $(window).height());
+				jq1.css('margin-bottom',newmar);
+			}
+			
+			$(window).on('scroll',function(){
+				var dh,wh,ih,st,posy;
+				dh =$(document).height();
+				wh =$(window).height();
+				ih =$('#imgBack').height();
+				st =$(document).scrollTop();
+				posy =(dh-ih)*st / (dh-wh);
+				document.getElementById('imgBack').style.top =posy+'px';
+			});
+		</script>
+		
 		<style>
 			body{
-				background-image: url(res/back2.jpg);
 				background-repeat: no-repeat;
-				background-size: contain;
+				background-size: cover;
+				overflow-x: hidden;
 			}
 			.navbar-default {
 				background-color: rgba(155,155,155,0.2);
 				background-image: none;
 			}
+			#secFirst{
+				margin-top: 50px;
+				margin-bottom: 1000px;
+			}
+			#secSection {
+				
+			}
 		</style>
 	</head>
 	<body>
 		
-		<div class="container " style="position:relative; margin-top: 100px;" >
+		<img id="imgBack" src="res/back1.jpg" style="position: absolute;" />
+		
+		<div style="height: 100px;"></div>
+		
+		<div class="container "  >
 
 			<ul class="nav nav-pills navbar-default" style=" float: right;">
 				<li><a href="#">Contact</a></li>
@@ -48,7 +86,7 @@
 			</nav>
 		</div>
 
-		<section class="section" id="head">
+		<section class="section" id="secFirst">
 			<div class="container">
 
 				<div class="row">
@@ -73,15 +111,13 @@
 			</div>
 		</section>
 		
-		<section>
+		<section id="secSection">
 			<div class="container" style="height:1000px;">
-				
+				aaa
 			</div>
 		</section>
 		
-		<div style="position: absolute;top: 800px; height: 800px; background-image: url(res/back2lime.png);">
-			aaa
-		</div>
+		
 		
 	</body>
 </html>
