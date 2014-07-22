@@ -17,7 +17,7 @@
 		
 		<script type="text/javascript">
 			$(function(){
-				positionSecondSection('secFirst','secSection');
+				positionSecondSection('secFirst','secSecond');
 				
 			});
 			
@@ -30,7 +30,7 @@
 				jq1.css('margin-bottom',newmar);
 			}
 			
-			$(window).on('scroll',function(){
+			$(window).on('scroll',function(){	return;
 				var dh,wh,ih,st,posy;
 				dh =$(document).height();
 				wh =$(window).height();
@@ -43,67 +43,91 @@
 		
 		<style>
 			body{
+				1background-image: url("https://s3.amazonaws.com/ooomf-com-files/EOZpjI3oSqKPNnF2S4Tp_Untitled.jpg");
+				background-image: url("http://haybert.com/wp-content/uploads/2014/01/all-white-color-interior-living-room-furniture-decorating-ideas-with-recliner-chair-sofa-bed-floor-lamp-and-marble-flooring-tile.jpg");
 				background-repeat: no-repeat;
-				background-size: cover;
+				background-size: 100% auto;
+				background-position: 0px 60px;
 				overflow-x: hidden;
+			}
+			section {
+				padding-bottom: 50px;
 			}
 			.navbar-default {
 				background-color: rgba(155,155,155,0.2);
 				background-image: none;
 			}
+			#navHor{
+				margin-top: 10px;
+				margin-bottom: 10px;
+			}
+			#navHor > ul{
+				float: right;
+			}
+			#imgBack {
+				z-index: -1;
+				display: none;
+			}
 			#secFirst{
 				margin-top: 50px;
 				margin-bottom: 1000px;
 			}
-			#secSection {
-				
+			#secSecond {
+				1height: 1000px;
+			}
+			#secThird {
+				background-color: white;
+			}
+			.backed {
+				background-color: rgba(255,255,255,0.7);
+				border-radius: 10px;
 			}
 		</style>
 	</head>
 	<body>
 		
-		<img id="imgBack" src="res/back1.jpg" style="position: absolute;" />
+		<img id="imgBack1" src="https://s3.amazonaws.com/ooomf-com-files/LGhxuAbT5Wop4JYcrMpV_IMG_3808.jpg" style="position: absolute; display:none" alt="Large background" />
+		<img id="imgBack" src="https://s3.amazonaws.com/ooomf-com-files/EOZpjI3oSqKPNnF2S4Tp_Untitled.jpg" style="position: absolute;" alt="Large background" />
+		
+		
+		<div id="navHor" class="container "  >
+			<ul class="nav nav-pills navbar-default" >
+				<li><a href="#">Old website</a></li>
+				<li><a href="#">Contact</a></li>
+				<li><a href="#">About</a></li>
+			</ul>
+		</div>
 		
 		<div style="height: 100px;"></div>
 		
 		<div class="container "  >
-
-			<ul class="nav nav-pills navbar-default" style=" float: right;">
-				<li><a href="#">Contact</a></li>
-				<li class="active"><a href="#">About</a></li>
-			</ul>
-
-			<nav class="navbar-default" style="width: 200px; position: fixed; ">
-
+			
+			<nav class="navbar-default" style="width: 200px; position: fixed; z-index: 2;">
 				<ul class="nav nav-pills nav-stacked" style="">
 					<li><a href="#">Komante</a><hr style="margin: 0px auto; width: 90%; "></li>
-					<li><a href="#">Aaa</a></li>
-					<li><a href="#">iOS</a></li>
-					<li><a href="#">VB.Net</a></li>
-					<li><a href="#">Java</a></li>
-					<li><a href="#">PHP</a></li>
+					<li><a href="#">Introduction</a></li>
+					<li><a href="#">Apps</a></li>
+					<li><a href="#">Tools</a></li>
+					<li><a href="#">Games</a></li>
+					<li><a href="#">Articles</a></li>
 				</ul>
 			</nav>
 		</div>
 
 		<section class="section" id="secFirst">
 			<div class="container">
-
 				<div class="row">
-					<div class="col-md-10 col-lg-10 col-md-offset-1 col-lg-offset-1 text-center">	
-
+					<div class="col-md-10 col-md-offset-1 text-center">	
 						<!-- Site Title, your name, HELLO msg, etc. -->
 						<h1 class="title">Fun Solid Elegant</h1>
 						<h2 class="subtitle">The way code should be</h2>
-
 						<!-- Short introductory (optional) -->
 						<h3 class="tagline">
-							Portfolio website for small, independent, and interesting projects.<br>
+							Portfolio website for small, independent projects.<br>
 							Web, desktop and enterprise applications. Scroll to existing free products.  
 						</h3>
-
 						<!-- Nice place to describe your site in a sentence or two -->
-						<p><a href="/download/" class="btn btn-default btn-lg">Download template now</a></p>
+						<p></p>
 
 					</div> <!-- /col -->
 				</div> <!-- /row -->
@@ -111,13 +135,47 @@
 			</div>
 		</section>
 		
-		<section id="secSection">
-			<div class="container" style="height:1000px;">
-				aaa
+		<section id="secSecond">
+			<div class="container" >
+				<h2 class="col-md-10 col-md-offset-2 ">Introduction</h2>
+				<div class="row">
+					<div class="col-md-10 col-md-offset-2 backed">
+						<p>
+						Komante is about software. Programming, new exciting applications and approaches, 
+						small web games, along with thoughts about all that. Its goal is to present original 
+						software products made by small independent teams and individuals, and to connect
+						them in collaborative and constructive ways, ideas exchange, and business undertakings.
+						</p>
+						<p>
+						It offers overview of already developed products. All of them are free to use. 
+						Versatile technologies are included in their development, and cover different users
+						and purposes. That's why products are divided into three categories. Apps for desktop 
+						applications, Tools for components, libraries and programming tools, and Games for
+						html5 and javascript based web games. 
+						</p>
+					</div>
+				</div>
 			</div>
 		</section>
 		
-		
+		<section id="secThird">
+			<div class="container" >
+				<h2 class="col-md-10 col-md-offset-2 ">Apps</h2>
+				<div class="row">
+					<div class="col-md-10 col-md-offset-2 backed">
+						<p>
+						Komante is about software. Programming, new exciting applications and approaches, 
+						small web games, and thoughts about all that. Its goal is to present original 
+						software products made by small independent teams and individuals, and to connect
+						them in collaborative and constructive way, ideas exchange, and business undertakings.
+						</p>
+						<p>
+						It also offers overview and free usage of already developed products.   	
+						</p>
+					</div>
+				</div>
+			</div>
+		</section>
 		
 	</body>
 </html>
