@@ -14,37 +14,38 @@
 
 		<link href="css/bootstrap.css" rel="stylesheet">
 		<link href="css/bootstrap-theme.css" rel="stylesheet">
-		
+
 		<script type="text/javascript">
-			$(function(){
-				positionSecondSection('secFirst','secSecond');
-				
+			$(function() {
+				positionSecondSection('secFirst', 'secSecond');
+
 			});
-			
-			function positionSecondSection(id1,id2){
-				var jq1,jq2,oldmar,newmar; 
-				jq1 =$(document.getElementById(id1));
-				jq2 =$(document.getElementById(id2));
-				oldmar =parseInt(jq1.css('margin-bottom'));
-				newmar =oldmar -(jq2.position().top - $(window).height());
-				jq1.css('margin-bottom',newmar);
+
+			function positionSecondSection(id1, id2) {
+				var jq1, jq2, oldmar, newmar;
+				jq1 = $(document.getElementById(id1));
+				jq2 = $(document.getElementById(id2));
+				oldmar = parseInt(jq1.css('margin-bottom'));
+				newmar = oldmar - (jq2.position().top - $(window).height());
+				jq1.css('margin-bottom', newmar);
 			}
-			
-			$(window).on('scroll',function(){	return;
-				var dh,wh,ih,st,posy;
-				dh =$(document).height();
-				wh =$(window).height();
-				ih =$('#imgBack').height();
-				st =$(document).scrollTop();
-				posy =(dh-ih)*st / (dh-wh);
-				document.getElementById('imgBack').style.top =posy+'px';
+
+			$(window).on('scroll', function() {
+				return;
+				var dh, wh, ih, st, posy;
+				dh = $(document).height();
+				wh = $(window).height();
+				ih = $('#imgBack').height();
+				st = $(document).scrollTop();
+				posy = (dh - ih) * st / (dh - wh);
+				document.getElementById('imgBack').style.top = posy + 'px';
 			});
 		</script>
-		
+
 		<style>
 			body{
 				1background-image: url("https://s3.amazonaws.com/ooomf-com-files/EOZpjI3oSqKPNnF2S4Tp_Untitled.jpg");
-				background-image: url("http://haybert.com/wp-content/uploads/2014/01/all-white-color-interior-living-room-furniture-decorating-ideas-with-recliner-chair-sofa-bed-floor-lamp-and-marble-flooring-tile.jpg");
+				background-image: url("res/back2.jpg");
 				background-repeat: no-repeat;
 				background-size: 100% auto;
 				background-position: 0px 60px;
@@ -56,6 +57,22 @@
 			.navbar-default {
 				background-color: rgba(155,155,155,0.2);
 				background-image: none;
+			}
+			.backed {
+				background-color: rgba(255,255,255,0.7);
+				border-radius: 10px;
+			}
+			.content-section-a {
+				background-color: #f8f8f8;
+				border-top: 1px solid #e7e7e7;
+				border-bottom: 1px solid #e7e7e7;
+				padding: 50px 0;
+			}
+			.container h2 {
+				margin-bottom: 25px;
+			}
+			img.smallerimage {
+				width: 100%;
 			}
 			#navHor{
 				margin-top: 10px;
@@ -72,24 +89,18 @@
 				margin-top: 50px;
 				margin-bottom: 1000px;
 			}
-			#secSecond {
-				1height: 1000px;
-			}
 			#secThird {
 				background-color: white;
 			}
-			.backed {
-				background-color: rgba(255,255,255,0.7);
-				border-radius: 10px;
-			}
+			
 		</style>
 	</head>
 	<body>
-		
+
 		<img id="imgBack1" src="https://s3.amazonaws.com/ooomf-com-files/LGhxuAbT5Wop4JYcrMpV_IMG_3808.jpg" style="position: absolute; display:none" alt="Large background" />
 		<img id="imgBack" src="https://s3.amazonaws.com/ooomf-com-files/EOZpjI3oSqKPNnF2S4Tp_Untitled.jpg" style="position: absolute;" alt="Large background" />
-		
-		
+
+
 		<div id="navHor" class="container "  >
 			<ul class="nav nav-pills navbar-default" >
 				<li><a href="#">Old website</a></li>
@@ -97,11 +108,11 @@
 				<li><a href="#">About</a></li>
 			</ul>
 		</div>
-		
+
 		<div style="height: 100px;"></div>
-		
+
 		<div class="container "  >
-			
+
 			<nav class="navbar-default" style="width: 200px; position: fixed; z-index: 2;">
 				<ul class="nav nav-pills nav-stacked" style="">
 					<li><a href="#">Komante</a><hr style="margin: 0px auto; width: 90%; "></li>
@@ -134,48 +145,74 @@
 
 			</div>
 		</section>
-		
+
 		<section id="secSecond">
 			<div class="container" >
 				<h2 class="col-md-10 col-md-offset-2 ">Introduction</h2>
 				<div class="row">
 					<div class="col-md-10 col-md-offset-2 backed">
 						<p>
-						Komante is about software. Programming, new exciting applications and approaches, 
-						small web games, along with thoughts about all that. Its goal is to present original 
-						software products made by small independent teams and individuals, and to connect
-						them in collaborative and constructive ways, ideas exchange, and business undertakings.
+							Komante is about software. Programming, new exciting applications and approaches, 
+							small web games, along with thoughts about all that. Its goal is to present original 
+							software products made by small independent teams and individuals, and to connect
+							them in collaborative and constructive ways, ideas exchange, and business undertakings.
 						</p>
 						<p>
-						It offers overview of already developed products. All of them are free to use. 
-						Versatile technologies are included in their development, and cover different users
-						and purposes. That's why products are divided into three categories. Apps for desktop 
-						applications, Tools for components, libraries and programming tools, and Games for
-						html5 and javascript based web games. 
+							It offers overview of already developed products. All of them are free to use. 
+							Versatile technologies are included in their development, and cover different users
+							and purposes. For that reason products are divided into three categories. Apps for desktop 
+							applications, Tools for components, libraries and programming tools, and Games for
+							html5 and javascript based web games. 
 						</p>
 					</div>
 				</div>
 			</div>
 		</section>
-		
-		<section id="secThird">
-			<div class="container" >
+
+
+		<section id="secThird" >
+			<div class="container">
 				<h2 class="col-md-10 col-md-offset-2 ">Apps</h2>
 				<div class="row">
-					<div class="col-md-10 col-md-offset-2 backed">
-						<p>
-						Komante is about software. Programming, new exciting applications and approaches, 
-						small web games, and thoughts about all that. Its goal is to present original 
-						software products made by small independent teams and individuals, and to connect
-						them in collaborative and constructive way, ideas exchange, and business undertakings.
+					<div class="col-md-5 col-md-offset-2 col-sm-6 col-sm-offset-2">
+						<h3 class="section-heading">VD File Searcher </h3>
+						<hr class="section-heading-spacer">
+						<p><strong><a href="filesearcher">VD File Searcher</a></strong> is desktop application for finding local files. </p>
+						<p>It will help you easily and very quickly find files and directories on your local 
+							hard discs and other storage drives. Developed in <a href="java.com">Java programming language</a> 
+							and based on the fastest open source 
+							<a href="lucene.apache.org">Lucene search engine</a>, it runs on every platform and find files in a second no matter how big 
+							your file system is, 
+							or how many files you have there.
 						</p>
-						<p>
-						It also offers overview and free usage of already developed products.   	
-						</p>
+						<p>Read more about this <a href="filesearcher">free and fast search application</a> or go to <a href="#">download</a> page. </p>
+					</div>
+					<div class="col-md-4 col-md-offset-1 col-sm-4 col-xs-6 ">
+						<img class="img-responsive img-thumbnail" src="res/filesearcher.png" alt="VD file searcher window">
 					</div>
 				</div>
+
 			</div>
 		</section>
-		
+
+		<section id="secFourth" class="content-section-a">
+			<div class="container">
+				<h2 class="col-md-10 col-md-offset-2 ">Tools</h2>
+				<div class="row">
+					<div class="col-md-4 col-md-offset-2 col-sm-4 col-xs-6 col-sm-offset-2">
+						<img class="img-responsive smallerimage" src="res/htmllayout.png" alt="HDIMS Javascript html layout">
+					</div>
+					<div class="col-md-5 col-md-offset-1 col-sm-6">
+
+						<div class="clearfix"></div>
+						<h3 class="section-heading">HDIMS</h3>
+						<hr class="section-heading-spacer">
+						<p class="lead"><a target="" href="#">Visit their website</a> to become a member.</p>
+					</div>
+				</div>
+
+			</div>
+		</section>		
+
 	</body>
 </html>
