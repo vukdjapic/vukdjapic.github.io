@@ -11,69 +11,36 @@
 
 		<script type="text/javascript" src="js/lib/jquery.js"></script>
 		<script src="js/lib/bootstrap.js"></script>
+		<script src="js/komante.js"></script>		
 
 		<link href="css/bootstrap.css" rel="stylesheet">
 		<link href="css/bootstrap-theme.css" rel="stylesheet">
-
+		<link href="css/komante.css" rel="stylesheet">
+		
+		<script type="text/javascript">
+			
+		</script>
 		<script type="text/javascript">
 			$(function() {
-				positionSecondSection('secFirst', 'secSecond');
+				positionSecondSection('secFirst', 'secIntro');
+
 
 			});
 
-			function positionSecondSection(id1, id2) {
-				var jq1, jq2, oldmar, newmar;
-				jq1 = $(document.getElementById(id1));
-				jq2 = $(document.getElementById(id2));
-				oldmar = parseInt(jq1.css('margin-bottom'));
-				newmar = oldmar - (jq2.position().top - $(window).height());
-				jq1.css('margin-bottom', newmar);
-			}
-
 			$(window).on('scroll', function() {
-				return;
-				var dh, wh, ih, st, posy;
-				dh = $(document).height();
-				wh = $(window).height();
-				ih = $('#imgBack').height();
-				st = $(document).scrollTop();
-				posy = (dh - ih) * st / (dh - wh);
-				document.getElementById('imgBack').style.top = posy + 'px';
+				activateScrolledSection('sideList');
 			});
 		</script>
 
 		<style>
 			body{
-				1background-image: url("https://s3.amazonaws.com/ooomf-com-files/EOZpjI3oSqKPNnF2S4Tp_Untitled.jpg");
 				background-image: url("res/back2.jpg");
 				background-repeat: no-repeat;
 				background-size: 100% auto;
 				background-position: 0px 60px;
 				overflow-x: hidden;
 			}
-			section {
-				padding-bottom: 50px;
-			}
-			.navbar-default {
-				background-color: rgba(155,155,155,0.2);
-				background-image: none;
-			}
-			.backed {
-				background-color: rgba(255,255,255,0.7);
-				border-radius: 10px;
-			}
-			.content-section-a {
-				background-color: #f8f8f8;
-				border-top: 1px solid #e7e7e7;
-				border-bottom: 1px solid #e7e7e7;
-				padding: 50px 0;
-			}
-			.container h2 {
-				margin-bottom: 25px;
-			}
-			img.smallerimage {
-				width: 100%;
-			}
+
 			#navHor{
 				margin-top: 10px;
 				margin-bottom: 10px;
@@ -89,16 +56,16 @@
 				margin-top: 50px;
 				margin-bottom: 1000px;
 			}
-			#secThird {
+			#secApps {
 				background-color: white;
 			}
-			
+
 		</style>
 	</head>
 	<body>
 
-		<img id="imgBack1" src="https://s3.amazonaws.com/ooomf-com-files/LGhxuAbT5Wop4JYcrMpV_IMG_3808.jpg" style="position: absolute; display:none" alt="Large background" />
-		<img id="imgBack" src="https://s3.amazonaws.com/ooomf-com-files/EOZpjI3oSqKPNnF2S4Tp_Untitled.jpg" style="position: absolute;" alt="Large background" />
+		<img id="imgBack1" src="1https://s3.amazonaws.com/ooomf-com-files/LGhxuAbT5Wop4JYcrMpV_IMG_3808.jpg" style="position: absolute; display:none" alt="Large background" />
+		<img id="imgBack" src="1https://s3.amazonaws.com/ooomf-com-files/EOZpjI3oSqKPNnF2S4Tp_Untitled.jpg" style="position: absolute;" alt="Large background" />
 
 
 		<div id="navHor" class="container "  >
@@ -114,12 +81,12 @@
 		<div class="container "  >
 
 			<nav class="navbar-default" style="width: 200px; position: fixed; z-index: 2;">
-				<ul class="nav nav-pills nav-stacked" style="">
+				<ul id="sideList" class="nav nav-pills nav-stacked" style="">
 					<li><a href="#">Komante</a><hr style="margin: 0px auto; width: 90%; "></li>
-					<li><a href="#">Introduction</a></li>
-					<li><a href="#">Apps</a></li>
-					<li><a href="#">Tools</a></li>
-					<li><a href="#">Games</a></li>
+					<li><a href="#secIntro">Introduction</a></li>
+					<li><a href="#secApps">Apps</a></li>
+					<li><a href="#secTools">Tools</a></li>
+					<li><a href="#secGames">Games</a></li>
 					<li><a href="#">Articles</a></li>
 				</ul>
 			</nav>
@@ -146,7 +113,7 @@
 			</div>
 		</section>
 
-		<section id="secSecond">
+		<section id="secIntro">
 			<div class="container" >
 				<h2 class="col-md-10 col-md-offset-2 ">Introduction</h2>
 				<div class="row">
@@ -170,7 +137,7 @@
 		</section>
 
 
-		<section id="secThird" >
+		<section id="secApps" >
 			<div class="container">
 				<h2 class="col-md-10 col-md-offset-2 ">Apps</h2>
 				<div class="row">
@@ -195,7 +162,7 @@
 			</div>
 		</section>
 
-		<section id="secFourth" class="content-section-a">
+		<section id="secTools" class="content-section-a">
 			<div class="container">
 				<h2 class="col-md-10 col-md-offset-2 ">Tools</h2>
 				<div class="row">
@@ -207,12 +174,30 @@
 						<div class="clearfix"></div>
 						<h3 class="section-heading">HDIMS</h3>
 						<hr class="section-heading-spacer">
-						<p class="lead"><a target="" href="#">Visit their website</a> to become a member.</p>
+						<p class="lead"><a href="#">Visit their website</a> to become a member.</p>
 					</div>
 				</div>
 
 			</div>
 		</section>		
+		<section id="secGames" >
+			<div class="container">
+				<h2 class="col-md-10 col-md-offset-2 ">Games</h2>
+				<div class="row">
+					<div class="col-md-5 col-md-offset-1 col-sm-6">
+						<div class="clearfix"></div>
+						<h3 class="section-heading">Maze</h3>
+						<hr class="section-heading-spacer">
+						<p class="lead"><a href="#">Visit their website</a> to become a member.</p>
+					</div>
+					<div class="col-md-4 col-md-offset-2 col-sm-4 col-xs-6 col-sm-offset-2">
+						<img class="img-responsive smallerimage" src="res/htmllayout.png" alt="HDIMS Javascript html layout">
+					</div>
+				</div>
+
+			</div>
+		</section>		
+
 
 	</body>
 </html>
