@@ -10,6 +10,9 @@ body.scrollingBackground {
     background-position: center 0px;
 }
 
+.sidelist {
+    width: 200px;
+}
 
 section {
     padding-bottom: 50px;
@@ -39,4 +42,12 @@ section {
 }
 img.smallerimage {
     width: 100%;
+}
+
+#navHor{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+#navHor > ul{
+    float: right;
 }
