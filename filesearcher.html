@@ -48,8 +48,11 @@ and open the template in the editor.
 			.dl-horizontal dt{
 				width: auto;
 			}
+			.dl-horizontal dd, .dl-horizontal dt {
+				padding-top: 10px;
+			}
 			.sidebar {
-				background-image: url("res/back2.jpg");
+				background-image: url("res/background.jpg");
 				background-color: #CCCCCC;
 			}
 			@media (min-width: 768px) {
@@ -143,21 +146,57 @@ and open the template in the editor.
 					<section id="secThird" class="section " >
 						<div class="row">
 							<div class="col-md-offset-1 col-md-8">
-								<h3>Why VD FileSercher? <small>Features</small></h3>
+								<h2>Why VD FileSercher? <small>Some reasons why this kind of software is needed</small></h2>
+								<p class="lead1">
+									Searching for files is feature present in all operating systems. In Linux, there is <code>find</code> tool,
+									and in modern versions of Windows all you need to do is click <code>Start</code> button and just start typing.
+									Also many file managers like Total Commander or Double Commander also have embedded find files function.
+									So, why another application for it?
+									<br>
+									The main idea is to have application with intuitive interface, which finds exactly what we want, and does
+									that quickly. All three requirements are hardly met in existing integrated operating system searches or file
+									managers. Operating system searches often results in lot of unnecessary or system files, or don't scan
+									all drives, and file managers don't index files, so their searching is slow. VD FileSearcher tries to
+									fulfill them all, see complete list of features below.  
+								</p>
+							</div>
+						</div>
+					</section>
+								
+					<section id="secThird" class="section " >
+						<div class="row">
+							<div class="col-md-offset-1 col-md-8">
+								<h2>Features</h2>
 								
 								<dl class="dl-horizontal features">
 									<dt>FREE to use</dt>
-									<dd>aaa</dd>
+									<dd>This application is freeware. There are no fees for its download and usage.</dd>
 									<dt>Runs on every platform</dt>
 									<dd>Developed in JAVA programming language, it's platform agnostic. But it does require JAVA runtime installed 
 										on your machine.
 									</dd>
-									<dt></dt>
-									<dd></dd>
-									<dt></dt>
-									<dd></dd>
-									<dt></dt>
-									<dd></dd>
+									<dt>Fast searching</dt>
+									<dd>Based on the quickest open source search engine Lucene, its average in retrieving any result from full 600GB
+									hard disc is below one second.
+									</dd>
+									<dt>No installation</dt>
+									<dd>Just download the file and run it. If JAVA is installed both .exe and .jar versions can be started with
+									double click. If not, you will be redirected to browser page where you can download JAVA runtime for your
+									platform.
+									</dd>
+									<dt>Constant indexing</dt>
+									<dd>When open, VD FileSearcher constantly indexes files from categories and directories you added. While you use 
+									it for searching it scans them in background to ensure you get up to date results. It does so in low processor
+									usage manner, so you don't notice any impact on performance of other applications.
+									</dd>
+									<dt>Customized search</dt>
+									<dd>VD FileSearcher doesn't just index all you hard discs. It uses categories you created with directories
+										also selected by yourself. So category is set of directories, which can optionally include their 
+										subdirectories.<br>
+									This more flexible approach allows you to search just specific category, or add new category for your USB 
+									drives, DVDs, and other interchangeable storage media. Also, you don't have to include all content from
+									your hard discs, thus making index smaller and more quickly updated.
+									</dd>
 								</dl>
 							</div>
 						</div>
