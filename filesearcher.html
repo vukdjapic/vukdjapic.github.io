@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+	<head>
+	<head>
+		<title>Komante software solutions web games applications</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="Independent software development. Applications, games, web solutions. Complete online comment solution, small Javascript HTML5 games, file searcher">
+		<meta name="keywords" content="Komante, Vuk, Djapic, software, web, javascript, free, games, comments, java, solutions">
+
+
+		<script type="text/javascript" src="js/lib/jquery.js"></script>
+		<script src="js/lib/bootstrap.js"></script>
+		<script type="text/javascript" src="js/lib/jquery.colorbox.js"></script>
+		<script src="js/komante.js"></script>	
+
+
+		<link href="css/bootstrap.css" rel="stylesheet">
+		<link href="css/bootstrap-theme.css" rel="stylesheet">
+		<link href="css/komante.css" rel="stylesheet">
+
+		<script type="text/javascript">
+
+		</script>
+		<script type="text/javascript">
+			$(function() {
+				$('a.colorbox').colorbox();
+
+			});
+
+			$(window).on('scroll', function() {
+				activateScrolledSection('sideList');
+			});
+		</script>
+		<style>
+			html, body, .container-fluid, .row {
+				height: 100%;
+			}
+			ul.features, dl.features {
+				margin-top: 40px;
+				list-style-type: square;
+			}
+			.dl-horizontal dt{
+				width: auto;
+			}
+			.sidebar {
+				background-image: url("res/back2.jpg");
+				background-color: #CCCCCC;
+			}
+			@media (min-width: 768px) {
+				.sidebar {
+					position: fixed;
+					top: 0;
+					left: 0;
+					bottom: 0;
+					z-index: 2;
+					display: block;
+					background-color: #CCCCCC;
+				}
+				.sidebar .sidelist{
+					margin-top: 160px;
+				}
+			}
+
+			#colorbox {
+				z-index: 100;
+			}
+			#dBacktitle {
+				width:100%; 
+				height:210px; 
+				position: absolute; 
+				top:60px; 
+				border-top: 2px solid black; 
+				border-bottom: 2px solid black; 
+			}
+
+			#secFirst {
+				margin-top: 80px;
+			}
+			#secSecond {
+				margin-top: 80px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="dBacktitle" class="bg-primary"></div>
+
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-3 col-sm-3 sidebar">
+					<nav class="navbar-default center-block sidelist">
+						<ul id="sideList" class="nav nav-pills nav-stacked" style="">
+							<li><a href="/">Komante</a><hr style="margin: 0px auto; width: 90%; "></li>
+							<li><a href="#secIntro">Introduction</a></li>
+							<li><a href="#secApps">Apps</a></li>
+							<li><a href="#secTools">Tools</a></li>
+							<li><a href="#secGames">Games</a></li>
+							<li><a href="#">Articles</a></li>
+						</ul>
+					</nav>
+				</div>
+				<div class="col-md-9 col-md-offset-3 col-sm-9 col-sm-offset-3 content">
+					<div id="navHor" class=""  >
+						<ul class="nav nav-pills navbar-default" >
+							<li><a href="#">Old website</a></li>
+							<li><a href="#">Contact</a></li>
+							<li><a href="#">About</a></li>
+						</ul>
+					</div>
+					<section id="secFirst" class="section bg-primary" >
+						<h1 class="text-center ">VD FileSearcher</h1>
+						<h3 class="text-center ">Fast and easy finds local files</h2>
+					</section>
+
+					<section id="secSecond" class="section " >
+						<div class="row">
+							<div class="col-md-offset-1 col-md-5">
+								<br>
+								<p class="lead"><strong>VD File Searcher</strong> is desktop application for finding local files. </p>
+								<p class="lead">It will help you easily and very quickly find files and directories on your local 
+									hard discs and other storage drives. Developed in <a href="java.com">Java programming language</a> 
+									and based on the fastest open source 
+									<a href="lucene.apache.org">Lucene search engine</a>, it runs on every platform and find files in a second no matter how big 
+									your file system is, 
+									or how many files you have there.
+								</p>
+
+							</div>
+							<div class="col-md-offset-1 col-md-5">
+								<a class="colorbox" href="res/filesearcher.png">
+									<img class="img-responsive img-thumbnail" src="res/filesearcher.png" alt="VD file searcher">
+								</a>
+							</div>
+						</div>
+
+					</section>
+
+					<section id="secThird" class="section " >
+						<div class="row">
+							<div class="col-md-offset-1 col-md-8">
+								<h3>Why VD FileSercher? <small>Features</small></h3>
+								
+								<dl class="dl-horizontal features">
+									<dt>FREE to use</dt>
+									<dd>aaa</dd>
+									<dt>Runs on every platform</dt>
+									<dd>Developed in JAVA programming language, it's platform agnostic. But it does require JAVA runtime installed 
+										on your machine.
+									</dd>
+									<dt></dt>
+									<dd></dd>
+									<dt></dt>
+									<dd></dd>
+									<dt></dt>
+									<dd></dd>
+								</dl>
+							</div>
+						</div>
+					</section>
+
+					
+				</div>
+			</div>
+		</div>
+
+	</body>
+</html>

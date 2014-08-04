@@ -13,9 +13,25 @@ and open the template in the editor.
 	<script type="text/javascript" src="js/libs/jquery.js"></script>
 	
 	<link href="css/bootstrap.css" rel="stylesheet">
+	
+	<script type="text/javascript">
+		var prop1 =location;
+		var prop2 =location.pathname;
+		var prop3 =location.origin;
+		var prop4 =document.referrer;
+		
+	</script>
 </head>
 <body>
 	<div>404 Page not found</div>
 	<div>Return to <a href="/">main</a> page</div>
+	
+	<script type="text/javascript">
+		document.write("Location props and referrer: ");
+		document.write("<br>loc "+prop1);
+		document.write("<br>path "+prop2);
+		document.write("<br>origin "+prop3);
+		document.write("<br>ref "+prop4);
+	</script>
 </body>
 </html>

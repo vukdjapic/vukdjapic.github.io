@@ -11,7 +11,6 @@ $4 = {};
  *
  * @param string id1
  * @param string id2
- * @returns {undefined}
  */
 function positionSecondSection(id1, id2) {
 	var jq1, jq2, oldmar, newmar;
@@ -22,7 +21,11 @@ function positionSecondSection(id1, id2) {
 	jq1.css('margin-bottom', newmar);
 }
 
-
+/**Adds 'active' class to entry in list which points to currently
+ * visible section
+ *
+ * @param {type} sideListId
+ */
 function activateScrolledSection(sideListId) {
 	if (!$4._scrollSections) {
 		$4._scrollSections = {};
@@ -61,4 +64,25 @@ function activateScrolledSection(sideListId) {
 		}
 	}
 
+}
+
+/**Eases background image while scrolling to match whole document
+ *
+ */
+function smoothBackgroundScroll() {
+	var dh, wh, ih, st, posy, bcksize;
+	if (!$4._smoothScroll) {
+		bcksize = $(document.body).css('background-size');
+		$4._smoothScroll = {
+			dh: $(document).height()
+			, wh: $(window).height()
+			, ih: parseInt(/\d+/.exec(bcksize)[0] || "1440")
+		}
+	}
+	dh = $4._smoothScroll.dh;
+	wh = $4._smoothScroll.wh
+	ih = $4._smoothScroll.ih;
+	st = $(document).scrollTop();
+	posy = (dh - ih) * st / (dh - wh);
+	document.body.style.backgroundPosition = 'center ' + posy + 'px';
 }
