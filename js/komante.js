@@ -47,7 +47,7 @@ function activateScrolledSection(sideListId) {
 	}
 
 	var sec, secdiff, sel;
-	var whalf = $(document).scrollTop() + $(window).height() / 2;
+	var whalf = $(document).scrollTop() + $(window).height() / 3;
 	var min = Number.MAX_VALUE;
 	for (sec in $4._scrollSections) {
 		secdiff = whalf - $4._scrollSections[sec].top;

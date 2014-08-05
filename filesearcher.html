@@ -23,9 +23,15 @@ and open the template in the editor.
 		<link href="css/bootstrap.css" rel="stylesheet">
 		<link href="css/bootstrap-theme.css" rel="stylesheet">
 		<link href="css/komante.css" rel="stylesheet">
+		
 
 		<script type="text/javascript">
-
+			$.fn.colorbox.settings.transition ='none';
+			$.fn.colorbox.settings.maxWidth ='80%';
+			$.fn.colorbox.settings.maxHeight ='80%';
+			$.fn.colorbox.settings.onLoad =function(){
+				$('#cboxClose').addClass('btn btn-primary');
+			}
 		</script>
 		<script type="text/javascript">
 			$(function() {
@@ -65,9 +71,7 @@ and open the template in the editor.
 					display: block;
 					background-color: #CCCCCC;
 				}
-				.sidebar .sidelist{
-					margin-top: 160px;
-				}
+
 			}
 
 			#colorbox {
@@ -82,12 +86,6 @@ and open the template in the editor.
 				border-bottom: 2px solid black; 
 			}
 
-			#secFirst {
-				margin-top: 80px;
-			}
-			#secSecond {
-				margin-top: 80px;
-			}
 		</style>
 	</head>
 	<body>
@@ -96,31 +94,37 @@ and open the template in the editor.
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-3 col-sm-3 sidebar">
-					<nav class="navbar-default center-block sidelist">
+
+					<nav class="navbar-default center-block sidelist navtop" >
+						<ul  class="nav nav-pills nav-stacked" style="">
+							<li><a href="/"><strong>Komante</strong><br><small>Fun Solid Elegant</small></a></li>
+						</ul>
+					</nav>
+
+					<nav class="navbar-default center-block sidelist" style="margin-top: 100px;">
 						<ul id="sideList" class="nav nav-pills nav-stacked" style="">
-							<li><a href="/">Komante</a><hr style="margin: 0px auto; width: 90%; "></li>
+							<li><a href="#">VD FileSearcher</a><hr style="margin: 0px auto; width: 90%; "></li>
 							<li><a href="#secIntro">Introduction</a></li>
-							<li><a href="#secApps">Apps</a></li>
-							<li><a href="#secTools">Tools</a></li>
-							<li><a href="#secGames">Games</a></li>
-							<li><a href="#">Articles</a></li>
+							<li><a href="#secFeatures">Features</a></li>
+							<li><a href="#secUsage">Usage</a></li>
+							<li><a href="#secDownload">Download</a></li>
 						</ul>
 					</nav>
 				</div>
-				<div class="col-md-9 col-md-offset-3 col-sm-9 col-sm-offset-3 content">
-					<div id="navHor" class=""  >
+				<div class="col-md-9 col-md-offset-3 col-sm-9 col-sm-offset-3 ">
+					<div id="navHor" class="navtop"  >
 						<ul class="nav nav-pills navbar-default" >
 							<li><a href="#">Old website</a></li>
 							<li><a href="#">Contact</a></li>
 							<li><a href="#">About</a></li>
 						</ul>
 					</div>
-					<section id="secFirst" class="section bg-primary" >
+					<section class="section bg-primary" style="margin-top: 80px;">
 						<h1 class="text-center ">VD FileSearcher</h1>
 						<h3 class="text-center ">Fast and easy finds local files</h2>
 					</section>
 
-					<section id="secSecond" class="section " >
+					<section id="secSecond" class="section " style="margin-top: 80px;" >
 						<div class="row">
 							<div class="col-md-offset-1 col-md-5">
 								<br>
@@ -135,7 +139,7 @@ and open the template in the editor.
 
 							</div>
 							<div class="col-md-offset-1 col-md-5">
-								<a class="colorbox" href="res/filesearcher.png">
+								<a class="colorbox" href="res/filesearcher.png" title="Desktop look of application">
 									<img class="img-responsive img-thumbnail" src="res/filesearcher.png" alt="VD file searcher">
 								</a>
 							</div>
@@ -143,7 +147,7 @@ and open the template in the editor.
 
 					</section>
 
-					<section id="secThird" class="section " >
+					<section id="secIntro" class="section " >
 						<div class="row">
 							<div class="col-md-offset-1 col-md-8">
 								<h2>Why VD FileSercher? <small>Some reasons why this kind of software is needed</small></h2>
@@ -162,12 +166,12 @@ and open the template in the editor.
 							</div>
 						</div>
 					</section>
-								
-					<section id="secThird" class="section " >
+
+					<section id="secFeatures" class="section " >
 						<div class="row">
 							<div class="col-md-offset-1 col-md-8">
 								<h2>Features</h2>
-								
+
 								<dl class="dl-horizontal features">
 									<dt>FREE to use</dt>
 									<dd>This application is freeware. There are no fees for its download and usage.</dd>
@@ -177,32 +181,49 @@ and open the template in the editor.
 									</dd>
 									<dt>Fast searching</dt>
 									<dd>Based on the quickest open source search engine Lucene, its average in retrieving any result from full 600GB
-									hard disc is below one second.
+										hard disc is below one second.
 									</dd>
 									<dt>No installation</dt>
 									<dd>Just download the file and run it. If JAVA is installed both .exe and .jar versions can be started with
-									double click. If not, you will be redirected to browser page where you can download JAVA runtime for your
-									platform.
+										double click. If not, you will be redirected to browser page where you can download JAVA runtime for your
+										platform.
 									</dd>
 									<dt>Constant indexing</dt>
 									<dd>When open, VD FileSearcher constantly indexes files from categories and directories you added. While you use 
-									it for searching it scans them in background to ensure you get up to date results. It does so in low processor
-									usage manner, so you don't notice any impact on performance of other applications.
+										it for searching it scans them in background to ensure you get up to date results. It does so in low processor
+										usage manner, so you don't notice any impact on performance of other applications.
 									</dd>
 									<dt>Customized search</dt>
 									<dd>VD FileSearcher doesn't just index all you hard discs. It uses categories you created with directories
 										also selected by yourself. So category is set of directories, which can optionally include their 
 										subdirectories.<br>
-									This more flexible approach allows you to search just specific category, or add new category for your USB 
-									drives, DVDs, and other interchangeable storage media. Also, you don't have to include all content from
-									your hard discs, thus making index smaller and more quickly updated.
+										This more flexible approach allows you to search just specific category, or add new category for your USB 
+										drives, DVDs, and other interchangeable storage media. Also, you don't have to include all content from
+										your hard discs, thus making index smaller and more quickly updated.
 									</dd>
 								</dl>
 							</div>
 						</div>
 					</section>
 
+					<section id="secUsage" class="section " >
+						<div class="row">
+							<div class="col-md-offset-1 col-md-8">
+								<h2>Usage</h2>
+
+							</div>
+						</div>
+					</section>
 					
+					<section id="secDownload" class="section " >
+						<div class="row">
+							<div class="col-md-offset-1 col-md-8">
+								<h2>Download</h2>
+
+							</div>
+						</div>
+					</section>
+
 				</div>
 			</div>
 		</div>
