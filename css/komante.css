@@ -50,9 +50,6 @@ section {
     border-bottom: 1px solid #e7e7e7;
 
 }
-.container h2 {
-    margin-bottom: 25px;
-}
 img.smallerimage {
     width: 100%;
 }
@@ -61,6 +58,11 @@ img.smallerimage {
     margin-top: 10px;
     margin-bottom: 10px;
 }
+
+.bmargin {
+    margin-bottom: 25px;
+}
+
 #navHor > ul{
     float: right;
 }

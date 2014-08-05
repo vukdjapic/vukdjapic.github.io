@@ -43,6 +43,9 @@
 				background-position: 0px 60px;
 				overflow-x: hidden;
 			}
+			.row a>img.img-thumbnail.img-responsive {
+				margin-top: 15px;
+			}
 
 			#imgBack {
 				z-index: -1;
@@ -55,14 +58,22 @@
 			#secApps {
 				background-color: white;
 			}
-
+			#secGames {
+				background1:  url("res/gamebck.jpg") repeat scroll 0 0 rgba(0, 0, 0, 0);
+				position: relative;
+			}
+			#secGames > .container {
+				background-color: white;
+				border-radius: 8px;
+				position: relative;
+			}
 		</style>
 	</head>
 	<body>
 
 		<div id="navHor" class="container "  >
 			<ul class="nav nav-pills navbar-default" >
-				<li><a href="#">Old website</a></li>
+				<li><a href="http://vuk.alwaysdata.net">Old website</a></li>
 				<li><a href="#">Contact</a></li>
 				<li><a href="404.html">About</a></li>
 			</ul>
@@ -107,7 +118,7 @@
 
 		<section id="secIntro">
 			<div class="container" >
-				<h2 class="col-md-10 col-md-offset-2 ">Introduction</h2>
+				<h2 class="col-md-10 col-md-offset-2 bmargin">Introduction</h2>
 				<div class="row">
 					<div class="col-md-10 col-md-offset-2 backed">
 						<p>
@@ -131,7 +142,7 @@
 
 		<section id="secApps" >
 			<div class="container">
-				<h2 class="col-md-10 col-md-offset-2 ">Apps</h2>
+				<h2 class="col-md-10 col-md-offset-2 bmargin">Apps</h2>
 				<div class="row">
 					<div class="col-md-5 col-md-offset-2 col-sm-6 col-sm-offset-2">
 						<h3 class="section-heading">VD File Searcher </h3>
@@ -158,57 +169,75 @@
 
 		<section id="secTools" class="content-section-a">
 			<div class="container">
-				<h2 class="col-md-10 col-md-offset-2 ">Tools</h2>
+				<h2 class="col-md-10 col-md-offset-2 bmargin">Tools</h2>
 				<div class="row">
 					<div class="col-md-4 col-md-offset-2 col-sm-4 col-xs-6 col-sm-offset-2">
-						<img class="img-responsive smallerimage" src="res/htmllayout.png" alt="HDIMS Javascript html layout">
+						<a href="http://vuk.alwaysdata.net/hdims">
+							<img class="img-responsive img-thumbnail smallerimage" src="res/html_javascript_layout.png" alt="HDIMS Javascript html layout logo">
+						</a>
 					</div>
 					<div class="col-md-5 col-md-offset-1 col-sm-6">
 
-						<div class="clearfix"></div>
 						<h3 class="section-heading">HDIMS</h3>
 						<hr class="section-heading-spacer">
-						<p class="lead"><a href="#">Visit their website</a> to become a member.</p>
+						<p class="lead">HDIMS is small javascript library for HTML layout. It enables setting elements position and
+							dimensions easily and accurately, relieving you from burden to do so in CSS and additional elements tricks and
+							quirks.
+						</p>
+						<p>HDIMS library is still in development. You can find more about it, see examples, and download fully functional
+							first release at <a href="http://vuk.alwaysdata.net/hdims" title="HDIMD HTML layout first release">the old website</a>.</p>
 					</div>
 				</div>
 
 			</div>
 		</section>		
 		<section id="secGames" >
+			<div style="position: absolute; height:100%; width: 100%; background: -moz-linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1), rgba(255, 255, 255, 1), rgba(255, 255, 255, 1), rgba(255, 255, 255, 0)) "></div>
 			<div class="container">
-				<h2 class="col-md-10 col-md-offset-2 ">Games</h2>
 				<div class="row">
-					<div class="col-md-5 col-md-offset-1 col-sm-6">
+					<div class="col-md-10 col-md-offset-2 bmargin">
+						<h2 class="bmargin">Games</h2>
+						<p >
+							When HTML 5 appeared and became popular few years ago, one of most exciting and challenging things about it was possibility
+							to create real and pure web games. Games presented here were started back then as small projects to explore its
+							capabilities for some new ideas and wild conceptions.
+						</p>
+					</div>
+				</div>
+				<div class="row bmargin">
+					<div class="col-md-5 col-md-offset-2 col-sm-6 col-sm-offset-2">
 						<div class="clearfix"></div>
 						<h3 class="section-heading">Maze</h3>
 						<hr class="section-heading-spacer">
-						<p class="lead"><a href="#">Visit their website</a> to become a member.</p>
+						<p class="lead"></p>
 					</div>
+					<div class="col-md-4 col-md-offset-1 col-sm-4 col-xs-6">
+						<a href="http://vuk.alwaysdata.net/maze">
+							<img class="img-responsive img-thumbnail smallerimage" src="res/maze.png" alt="Maze game screenshot">
+						</a>
+					</div>
+				</div>
+				<div class="row">
 					<div class="col-md-4 col-md-offset-2 col-sm-4 col-xs-6 col-sm-offset-2">
-						<img class="img-responsive smallerimage" src="res/htmllayout.png" alt="HDIMS Javascript html layout">
+						<a href="http://vuk.alwaysdata.net/games/gravitaris">
+							<img class="img-responsive img-thumbnail smallerimage" src="res/gravitaris.png" alt="Gravitaris game screenshot"
+								 style="background-color: ivory"
+								 >
+						</a>
+					</div>
+					<div class="col-md-5 col-md-offset-1 col-sm-6">
+
+						<h3 class="section-heading">Gravitaris</h3>
+						<hr class="section-heading-spacer">
+						<p class="lead">
+						</p>
 					</div>
 				</div>
 
 			</div>
 		</section>		
 
-		<div class="container">
-			<h2 class="col-md-10 col-md-offset-2 ">Games</h2>
-			<div class="row">
-				<div class="col-md-5 col-md-offset-1 col-sm-6">
-					<div class="clearfix"></div>
-					<h3 class="section-heading">Maze</h3>
-					<hr class="section-heading-spacer">
-					<p class="lead"><a href="#">Visit their website</a> to become a member.</p>
-				</div>
-				<div class="col-md-4 col-md-offset-2 col-sm-4 col-xs-6 col-sm-offset-2">
-					<img class="img-responsive smallerimage" src="res/htmllayout.png" alt="HDIMS Javascript html layout">
-				</div>
-			</div>
-
-		</div>
-	</section>		
 
 
-</body>
+	</body>
 </html>
