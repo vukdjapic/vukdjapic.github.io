@@ -71,7 +71,7 @@
 	</head>
 	<body>
 
-		<div id="navHor" class="container "  >
+		<div id="navHor" class="container navtop"  >
 			<ul class="nav nav-pills navbar-default" >
 				<li><a href="http://vuk.alwaysdata.net">Old website</a></li>
 				<li><a href="#">Contact</a></li>
@@ -257,6 +257,10 @@
 				ga('send', 'pageview');
 			}
 		</script>
-
+		
+		<script>
+			document.domain = "komante.com";
+			serverRequestlog('komante','index');
+		</script>
 	</body>
 </html>

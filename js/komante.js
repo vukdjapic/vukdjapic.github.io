@@ -86,3 +86,15 @@ function smoothBackgroundScroll() {
 	posy = (dh - ih) * st / (dh - wh);
 	document.body.style.backgroundPosition = 'center ' + posy + 'px';
 }
+
+
+function serverRequestlog(app, page) {
+	$.ajax('http://api.komante.com/website/' + app + '/' + page, {
+		success: function(dat, stat, jxhr) {
+			alert('Serv: ' + dat + ":" + stat);
+		}
+		, error: function(jxhr, stat, err) {
+			alert('Err: ' + stat + ' - ' + err);
+		}
+	});
+}
