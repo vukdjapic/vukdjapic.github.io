@@ -1,10 +1,14 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+$4 = {
+	_logs: []
+	, log: function(message) {
+		if (typeof console === "object" && typeof console.log === "function") {
+			this._logs.push(message);
+			console.log(message);
+		}
+	}
+};
 
-$4 = {};
+
 
 /**positions seciond section of web page just below window
  * to appear immediatly after scroll
@@ -91,10 +95,10 @@ function smoothBackgroundScroll() {
 function serverRequestlog(app, page) {
 	$.ajax('http://api.komante.com/website/' + app + '/' + page, {
 		success: function(dat, stat, jxhr) {
-			alert('Serv: ' + dat + ":" + stat);
+			$4.log('Request log: ' + dat + ", status:" + stat);
 		}
 		, error: function(jxhr, stat, err) {
-			alert('Err: ' + stat + ' - ' + err);
+			$4.log('ERROR in Request log: status' + stat + ' - ' + err);
 		}
 	});
 }
