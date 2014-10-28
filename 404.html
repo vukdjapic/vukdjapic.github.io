@@ -21,6 +21,16 @@ and open the template in the editor.
 			var prop4 = document.referrer;
 
 		</script>
+
+		<script type="text/javascript">
+			var paths = {"/clanci": "/articles"};
+			for (var path in paths) {
+				if (location.pathname == path) {
+					location =paths[path];
+				}
+			}
+
+		</script>
 	</head>
 	<body>
 		<div>404 Page not found</div>

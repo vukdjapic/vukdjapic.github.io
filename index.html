@@ -21,12 +21,8 @@
 
 		</script>
 		<script type="text/javascript">
-
-		</script>
-		<script type="text/javascript">
 			$(function() {
 				positionSecondSection('secFirst', 'secIntro');
-
 
 			});
 
@@ -74,7 +70,6 @@
 		<div id="navHor" class="container navtop"  >
 			<ul class="nav nav-pills navbar-default" >
 				<li><a href="http://vuk.alwaysdata.net">Old website</a></li>
-				<li><a href="#">Contact</a></li>
 				<li><a href="#">About</a></li>
 			</ul>
 		</div>
@@ -90,7 +85,7 @@
 					<li><a href="#secApps">Apps</a></li>
 					<li><a href="#secTools">Tools</a></li>
 					<li><a href="#secGames">Games</a></li>
-					<li><a href="#">Articles</a></li>
+					<li><a href="#secArticles">Articles</a></li>
 				</ul>
 			</nav>
 		</div>
@@ -209,7 +204,8 @@
 						<div class="clearfix"></div>
 						<h3 class="section-heading">Maze</h3>
 						<hr class="section-heading-spacer">
-						<p class="lead"></p>
+						<p class="">Find your way through paths of complex mazes. All mazes are generated with advanced hand-made algorithm which
+							ensures their versatility and randomness.</p>
 					</div>
 					<div class="col-md-4 col-md-offset-1 col-sm-4 col-xs-6">
 						<a href="http://vuk.alwaysdata.net/maze">
@@ -229,7 +225,9 @@
 
 						<h3 class="section-heading">Gravitaris</h3>
 						<hr class="section-heading-spacer">
-						<p class="lead">
+						<p class="1lead">
+							Ever wondered how popular Tetris (or Bricks) game would look like if it was round? Here's the answer. All the
+							standard game rules apply, except you can move bricks all the way round with no right or left boundaries.
 						</p>
 					</div>
 				</div>
@@ -237,6 +235,25 @@
 			</div>
 		</section>		
 
+		<section id="secArticles" class="content-section-a" >
+			<div class="container" >
+				<h2 class="col-md-10 col-md-offset-2 bmargin">Articles</h2>
+				<div class="row">
+					<div class="col-md-10 col-md-offset-2 ">
+						<p>
+							If you read first title on this page, you can see only three words explaining principles of good software 
+							development: Fun, solid and elegant. In addition to explaining those and general thoughts about programming,
+							articles found here will be most about explanation of applied technologies and techniques in existing Komante
+							products. Together with various tips, tricks and techniques in web programming, java and javascript.
+						</p>
+						<p><a href="#">Go to articles page</a></p>
+						<br>
+						<p class="lead">Most recent</p>
+						
+					</div>
+				</div>
+			</div>
+		</section>		
 
 		<!--GOOGLE ANALYTICS -->
 		<script>
@@ -257,9 +274,9 @@
 				ga('send', 'pageview');
 			}
 		</script>
-		
+
 		<script>
-			serverRequestlog('komante','index');
+			serverRequestlog('komante', 'index');
 		</script>
 	</body>
 </html>

@@ -70,22 +70,46 @@ function activateScrolledSection(sideListId) {
 
 }
 
-/**Eases background image while scrolling to match whole document
+/**Eases background image while scrolling to match whole document.
+ * Smooth background scroll.
+ * Stretch background image height.
+ *
+ * @param {string} imgsrc
+ * src string of image
  *
  */
-function smoothBackgroundScroll() {
-	var dh, wh, ih, st, posy, bcksize;
-	if (!$4._smoothScroll) {
-		bcksize = $(document.body).css('background-size');
-		$4._smoothScroll = {
+function smoothBackgroundScroll(imgsrc) {
+	function loadImageHeight(url, width) {
+		var img = new Image();
+		img.src = url;
+		if (width) {
+			img.width = width;
+		}
+		return img.height;
+	}
+
+	var dh, wh, ih, st, posy, backh, backw;
+	if (!this._smoothBackgroundScroll) {
+		var bcksize = $(document.body).css('background-size');
+		var bmatch = /(\w+)\s*(\w+)/.exec(bcksize);
+		if (!bmatch || bmatch.length < 3) {
+			backh = loadImageHeight(imgsrc)
+		} else {
+			backh = parseInt(bmatch[2]);
+			if (isNaN(backh)) {
+				backw = parseInt(bmatch[1]);
+				backh = loadImageHeight(imgsrc, parseInt(backw));
+			}
+		}
+		this._smoothBackgroundScroll = {
 			dh: $(document).height()
 			, wh: $(window).height()
-			, ih: parseInt(/\d+/.exec(bcksize)[0] || "1440")
+			, ih: backh
 		}
 	}
-	dh = $4._smoothScroll.dh;
-	wh = $4._smoothScroll.wh
-	ih = $4._smoothScroll.ih;
+	dh = this._smoothBackgroundScroll.dh;
+	wh = this._smoothBackgroundScroll.wh
+	ih = this._smoothBackgroundScroll.ih;
 	st = $(document).scrollTop();
 	posy = (dh - ih) * st / (dh - wh);
 	document.body.style.backgroundPosition = 'center ' + posy + 'px';
