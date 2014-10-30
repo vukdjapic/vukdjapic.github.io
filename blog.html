@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+	
+
+
+	<head>
+		<title>Komante software solutions web games applications</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="Independent software development. Applications, games, web solutions. Complete online comment solution, small Javascript HTML5 games, file searcher">
+		<meta name="keywords" content="Komante, Vuk, Djapic, software, web, javascript, free, games, comments, java, solutions">
+
+
+		<script type="text/javascript" src="js/lib/jquery.js"></script>
+		<script src="js/lib/bootstrap.js"></script>
+		<script type="text/javascript" src="js/lib/jquery.colorbox.js"></script>
+		<script src="js/komante.js"></script>	
+
+
+		<link href="css/bootstrap.css" rel="stylesheet">
+		<link href="css/bootstrap-theme.css" rel="stylesheet">
+		<link href="css/komante.css" rel="stylesheet">
+		
+
+		<script type="text/javascript">
+			$.fn.colorbox.settings.transition ='none';
+			$.fn.colorbox.settings.maxWidth ='80%';
+			$.fn.colorbox.settings.maxHeight ='80%';
+			$.fn.colorbox.settings.onLoad =function(){
+				$('#cboxClose').addClass('btn btn-primary');
+			}
+		</script>
+		<script type="text/javascript">
+			$(function() {
+				$('a.colorbox').colorbox();
+			});
+
+			$(window).on('scroll', function() {
+				activateScrolledSection('sideList');
+			});
+		</script>
+		<style>
+			ul.features, dl.features {
+				margin-top: 40px;
+				list-style-type: square;
+			}
+			.dl-horizontal dt{
+				width: auto;
+			}
+			.dl-horizontal dd, .dl-horizontal dt {
+				padding-top: 10px;
+			}
+			.sidebar {
+				background-image: url("res/background.jpg");
+				background-color: #CCCCCC;
+			}
+			@media (min-width: 768px) {
+				.sidebar {
+					position: fixed;
+					top: 0;
+					left: 0;
+					bottom: 0;
+					z-index: 2;
+					display: block;
+					background-color: #CCCCCC;
+				}
+
+			}
+
+			#colorbox {
+				z-index: 100;
+			}
+			.backtitle {
+				width:107%; 
+				height:210px; 
+				position: relative; 
+				left: -16px;
+				border-top: 2px solid black; 
+				border-bottom: 2px solid black; 
+				padding-top:30px;
+				margin-bottom: 80px;
+			}
+
+		</style>
+	</head>
+	<body>
+
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-3 col-sm-3 sidebar">
+
+					<nav class="navbar-default center-block sidelist navtop" >
+						<ul  class="nav nav-pills nav-stacked" style="">
+							<li><a href="index.html"><strong>Komante</strong><br><small>Fun Solid Elegant</small></a></li>
+						</ul>
+					</nav>
+
+					<nav class="navbar-default center-block sidelist" style="margin-top: 100px;">
+						<ul id="sideList" class="nav nav-pills nav-stacked" style="">
+								<li><a href="#">Blog</a><hr style="margin: 0px auto; width: 90%; "></li>
+	<li><a href="#secWeb">Web and Javascript</a></li>
+	<li><a href="#secJava">Java</a></li>
+
+						</ul>
+					</nav>
+				</div>
+				<div class="col-md-9 col-md-offset-3 col-sm-9 col-sm-offset-3" style="overflow-x: hidden;">
+					<div id="navHor" class="navtop"  >
+						<ul class="nav nav-pills navbar-default" >
+							<li><a href="#">Old website</a></li>
+							<li><a href="#">About</a></li>
+						</ul>
+						<div class="clearfix"></div>
+					</div>
+					<section class="section bg-primary backtitle" >
+							<h1 class="text-center ">Komante Blog</h1>
+	<h3 class="text-center ">Programing tips, tricks, and techniques</h3>
+
+					</section>
+
+						<section id="secWeb" class="section "  >
+		<div class="row">
+			<div class="col-md-offset-1 col-md-11">
+				<h3 class="subtitle">Web and Javascript</h3>
+				<p>
+					<span ><a href="smooth_background_image_scrolling" class="lead">Smooth background image scrolling</a>
+					</span>
+					<br>
+					Add large and beutiful background image to you web page. See all of it no matter how long your document is.
+					Enabled with paralax scrolling effect.
+				</p>
+
+			</div>
+			
+		</div>
+
+	</section>
+
+	
+
+
+				</div>
+			</div>
+		</div>
+
+		<!--GOOGLE ANALYTICS -->
+		<script>
+			if (location.origin.indexOf('komante.com') >= 0) {
+				(function(i, s, o, g, r, a, m) {
+					i['GoogleAnalyticsObject'] = r;
+					i[r] = i[r] || function() {
+						(i[r].q = i[r].q || []).push(arguments)
+					}, i[r].l = 1 * new Date();
+					a = s.createElement(o),
+							m = s.getElementsByTagName(o)[0];
+					a.async = 1;
+					a.src = g;
+					m.parentNode.insertBefore(a, m)
+				})(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+				ga('create', 'UA-54433162-1', 'auto');
+				ga('send', 'pageview');
+			}
+		</script>
+		
+	</body>
+</html>

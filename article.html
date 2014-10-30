@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 	<head>
 		<title>Komante software solutions web games applications</title>
@@ -27,17 +26,14 @@
 			});
 
 			$(window).on('scroll', function() {
+				smoothBackgroundScroll("../res/back1.jpg");
 				activateScrolledSection('sideList');
 			});
 		</script>
 
 		<style>
 			body{
-				background-image: url("res/background.jpg");
-				background-repeat: no-repeat;
-				background-size: 100% auto;
-				background-position: 0px 60px;
-				overflow-x: hidden;
+				background-image: url("res/back1.jpg");
 			}
 			.row a>img.img-thumbnail.img-responsive {
 				margin-top: 15px;
@@ -65,7 +61,7 @@
 			}
 		</style>
 	</head>
-	<body>
+	<body class="scrollingBackground">
 
 		<div id="navHor" class="container navtop"  >
 			<ul class="nav nav-pills navbar-default" >
@@ -85,7 +81,7 @@
 					<li><a href="#secApps">Apps</a></li>
 					<li><a href="#secTools">Tools</a></li>
 					<li><a href="#secGames">Games</a></li>
-					<li><a href="#secBlog">Blog</a></li>
+					<li><a href="#secArticles">Articles</a></li>
 				</ul>
 			</nav>
 		</div>
@@ -235,18 +231,18 @@
 			</div>
 		</section>		
 
-		<section id="secBlog" class="content-section-a" >
+		<section id="secArticles" class="content-section-a" >
 			<div class="container" >
-				<h2 class="col-md-10 col-md-offset-2 bmargin">Blog</h2>
+				<h2 class="col-md-10 col-md-offset-2 bmargin">Articles</h2>
 				<div class="row">
 					<div class="col-md-10 col-md-offset-2 ">
 						<p>
 							If you read first title on this page, you can see only three words explaining principles of good software 
 							development: Fun, solid and elegant. In addition to explaining those and general thoughts about programming,
-							blog articles will be most about explanation of applied technologies and techniques in existing Komante
+							articles found here will be most about explanation of applied technologies and techniques in existing Komante
 							products. Together with various tips, tricks and techniques in web programming, java and javascript.
 						</p>
-						<p><a href="blog">Go to blog page</a></p>
+						<p><a href="#">Go to articles page</a></p>
 						<br>
 						<p class="lead">Most recent</p>
 						
