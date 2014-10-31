@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Komante software solutions web games applications</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="Independent software development. Applications, games, web solutions. Complete online comment solution, small Javascript HTML5 games, file searcher">
+		<meta name="keywords" content="Komante, Vuk, Djapic, software, web, javascript, free, games, comments, java, solutions">
+
+
+		<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+		<script type="text/javascript" src="../js/lib/jquery.js"></script>
+		<script src="../js/lib/bootstrap.js"></script>
+		<script src="../js/komante.js"></script>		
+
+		<link href="../css/bootstrap.css" rel="stylesheet">
+		<link href="../css/bootstrap-theme.css" rel="stylesheet">
+		<link href="../css/komante.css" rel="stylesheet">
+
+		<script type="text/javascript">
+
+		</script>
+		<script type="text/javascript">
+			$(function() {
+				//positionSecondSection('secFirst', 'secIntro');
+
+			});
+
+			$(window).on('scroll', function() {
+				smoothBackgroundScroll("../res/back1.jpg");
+				activateScrolledSection('sideList');
+			});
+		</script>
+
+		<style>
+			body{
+				background-image: url("../res/back1.jpg");
+			}
+			.row a>img.img-thumbnail.img-responsive {
+				margin-top: 15px;
+			}
+			pre.prettyprint {
+				background-color: transparent;
+				border: 1px solid #ccc;
+				padding: 9.5px;
+			}
+			#imgBack {
+				z-index: -1;
+				display: none;
+			}
+			#secFirst{
+				margin-top: 100px;
+				margin-bottom: 40px;
+			}
+			#secApps {
+				background-color: white;
+			}
+			#secGames {
+				background1:  url("res/gamebck.jpg") repeat scroll 0 0 rgba(0, 0, 0, 0);
+				position: relative;
+			}
+			#secGames > .container {
+				background-color: white;
+				border-radius: 8px;
+				position: relative;
+			}
+		</style>
+	</head>
+	<body class="scrollingBackground">
+		<div style="position: fixed; width: 100%;">
+			<div id="navHor" class="navtop container" style="" >
+				<ul class="nav nav-pills navbar-default" >
+					<li><a href="../index.html">Komante</a></li>
+					<li><a href="../blog.html">Blog</a></li>
+					<li><a href="http://vuk.alwaysdata.net">Old website</a></li>
+					<li><a href="#">About</a></li>
+				</ul>
+			</div>
+		</div>
+
+		<section class="section" id="secFirst">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-10 col-md-offset-1 text-center">	
+						<!-- Site Title, your name, HELLO msg, etc. -->
+						<h1 class="title">Smooth background image scrolling</h1>
+
+						<h3 class="tagline">
+							Add large and beautiful background image to you web page. 
+							<br>See all of it no matter how long your document is.
+							<br>Enabled with parallax scrolling effect.
+						</h3>
+						<!-- Nice place to describe your site in a sentence or two -->
+						<p></p>
+
+					</div> <!-- /col -->
+				</div> <!-- /row -->
+
+			</div>
+		</section>
+
+		<section id="secIntro">
+			<div class="container" >
+				<h2 class="col-md-10 col-md-offset-1 bmargin">Problem</h2>
+				<div class="row">
+					<div class="col-md-10 col-md-offset-1 backed">
+						<p>
+							Suppose you have nice, large image, and you want to set it on your web page as a background.
+							<br>That shouldn't be too hard, add following CSS to the page
+						
+						<pre class="prettyprint">
+body{
+	background-position: center 0;
+	background-repeat: no-repeat;
+	background-size: auto auto;
+	background-image: url("pics/prettyimage.jpg");
+}	</pre>
+							and there it is, page looks pretty. But here's the problem. Most large, or even very large, images have height 
+							less than 1500px. And if your document is longer than it (as most documents are), when user scrolls down, after image 
+							he or she will see blank white space in background. Which might be OK for some pages, but for most it isn't very pretty
+							anymore.
+						</p>
+						<p>
+							This problem have two solutions with CSS.
+							<br>One is to repeat image again. Change line of CSS above to <code class="prettyprint1">background-repeat: repeat;</code>
+							Now there's no blank space, but composition is broken. There is a line where bottom of upper image meets the top of
+							the one below which creates not very nice effect. 
+						</p>
+						<p>
+							Another solution would be to change the height of image to some upper height limit of our document.
+							<br> Change the line of CSS to let's say <code>background-size: auto 2000px;</code>. Now everything looks good for all documents 
+							that are shorter than 2000px. But this approach has its faults too. What if in some cases document is longer than 2000px 
+							(on narrow screens for example)? We can to be sure put <code>background-size: auto 3000px;</code>, but now image
+							will become very stretched and we will never see the bottom of it.
+						</p>
+						<p>Again, this might work well for some web sites, but the both aren't the real solutions.</p>
+						
+					</div>
+				</div>
+				
+				<br>
+				<h2 class="col-md-10 col-md-offset-1 bmargin">Solution</h2>
+				<div class="row">
+					<div class="col-md-6 col-md-offset-1 backed">
+						<p>
+							One solution might be like this. When page is open we have situation depicted in picture.
+							Top of document, background image, and browser window are all aligned.
+						</p>
+					</div>
+					<div class="col-md-4 col-md-offset-0">					
+						<img src="../res/Browser_window_before.png" class="img-thumbnail" alt="Positions when document is scrolled to top"/>
+							<div style="text-align: center"><span class="backedColor"><em>Positions when document is scrolled to top</em></span></div>
+					</div>
+				</div>
+				<br>
+				<div class="row">
+					<div class="col-md-6 col-md-offset-1 backed">
+						<p>
+							And when scrolled to bottom, we want again all three to be aligned. This time at its bottoms.
+							In all other scrolling positions, background image should be proportionally scrolled between the two
+							end cases. 
+							<br>This means that image will scroll slower than document, which will give it nice parallax effect too.
+						</p>
+					</div>
+					<div class="col-md-4 col-md-offset-0">					
+						<img src="../res/Browser_window_after.png" class="img-thumbnail" alt="Positions when document is scrolled to bottom"/>
+							<div style="text-align: center"><span class="backedColor"><em>Positions when document is scrolled to bottom</em></span></div>
+					</div>
+				</div>
+				<h2 class="col-md-10 col-md-offset-1 bmargin">Implementation</h2>
+				<div class="row">
+					<div class="col-md-10 col-md-offset-1 backed">
+							With first CSS block in place, the rest is implemented in Javascript. Document scroll event is caught 
+							and then depending on current scroll position and heights of document, image and browser window, proportion
+							is made and image is scrolled for appropriate amount.
+							<br>Here's the code for it:<br><br>
+						<pre class="prettyprint">
+$(window).on('scroll', function() {
+	smoothBackgroundScroll("relative/image/url");
+});
+
+function smoothBackgroundScroll(imgsrc) {
+	function loadImageHeight(url, width) {
+		var img = new Image();
+		img.src = url;
+		if (width) {
+			img.width = width;
+		}
+		return img.height;
+	}
+
+	var dh, wh, ih, st, posy, backh, backw;
+	if (!this._smoothBackgroundScroll) {
+		var bcksize = $(document.body).css('background-size');
+		var bmatch = /(\w+)\s*(\w+)/.exec(bcksize);
+		if (!bmatch || bmatch.length < 3) {
+			backh = loadImageHeight(imgsrc)
+		} else {
+			backh = parseInt(bmatch[2]);
+			if (isNaN(backh)) {
+				backw = parseInt(bmatch[1]);
+				backh = loadImageHeight(imgsrc, parseInt(backw));
+			}
+		}
+		this._smoothBackgroundScroll = {
+			dh: $(document).height()
+			, wh: $(window).height()
+			, ih: backh
+		}
+	}
+	dh = this._smoothBackgroundScroll.dh;
+	wh = this._smoothBackgroundScroll.wh
+	ih = this._smoothBackgroundScroll.ih;
+	st = $(document).scrollTop();
+	posy = (dh - ih) * st / (dh - wh);
+	document.body.style.backgroundPosition = 'center ' + posy + 'px';
+}
+						</pre>
+							
+							Function <code>smoothBackgroundScroll(imgsrc)</code> will work for both cases when <code>background-size</code>
+							CSS property is set or not. And it is also used on this page as an example, so you can see its effect and
+							take working code from source.
+							<p>Enjoy!</p>
+					</div>
+					
+				</div>
+			</div>
+		</section>
+
+		
+		<script>
+			if (location.origin.indexOf('komante.com') >= 0) {
+
+				//GOOGLE ANALYTICS
+				(function(i, s, o, g, r, a, m) {
+					i['GoogleAnalyticsObject'] = r;
+					i[r] = i[r] || function() {
+						(i[r].q = i[r].q || []).push(arguments)
+					}, i[r].l = 1 * new Date();
+					a = s.createElement(o),
+							m = s.getElementsByTagName(o)[0];
+					a.async = 1;
+					a.src = g;
+					m.parentNode.insertBefore(a, m)
+				})(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+				ga('create', 'UA-54433162-1', 'auto');
+				ga('send', 'pageview');
+
+
+				//Komante
+				serverRequestlog('komante', 'index');
+			}
+		</script>
+
+	</body>
+</html>
