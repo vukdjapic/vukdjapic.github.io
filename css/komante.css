@@ -6,7 +6,7 @@
 /* External styles ***************/
 
 .navbar-default {
-    background-color: rgba(155,155,155,0.2);
+    background-color:  rgba(248,248,248,0.2);
     background-image: none;
 }
 .nav-pills > li.active > a,
@@ -30,10 +30,6 @@ body.scrollingBackground {
     background-repeat: no-repeat;
     background-size1: auto auto;
     background-position: center 0px;
-}
-
-.sidelist {
-    width: 200px;
 }
 
 section {
