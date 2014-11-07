@@ -6,6 +6,8 @@ $4 = {
 			console.log(message);
 		}
 	}
+	, serverUrl: 'http://api.komante.com/website'
+	, serverUrl: '/kserver/website'
 };
 
 
@@ -117,12 +119,28 @@ function smoothBackgroundScroll(imgsrc) {
 
 
 function serverRequestlog(app, page) {
-	$.ajax('http://api.komante.com/website/' + app + '/' + page, {
+	$.ajax($4.serverUrl + app + '/' + page, {
 		success: function(dat, stat, jxhr) {
 			$4.log('Request log: ' + dat + ", status:" + stat);
 		}
 		, error: function(jxhr, stat, err) {
 			$4.log('ERROR in Request log: status' + stat + ' - ' + err);
+		}
+	});
+}
+
+$4.submitMessage = function(form) {
+	$.ajax({
+		url: $4.serverUrl + '/submitMessage'
+		, data: {email: form.email.value, message: form.message.value}
+		, dataType: 'json'
+		, success: function(res) {
+			if (res.status == 'OK') {
+				$('#dResponse').attr('class', 'text-success');
+			} else {
+				$('#dResponse').attr('class', 'text-warning');
+			}
+			$('#dResponse').html(res.message);
 		}
 	});
 }

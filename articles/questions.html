@@ -6,11 +6,32 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 		<script type="text/javascript" src="js/libs/jquery.js"></script>
-
+		
 		<link href="css/bootstrap.css" rel="stylesheet">
+	
+		<style>
+			dd::after {
+				content: "";
+				display: block;	
+				height: 10px;
+				width: 10px;
+				border: solid 2px;
+				margin-bottom: 15px;
+			}
+			dd::before {
+				content: "";
+				display: block;	
+				height: 1px;
+				width: 200px;
+				border-top: solid 1px;				
+				margin-top:5px;
+			}
+		</style>
+	
 	</head>
 	<body>
-		<div id="javaGeneral" class="java">
+		<h3>Questions found on Internet</h3>
+		<div class="java">
 			<dl>
 				<dt>
 				What is the ResourceBundle class?
@@ -61,9 +82,9 @@ long j = i; //Implicit casting
 				<dd>
 					The Numeric promotion is the conversion of a smaller numeric type to a larger numeric type, so that integral and floating-point operations may take place. In the numerical promotion process the byte, char, and short values are converted to int values. The int values are also converted to long values, if necessary. The long and float values are converted to double values, as required.
 				</dd>
-			<dt>
-			How can I swap two variables without using a third variable?
-			<dd><pre>
+				<dt>
+				How can I swap two variables without using a third variable?
+				<dd><pre>
 Add two variables and assign the value into First variable. Subtract the Second value with the result Value. and assign to Second variable. Subtract the Result of First Variable With Result of Second Variable and Assign to First Variable. Example:
 
 int a=5,b=10;a=a+b; b=a-b; a=a-b;
@@ -78,25 +99,86 @@ int a = 5; int b = 10;
 a = a ^ b;
 b = a ^ b;
 a = a ^ b;
-				</pre></dd>
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
+					</pre></dd>
+
+
+
+
 
 
 
 			</dl>
 		</div>
+
+		<h3>My Questions</h3>
+		<div class="java">
+			<dl>
+				<dt>
+				Does Map interface extends Collection ?
+				<dd>
+					No. Map instances have methods to return collection, entrySet(), keySet(), values().
+				</dd>
+
+				
+				<dt>Can you write: a) 'p'-'k' and whats the result? b) char c=77?
+				<dd>
+					a) Yes. Both are converted to int and result is int.
+					<br> b) Yes. Result is 'M'.
+				</dd>
+				
+				
+				<dt>How
+				<pre>
+for (String item : someList) {
+    System.out.println(item);
+}
+				</pre>
+				code works?
+				<dd>
+					It is equivalent to
+					<pre>
+for(Iterator<String> i = someList.iterator(); i.hasNext(); ) {
+    String item = i.next();
+    System.out.println(item);
+}						
+					</pre>
+				</dd>
+				
+				<dt>In
+				<pre>
+for(String s : myCollection.expensiveListGeneration()){
+      doSomething();
+}</pre>
+				how many times is expensiveListGeneration() invoked?
+				<dd>Once. See previous question.</dd>
+				
+				<dt> How for statement is executed?
+				<dd>
+					<pre>
+for (initialization; termination;
+     increment) {
+    statement(s)
+}						
+					</pre>
+					
+    The initialization expression initializes the loop; it's executed once, as the loop begins.
+    <br>When the termination expression evaluates to false, the loop terminates.
+    <br>The increment expression is invoked after each iteration through the loop; it is perfectly acceptable for this expression to increment or decrement a value.
+
+				</dd>
+
+				<dt>
+				How to remove a character from string?
+				<dd>
+					Cannot be done without creating ne string.
+					<br>occurrence - str.replace("char","")
+					<br>from position - str.substring(0, index) + str.substring(index+1)
+					<br>StringBuilder sb = new StringBuilder(str); sb.deleteCharAt(index); sb.toString();
+				</dd>
+				
+				
+			</dl>
+		</div>
+
 	</body>
 </html>
