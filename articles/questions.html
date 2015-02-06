@@ -176,6 +176,13 @@ for (initialization; termination;
 					<br>StringBuilder sb = new StringBuilder(str); sb.deleteCharAt(index); sb.toString();
 				</dd>
 				
+				<dt>
+				What are java system properties? How to set one?
+				<dd>
+					Those are properties initially set by JVM. They use dot notation, and some predefined are always set, like "java.version".
+					<pre>They are accessed through System.getProperties() and System.getProperty().
+					<pre>New property can be added with -D jvm argument, or with System.setProperty().
+				</dd>
 				
 			</dl>
 		</div>
