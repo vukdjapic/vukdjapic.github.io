@@ -7,7 +7,7 @@ $4 = {
 		}
 	}
 	//, serverUrl: 'http://api.komante.com/website'
-	, serverUrl: 'http://api.komante.com/comments/rest/emailer'
+	, serverUrl: 'http://api.komante.com/comments/rest'
 };
 
 
@@ -131,7 +131,7 @@ function serverRequestlog(app, page) {
 
 $4.submitMessage = function(form) {
         $.ajax({
-		url: $4.serverUrl + '/submitMessage'
+		url: $4.serverUrl + '/emailer'
 		, data: {
                     email: 'djapic'+"@"+'yandex.ru'
                     , naslov: 'Komante web: poruka od '+form.email.value
