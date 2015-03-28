@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Flipart online puzzle game</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Online free puzzle game. Flip image parts">
+        <meta name="keywords" content="game, play, flip, image, puzzle">
+
+
+        <script type="text/javascript" src="js/lib/jquery.js"></script>
+
+        <script type="text/javascript" src="js/flipart.js"></script>
+
+        <script type="text/javascript">
+            flipart.computeSize($(window).width(), $(window).height());
+        </script>
+        <script type="text/javascript">
+            $(function () {
+                $('#dMenu img').on('mouseover', function () {
+                    var sor = this.src;
+                    sor = sor.replace('.png', '_sel.png');
+                    this.src = sor;
+                    //alert(sor)
+                }).on('mouseout', function () {
+                    var sor = this.src;
+                    sor = sor.replace('_sel.png', '.png');
+                    this.src = sor;
+                }).on('click', function () {
+                    var sor = this.src;
+                    if (sor.indexOf(flipart.actions.playsingle) >= 0) {
+
+                    } else if (sor.indexOf(flipart.actions.startnew) >= 0) {
+                        alert('new');
+                    }
+                });
+
+            });
+
+
+        </script>
+
+        <link href="css/bootstrap.css" rel="stylesheet">
+        <style>
+            .center {
+                margin-left: auto;
+                margin-right: auto;
+                text-align: center;
+            }
+            div.gamediv {
+                width: 100%;
+                height: 100%;
+                display: none;
+            }
+            #dGameWindow {
+                border: "1px";
+                border-style: solid;
+                border-color: #656273;  /* #80488f #e0fa33 */
+                position: relative;
+            }
+            #dMenu {
+                position: absolute;
+                width: 100%;
+                bottom: 50px;
+            }
+            #dMenu img:hover {
+                cursor: pointer;
+            }
+            #dPictureFrame {
+                position: relative;
+            }
+            #dPictureFrame > div {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- main game div, inner divs changes -->
+        <div id="dGameWindow" class="center">
+            <div id="dWelcome" class="gamediv" style="display: block;">
+                <br><br>
+                <img src="res/flipart/logo1.png" alt="Flipart logo" />
+                <div id="dMenu" class="center">
+
+                    <ul style="list-style-type: none">
+                        <li><img src="res/flipart/playsingle.png" /></li>
+                        <li><img src="res/flipart/startnew.png" /></li>
+                        <li><img src="res/flipart/continue.png" /></li>
+                        <li><img src="res/flipart/inst.png" /></li>
+                    </ul>
+                </div>
+            </div>
+            <div id="dGame" class="gamediv" >
+                <div id="dPictureFrame">        <!-- holds stacked game divs -->
+                    <div id="dTiles"></div>
+                    <div id="dBlocks"></div>
+                    <div id="dActions"></div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            $("#dGameWindow").width(flipart.gwidth)
+                    .height(flipart.gheight)
+                    .css("top", "" + (flipart.wheight - flipart.gheight) / 2 + "px");
+
+        </script>
+
+
+        <!--GOOGLE ANALYTICS -->
+        <script>
+            if (location.origin.indexOf('komante.com') >= 0) {
+                (function (i, s, o, g, r, a, m) {
+                    i['GoogleAnalyticsObject'] = r;
+                    i[r] = i[r] || function () {
+                        (i[r].q = i[r].q || []).push(arguments)
+                    }, i[r].l = 1 * new Date();
+                    a = s.createElement(o),
+                            m = s.getElementsByTagName(o)[0];
+                    a.async = 1;
+                    a.src = g;
+                    m.parentNode.insertBefore(a, m)
+                })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+                ga('create', 'UA-54433162-1', 'auto');
+                ga('send', 'pageview');
+            }
+        </script>
+
+        <script>
+            //serverRequestlog('komante', 'index');
+
+
+
+        </script>
+    </body>
+</html>
