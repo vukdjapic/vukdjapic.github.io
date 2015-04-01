@@ -32,12 +32,12 @@
                 }).on('click', function () {
                     var sor = this.src;
                     if (sor.indexOf(flipart.actions.playsingle) >= 0) {
-                        flipart.playSingle('dPictureFrame', 'dTiles', 'dBlocks', onStartSingleDataRetrieved );
+                        flipart.playSingle('dPictureFrame', 'dTiles', 'dBlocks', onStartSingleDataRetrieved);
                     } else if (sor.indexOf(flipart.actions.startnew) >= 0) {
                         alert('new');
                     }
                 });
-                
+      
             });
 
 
@@ -86,7 +86,27 @@
                 background-color: black;
                 opacity: 0.5;
             }
-            
+            #dActions div.flip {
+                display: none;
+                position: absolute;
+                text-align: center;
+                vertical-align: middle;
+            }
+            #dActions div.flip a {
+                color: yellow;
+                font-family: comic sans ms;
+                font-size: large;
+                font-style: italic;
+                Qfont-weight: bold;
+            }
+            #dActions div.flip img {
+                width: 30px;
+            }
+            #dActions div.flip img:hover {
+                border: 1px solid #285e8e;
+                background-color: yellow;
+
+            }
         </style>
 
     </head>
@@ -100,6 +120,7 @@
 
                     <ul style="list-style-type: none">
                         <li><img src="res/flipart/playsingle.png" /></li>
+                        <li><a href="" ></a></li>
                         <li><img src="res/flipart/startnew.png" /></li>
                         <li><img src="res/flipart/continue.png" /></li>
                         <li><img src="res/flipart/inst.png" /></li>
@@ -110,7 +131,18 @@
                 <div id="dPictureFrame">        <!-- holds stacked game divs -->
                     <div id="dTiles"></div>
                     <div id="dBlocks"></div>
-                    <div id="dActions"></div>
+                    <div id="dActions">
+                        <div id="dHorflip" class="flip">
+                            <a href="javascript:flip(true)">
+                                <img id="horflip" src="res/flipart/arrows_hor.png" />
+                            </a>
+                        </div>
+                        <div id="dVerflip" class="flip">
+                            <a href="http://komante.com">
+                                <img id="verflip" src="res/flipart/arrows_ver.png" />
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
