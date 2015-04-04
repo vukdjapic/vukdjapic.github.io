@@ -30,7 +30,8 @@ function resizeGameWindow(phase) {
 }
 
 /**callback function when single game is started */
-function onStartSingleDataRetrieved() {
+function onStartSingleDataRetrieved(gameOptions, imageUrl) {
+    _populateTilesAndBlocks(gameOptions, imageUrl, 'dPictureFrame', 'dTiles', 'dBlocks');
     resizeGameWindow('startsingle');
     displayGameWindow('dGame');
     flipart.mouseMoves.init('dActions');
@@ -38,10 +39,37 @@ function onStartSingleDataRetrieved() {
 
 /**on flip action */
 function flip(isHorizontal) {
-    var rec = flipart.getRectangle( flipart.mouseMoves.start, flipart.mouseMoves.end );
+    var rec = flipart.getRectangle(flipart.mouseMoves.start, flipart.mouseMoves.end);
     flipart.flipMatrix(rec, isHorizontal);
     flipart.updateBackground(rec);
     return false;
+}
+
+function _populateTilesAndBlocks(gameOptions, imageUrl, picframe, tiles, blocks) {
+    var i, j;
+    var pf = $('#' + picframe), tiles = $('#' + tiles), blocks = $('#' + blocks);
+    var tem = _.template($('#ttile').html());
+    var temb = _.template($('#tblock').html());
+    var mes = gameOptions.measures;
+    pf.width(mes.w).height(mes.h);
+    for (i = 0; i < mes.n; i++) {
+        for (j = 0; j < mes.m; j++) {
+            tiles.append(tem({
+                i: i, j: j
+                , w: mes.tileWidth, h: mes.tileHeight
+                , top: i * mes.tileHeight, left: j * mes.tileWidth
+                , pozx: -j * mes.tileWidth, pozy: -i * mes.tileHeight
+            }));
+            blocks.append(temb({
+                i: i, j: j
+                , w: mes.tileWidth, h: mes.tileHeight
+                , top: i * mes.tileHeight, left: j * mes.tileWidth
+            }));
+        }
+    }
+    //$(document.body).append('<img src="'+fa.urls.image+'" />')
+    $('.tile', tiles).css('background-image', 'url(' + imageUrl + ')');
+
 }
 
 var flipart = {
@@ -83,38 +111,15 @@ var flipart = {
     }
     /**action on start new single game 
      * first gets game properites object, than adds all divs*/
-    , playSingle: function (picframe, tiles, blocks, callback) {
+    , playSingle: function (options, callback) {
         var fa = this;
-        var i, j;
-        var pf = $('#' + picframe), tiles = $('#' + tiles), blocks = $('#' + blocks);
-        var tem = _.template($('#ttile').html());
-        var temb = _.template($('#tblock').html());
         $.ajax(this.urls.newgame, {
             dataType: 'json'
         }).done(function (data) {
             fa.gameOptions = data.gameOptions;
             fa.matrix = data.matrix;
-            var mes = data.gameOptions.measures;
-            pf.width(mes.w).height(mes.h);
-            for (i = 0; i < mes.n; i++) {
-                for (j = 0; j < mes.m; j++) {
-                    tiles.append(tem({
-                        i: i, j: j
-                        , w: mes.tileWidth, h: mes.tileHeight
-                        , top: i * mes.tileHeight, left: j * mes.tileWidth
-                        , pozx: -j * mes.tileWidth, pozy: -i * mes.tileHeight
-                    }));
-                    blocks.append(temb({
-                        i: i, j: j
-                        , w: mes.tileWidth, h: mes.tileHeight
-                        , top: i * mes.tileHeight, left: j * mes.tileWidth
-                    }));
-                }
-            }
-            //$(document.body).append('<img src="'+fa.urls.image+'" />')
-            $('.tile', tiles).css('background-image', 'url(' + fa.urls.image + '?t='+new Date().getTime()+')');
             if (callback) {
-                callback();
+                callback(fa.gameOptions, fa.urls.image + '?t=' + new Date().getTime());
             }
         });
     }
@@ -141,44 +146,44 @@ var flipart = {
      * 
      * @param {type} rec rectangle
      */
-    , flipMatrix: function (rec,isHorizontal) {
-        var mat =new Array(rec.imax - rec.imin +1);
-        var i,j,f;
-        for(i=0; i<=rec.imax-rec.imin; i++){
-            mat[i] =new Array(rec.jmax - rec.jmin +1);
-            for(j=0; j<=rec.jmax-rec.jmin; j++){
-                if(isHorizontal){
-                    f =flipart.matrix[rec.imin + i][rec.jmax-j];
-                    mat[i][j] ={ i:f.i, j:f.j, hflip:!f.hflip, vflip:f.vflip };
+    , flipMatrix: function (rec, isHorizontal) {
+        var mat = new Array(rec.imax - rec.imin + 1);
+        var i, j, f;
+        for (i = 0; i <= rec.imax - rec.imin; i++) {
+            mat[i] = new Array(rec.jmax - rec.jmin + 1);
+            for (j = 0; j <= rec.jmax - rec.jmin; j++) {
+                if (isHorizontal) {
+                    f = flipart.matrix[rec.imin + i][rec.jmax - j];
+                    mat[i][j] = {i: f.i, j: f.j, hflip: !f.hflip, vflip: f.vflip};
                 } else {
-                    f =flipart.matrix[rec.imax - i][rec.jmin+j];
-                    mat[i][j] ={ i:f.i, j:f.j, hflip:f.hflip, vflip:!f.vflip };
+                    f = flipart.matrix[rec.imax - i][rec.jmin + j];
+                    mat[i][j] = {i: f.i, j: f.j, hflip: f.hflip, vflip: !f.vflip};
                 }
             }
         }
-        for(i=0; i<=rec.imax-rec.imin; i++){
-            for(j=0; j<=rec.jmax-rec.jmin; j++){
-                this.matrix[rec.imin+i][rec.jmin+j] =mat[i][j];
+        for (i = 0; i <= rec.imax - rec.imin; i++) {
+            for (j = 0; j <= rec.jmax - rec.jmin; j++) {
+                this.matrix[rec.imin + i][rec.jmin + j] = mat[i][j];
             }
         }
     }
-    , updateBackground: function(rec){
-        var imin =rec.imin;
-        var imax =rec.imax;
-        var jmin =rec.jmin;
-        var jmax =rec.jmax;
-        var i,j, f, pozx, pozy;
-        var mes =this.gameOptions.measures;
-        var tem =_.template( $('#ttile').data('tileid') );
+    , updateBackground: function (rec) {
+        var imin = rec.imin;
+        var imax = rec.imax;
+        var jmin = rec.jmin;
+        var jmax = rec.jmax;
+        var i, j, f, pozx, pozy;
+        var mes = this.gameOptions.measures;
+        var tem = _.template($('#ttile').data('tileid'));
         var id;
-        for(i=imin;i<=imax;i++){
-            for(j=jmin;j<=jmax;j++){
-               f =this.matrix[i][j];
-               pozx =f.hflip? (2*mes.w -(f.j+1)*mes.tileWidth): f.j*mes.tileWidth; 
-               pozy =f.vflip? (2*mes.h -(f.i+1)*mes.tileHeight): f.i*mes.tileHeight;  
-               id =tem({i:i,j:j});
-               $('#'+id).css('background-position', (-pozx)+'px '+ (-pozy) + 'px');
-               //$('#'+id).css('background-position', '0px 0px');
+        for (i = imin; i <= imax; i++) {
+            for (j = jmin; j <= jmax; j++) {
+                f = this.matrix[i][j];
+                pozx = f.hflip ? (2 * mes.w - (f.j + 1) * mes.tileWidth) : f.j * mes.tileWidth;
+                pozy = f.vflip ? (2 * mes.h - (f.i + 1) * mes.tileHeight) : f.i * mes.tileHeight;
+                id = tem({i: i, j: j});
+                $('#' + id).css('background-position', (-pozx) + 'px ' + (-pozy) + 'px');
+                //$('#'+id).css('background-position', '0px 0px');
             }
         }
     }
@@ -231,9 +236,9 @@ var flipart = {
                     break;
                 case 'click2':
                     this.state = 'empty';
-                    if(ev.target.id=='horflip'){
+                    if (ev.target.id == 'horflip') {
                         flip(true);
-                    } else if(ev.target.id=='verflip'){
+                    } else if (ev.target.id == 'verflip') {
                         flip(false);
                     }
                     break;

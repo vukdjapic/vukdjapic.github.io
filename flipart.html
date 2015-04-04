@@ -32,19 +32,26 @@
                 }).on('click', function () {
                     var sor = this.src;
                     if (sor.indexOf(flipart.actions.playsingle) >= 0) {
-                        flipart.playSingle('dPictureFrame', 'dTiles', 'dBlocks', onStartSingleDataRetrieved);
+                        flipart.playSingle({}, onStartSingleDataRetrieved);
                     } else if (sor.indexOf(flipart.actions.startnew) >= 0) {
                         alert('new');
                     }
                 });
-      
-            });
 
+            });
+            function onStartNew(phase){
+                flipart.playSingle({}, onStartSingleDataRetrieved);
+            }
 
         </script>
 
         <link href="css/bootstrap.css" rel="stylesheet">
         <style>
+            @font-face {
+                font-family: 'GameFont';
+                src: url('res/font/ARCADE.TTF'); /* IE9 Compat Modes */
+                src: url('res/font/ARCADE.TTF')  format('truetype'); /* Safari, Android, iOS */
+            }
             .center {
                 margin-left: auto;
                 margin-right: auto;
@@ -60,14 +67,23 @@
                 border-style: solid;
                 border-color: #656273;  /* #80488f #e0fa33, yellow sun #e8d15d */
                 position: relative;
+
             }
             #dMenu {
                 position: absolute;
                 width: 100%;
                 bottom: 50px;
+                font-family: 'GameFont', sans-serif;
             }
-            #dMenu img:hover {
+            #dMenu a {
+                text-decoration: none;
+                color: #656273;
+                font-size: 53px;
+                text-shadow: 0 5px 2px rgba(193, 193, 150, 0.73);
+            }
+            #dMenu img:hover, #dMenu a:hover {
                 cursor: pointer;
+                color: #e0fa33;
             }
             #dPictureFrame {
                 position: relative;
@@ -119,11 +135,9 @@
                 <div id="dMenu" class="center">
 
                     <ul style="list-style-type: none">
-                        <li><img src="res/flipart/playsingle.png" /></li>
-                        <li><a href="" ></a></li>
-                        <li><img src="res/flipart/startnew.png" /></li>
-                        <li><img src="res/flipart/continue.png" /></li>
-                        <li><img src="res/flipart/inst.png" /></li>
+                        <li><a href="javascript:onStartNew('click1')" >Start new</a></li>
+                        <li><a href="" >Continue</a></li>
+                        <li><a href="" >Instructions</a></li>
                     </ul>
                 </div>
             </div>
