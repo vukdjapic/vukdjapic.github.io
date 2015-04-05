@@ -19,7 +19,10 @@
             flipart.computeSize($(window).width(), $(window).height());
         </script>
         <script type="text/javascript">
+
             $(function () {
+                resizeGameWindow('welcome');
+
                 $('#dMenu img').on('mouseover', function () {
                     var sor = this.src;
                     sor = sor.replace('.png', '_sel.png');
@@ -38,92 +41,47 @@
                     }
                 });
 
-            });
-            function onStartNew(phase){
-                flipart.playSingle({}, onStartSingleDataRetrieved);
-            }
+                $('#dActions').mousedown(function (event) {
+                    flipart.mouseMoves.down(event);
+                })
+                        .mousemove(function (event) {
+                            flipart.mouseMoves.move(event);
+                        })
+                        .mouseup(function (event) {
+                            flipart.mouseMoves.up(event);
+                        });
 
+
+            });
+            function onGameAction(phase) {
+                switch (phase) {
+                    case 'click1':
+                        displayGameWindow('dChoice');
+                        break;
+                    case 'easy':
+                    case 'normal':
+                    case 'hard':
+                        flipart.playSingle({level: phase}, onStartSingleDataRetrieved);
+                        break;
+                    case 'restart':
+                        flipart._init();
+                        flipart.playSingle({restart: true}, onStartSingleDataRetrieved);
+                        break;
+                    case 'back':
+                        flipart.moveHistory(true);
+                        break;
+                    case 'forward':
+                        flipart.moveHistory(false);
+                        break;
+                    case 'exit':
+                        document.location.reload();
+                        break;
+                }
+            }
         </script>
 
         <link href="css/bootstrap.css" rel="stylesheet">
-        <style>
-            @font-face {
-                font-family: 'GameFont';
-                src: url('res/font/ARCADE.TTF'); /* IE9 Compat Modes */
-                src: url('res/font/ARCADE.TTF')  format('truetype'); /* Safari, Android, iOS */
-            }
-            .center {
-                margin-left: auto;
-                margin-right: auto;
-                text-align: center;
-            }
-            div.gamediv {
-                width: 100%;
-                height: 100%;
-                display: none;
-            }
-            #dGameWindow {
-                border: "1px";
-                border-style: solid;
-                border-color: #656273;  /* #80488f #e0fa33, yellow sun #e8d15d */
-                position: relative;
-
-            }
-            #dMenu {
-                position: absolute;
-                width: 100%;
-                bottom: 50px;
-                font-family: 'GameFont', sans-serif;
-            }
-            #dMenu a {
-                text-decoration: none;
-                color: #656273;
-                font-size: 53px;
-                text-shadow: 0 5px 2px rgba(193, 193, 150, 0.73);
-            }
-            #dMenu img:hover, #dMenu a:hover {
-                cursor: pointer;
-                color: #e0fa33;
-            }
-            #dPictureFrame {
-                position: relative;
-                Qborder: solid blue 1px;
-            }
-            #dPictureFrame > div {
-                position: absolute;
-                width: 100%;
-                height: 100%;
-            }
-            #dPictureFrame div.tile, #dPictureFrame div.block {
-                //background-image: url('/kserver/flipart/image.png');
-                position: absolute;
-            }
-            #dPictureFrame div.block.selected {
-                background-color: black;
-                opacity: 0.5;
-            }
-            #dActions div.flip {
-                display: none;
-                position: absolute;
-                text-align: center;
-                vertical-align: middle;
-            }
-            #dActions div.flip a {
-                color: yellow;
-                font-family: comic sans ms;
-                font-size: large;
-                font-style: italic;
-                Qfont-weight: bold;
-            }
-            #dActions div.flip img {
-                width: 30px;
-            }
-            #dActions div.flip img:hover {
-                border: 1px solid #285e8e;
-                background-color: yellow;
-
-            }
-        </style>
+        <link href="css/flipart.css" rel="stylesheet">
 
     </head>
     <body>
@@ -135,11 +93,24 @@
                 <div id="dMenu" class="center">
 
                     <ul style="list-style-type: none">
-                        <li><a href="javascript:onStartNew('click1')" >Start new</a></li>
+                        <li><a href="javascript:onGameAction('click1')" >Start new</a></li>
                         <li><a href="" >Continue</a></li>
                         <li><a href="" >Instructions</a></li>
                     </ul>
                 </div>
+            </div>
+            <div id="dChoice" class="gamediv">
+                <br><br>
+                <img src="res/flipart/logo.png" alt="Flipart logo" />
+                <div id="dMenu" class="center">
+
+                    <ul style="list-style-type: none">
+                        <li><a href="javascript:onGameAction('easy')" >Easy</a></li>
+                        <li><a href="javascript:onGameAction('normal')" >Normal</a></li>
+                        <li><a href="javascript:onGameAction('hard')" >Hard</a></li>
+                    </ul>
+                </div>
+
             </div>
             <div id="dGame" class="gamediv" >
                 <div id="dPictureFrame">        <!-- holds stacked game divs -->
@@ -147,24 +118,30 @@
                     <div id="dBlocks"></div>
                     <div id="dActions">
                         <div id="dHorflip" class="flip">
-                            <a href="javascript:flip(true)">
+                            <a >
                                 <img id="horflip" src="res/flipart/arrows_hor.png" />
                             </a>
                         </div>
                         <div id="dVerflip" class="flip">
-                            <a href="http://komante.com">
+                            <a >
                                 <img id="verflip" src="res/flipart/arrows_ver.png" />
                             </a>
                         </div>
                     </div>
                 </div>
+                <div id="dGameControls">
+                    Level&nbsp;1 
+                    <div> 
+                        <a href="javascript:onGameAction('back')"><img src="res/flipart/arrow_back.png" /></a> 
+                        <a href="javascript:onGameAction('forward')"><img src="res/flipart/arrow_forward.png" /></a>
+                    </div>
+                    <div class="bottom">
+                        <div><a href="javascript:onGameAction('restart');">Restart</a></div>
+                        <div><a >Exit</a></div>
+                    </div>
+                </div>
             </div>
         </div>
-
-        <script>
-            resizeGameWindow('welcome');
-        </script>
-
 
         <!--GOOGLE ANALYTICS -->
         <script>

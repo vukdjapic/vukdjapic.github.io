@@ -22,6 +22,10 @@ function resizeGameWindow(phase) {
             if (go && !go.absolute) {
                 gw.width(go.measures.w).height(go.measures.h);
             }
+            $('#dGameControls').css({
+                'left': (go.measures.w + 10) + 'px'
+                , 'height': go.measures.h + 'px'
+            });
             break;
         default:
             console.error('no phase for resize');
@@ -37,14 +41,6 @@ function onStartSingleDataRetrieved(gameOptions, imageUrl) {
     flipart.mouseMoves.init('dActions');
 }
 
-/**on flip action */
-function flip(isHorizontal) {
-    var rec = flipart.getRectangle(flipart.mouseMoves.start, flipart.mouseMoves.end);
-    flipart.flipMatrix(rec, isHorizontal);
-    flipart.updateBackground(rec);
-    return false;
-}
-
 function _populateTilesAndBlocks(gameOptions, imageUrl, picframe, tiles, blocks) {
     var i, j;
     var pf = $('#' + picframe), tiles = $('#' + tiles), blocks = $('#' + blocks);
@@ -52,6 +48,8 @@ function _populateTilesAndBlocks(gameOptions, imageUrl, picframe, tiles, blocks)
     var temb = _.template($('#tblock').html());
     var mes = gameOptions.measures;
     pf.width(mes.w).height(mes.h);
+    tiles.text('');
+    blocks.text('');
     for (i = 0; i < mes.n; i++) {
         for (j = 0; j < mes.m; j++) {
             tiles.append(tem({
@@ -87,8 +85,13 @@ var flipart = {
     , gameOptions: null     //gameOptions object retrieved from server
     , matrix: null          //transformation matrix
     , transformations: []
-
-            /** computes game window dimensions */
+    , transIndex: 0         //index in transformations array history
+    , level: null          // 'easy', normal, hard
+    , _init: function () {
+        this.matrix = null;
+        this.transformations =[];
+    }
+    /** computes game window dimensions */
     , computeSize: function (winWidth, winHeight) {
         var mf = .8;     //maximum factor how big game window can be
         var hw = .75;    //aspect ratio height/width
@@ -113,8 +116,17 @@ var flipart = {
      * first gets game properites object, than adds all divs*/
     , playSingle: function (options, callback) {
         var fa = this;
+        var data = {};
+        if (options.level) {
+            this.level = options.level;
+        }
+        if (options.restart) {
+            data.restart = true;
+        }
+        data.level = this.level;
         $.ajax(this.urls.newgame, {
             dataType: 'json'
+            , data: data
         }).done(function (data) {
             fa.gameOptions = data.gameOptions;
             fa.matrix = data.matrix;
@@ -142,6 +154,16 @@ var flipart = {
         }
         return {imin: imin, imax: imax, jmin: jmin, jmax: jmax};
     }
+    /**on flip action */
+    , flip: function (isHorizontal) {
+        var rec = this.getRectangle(this.mouseMoves.start, this.mouseMoves.end);
+        this.transformations[this.transIndex] =new transformation(rec.imin,rec.jmin,rec.imax,rec.jmax,isHorizontal);
+        this.transIndex++;
+        this.transformations.length =this.transIndex;
+        this.flipMatrix(rec, isHorizontal);
+        this.updateBackground(rec);
+    }
+
     /**flips part of flipart.matrix
      * 
      * @param {type} rec rectangle
@@ -187,6 +209,22 @@ var flipart = {
             }
         }
     }
+    , moveHistory: function(isBack){
+        var tr, rec;
+        if(isBack && this.transIndex>0){
+            tr =this.transformations[this.transIndex-1];
+            this.transIndex--;
+        } else if(!isBack && this.transIndex<this.transformations.length) {
+            tr =this.transformations[this.transIndex];
+            this.transIndex++;
+        } else {
+            console.log("Cannot move at "+this.transIndex);
+            return;
+        }
+        rec =this.getRectangle({i:tr.row1, j:tr.col1}, {i:tr.row2, j:tr.col2});
+        this.flipMatrix(rec, tr.isHorizontal);
+        this.updateBackground(rec);        
+    }
     , mouseMoves: {
         isdown: false
         , ismove: false
@@ -200,17 +238,12 @@ var flipart = {
         , tileWidth: null               //from gameOptions.measures
         , tileHeight: null
         , init: function (actionsDiv) {
+            this.isdown = null;
+            this.ismove = null;
+            this.state = 'empty';
+
             var act = $('#' + actionsDiv);
             var ofs = act.offset();
-            act.mousedown(function (event) {
-                flipart.mouseMoves.down(event);
-            })
-                    .mousemove(function (event) {
-                        flipart.mouseMoves.move(event);
-                    })
-                    .mouseup(function (event) {
-                        flipart.mouseMoves.up(event);
-                    });
             this.offtop = ofs.top;
             this.offleft = ofs.left;
             this.blockTemplate = _.template($('#tblock').data('blockid'));
@@ -237,9 +270,9 @@ var flipart = {
                 case 'click2':
                     this.state = 'empty';
                     if (ev.target.id == 'horflip') {
-                        flip(true);
+                        flipart.flip(true);
                     } else if (ev.target.id == 'verflip') {
-                        flip(false);
+                        flipart.flip(false);
                     }
                     break;
             }
@@ -306,4 +339,13 @@ var flipart = {
         }
     }
 
-}; //namespace for game objects
+}; 
+
+/**matches server transformation */
+function transformation(row1,col1,row2,col2,isHorizontal){
+    this.row1 =row1;
+    this.col1 =col1;
+    this.row2 =row2;
+    this.col2 =col2;
+    this.isHorizontal =isHorizontal;
+}
