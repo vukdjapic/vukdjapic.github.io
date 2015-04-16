@@ -7,7 +7,7 @@ $4 = {
 		}
 	}
 	, serverUrl: 'http://api.komante.com/website'
-	, serverUrl: '/kserver/website'
+	
 };
 
 
