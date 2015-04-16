@@ -6,8 +6,8 @@ $4 = {
 			console.log(message);
 		}
 	}
-	//, serverUrl: 'http://api.komante.com/website'
-	, serverUrl: 'http://api.komante.com/comments/rest'
+	, serverUrl: 'http://api.komante.com/website'
+	, restUrl: 'http://api.komante.com/comments/rest'
 };
 
 
@@ -119,7 +119,7 @@ function smoothBackgroundScroll(imgsrc) {
 
 
 function serverRequestlog(app, page) {
-	$.ajax($4.serverUrl + app + '/' + page, {
+	$.ajax($4.serverUrl + '/' + app + '/' + page, {
 		success: function(dat, stat, jxhr) {
 			$4.log('Request log: ' + dat + ", status:" + stat);
 		}
@@ -131,7 +131,7 @@ function serverRequestlog(app, page) {
 
 $4.submitMessage = function(form) {
 	$.ajax({
-		url: $4.serverUrl + '/emailer'
+		url: $4.restUrl + '/emailer'
 		, data: {
                     email: 'djapic'+"@"+'yandex.ru'
                     , naslov: 'Komante web: poruka od '+form.email.value
