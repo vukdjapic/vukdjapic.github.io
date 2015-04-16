@@ -1,0 +1,112 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Apr 4, 2015, 2:36:27 PM
+    Author     : vuk
+*/
+
+@font-face {
+    font-family: 'GameFont';
+    src: url('../res/font/ARCADE.TTF'); /* IE9 Compat Modes */
+    src: url('../res/font/ARCADE.TTF')  format('truetype'); /* Safari, Android, iOS */
+}
+@font-face {
+    font-family: 'ControlsFont';
+    src: url('../res/font/SFAtarianExtended.ttf'); /* IE9 Compat Modes */
+    src: url('../res/font/SFAtarianExtended.ttf')  format('truetype'); /* Safari, Android, iOS */
+}
+.center {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+div.gamediv {
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+#dGameWindow {
+    border: "1px";
+    border-style: solid;
+    border-color: #656273;  /* #80488f #e0fa33, yellow sun #e8d15d */
+    position: relative;
+
+}
+#dMenu {
+    position: absolute;
+    width: 100%;
+    bottom: 50px;
+    font-family: 'GameFont', sans-serif;
+}
+#dMenu a {
+    text-decoration: none;
+    color: #656273;
+    font-size: 53px;
+    text-shadow: 0 5px 2px rgba(193, 193, 150, 0.73);
+}
+#dMenu img:hover, #dMenu a:hover, #dGameControls a:hover {
+    cursor: pointer;
+    color: #e0fa33;
+}
+
+#dGameControls {
+    font-family: 'ControlsFont', sans-serif;
+    font-size: 2.5em;
+    position: absolute;
+    top: 0px;
+    color: #656273;
+}
+#dGameControls a {
+    color: inherit;
+    text-decoration: none;
+}
+#dGameControls img {
+    width:30px;
+}
+#dGameControls .bottom {
+    position: absolute;
+    bottom: 0px;
+}
+
+#dPictureFrame {
+    position: relative;
+    float: left;
+    Qborder: solid blue 1px;
+}
+#dPictureFrame > div {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+#dPictureFrame div.tile, #dPictureFrame div.block {
+    //background-image: url('/kserver/flipart/image.png');
+    position: absolute;
+}
+#dPictureFrame div.block.selected {
+    background-color: black;
+    opacity: 0.5;
+}
+#dActions div.flip {
+    display: none;
+    position: absolute;
+    text-align: center;
+    vertical-align: middle;
+}
+#dActions div.flip a {
+    color: yellow;
+    font-family: comic sans ms;
+    font-size: large;
+    font-style: italic;
+    Qfont-weight: bold;
+}
+#dActions div.flip img {
+    width: 30px;
+}
+#dActions div.flip img:hover {
+    border: 1px solid #285e8e;
+    background-color: yellow;
+
+}

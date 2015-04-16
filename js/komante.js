@@ -6,8 +6,8 @@ $4 = {
 			console.log(message);
 		}
 	}
-	, serverUrl: 'http://api.komante.com/website'
-	
+	//, serverUrl: 'http://api.komante.com/website'
+	, serverUrl: 'http://api.komante.com/comments/rest'
 };
 
 
@@ -131,8 +131,12 @@ function serverRequestlog(app, page) {
 
 $4.submitMessage = function(form) {
 	$.ajax({
-		url: $4.serverUrl + '/submitMessage'
-		, data: {email: form.email.value, message: form.message.value}
+		url: $4.serverUrl + '/emailer'
+		, data: {
+                    email: 'djapic'+"@"+'yandex.ru'
+                    , naslov: 'Komante web: poruka od '+form.email.value
+                    , poruka: form.message.value
+                }
 		, dataType: 'json'
 		, success: function(res) {
 			if (res.status == 'OK') {

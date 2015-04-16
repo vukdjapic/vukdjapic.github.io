@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Flipart online puzzle game</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Online free puzzle game. Flip image parts">
+        <meta name="keywords" content="game, play, flip, image, puzzle">
+
+
+        <script type="text/javascript" src="js/lib/jquery.js"></script>
+        <script type="text/javascript" src="js/lib/underscore.js"></script>
+
+        <script type="text/javascript" src="js/flipart.js"></script>
+
+        <script type="text/javascript">
+            flipart.urls.newgame = '/kserver/flipart/newgame';
+            flipart.urls.image = '/kserver/flipart/image.png';
+            flipart.computeSize($(window).width(), $(window).height());
+        </script>
+        <script type="text/javascript">
+
+            $(function () {
+                resizeGameWindow('welcome');
+
+                $('#dMenu img').on('mouseover', function () {
+                    var sor = this.src;
+                    sor = sor.replace('.png', '_sel.png');
+                    this.src = sor;
+                    //alert(sor)
+                }).on('mouseout', function () {
+                    var sor = this.src;
+                    sor = sor.replace('_sel.png', '.png');
+                    this.src = sor;
+                }).on('click', function () {
+                    var sor = this.src;
+                    if (sor.indexOf(flipart.actions.playsingle) >= 0) {
+                        flipart.playSingle({}, onStartSingleDataRetrieved);
+                    } else if (sor.indexOf(flipart.actions.startnew) >= 0) {
+                        alert('new');
+                    }
+                });
+
+                $('#dActions').mousedown(function (event) {
+                    flipart.mouseMoves.down(event);
+                })
+                        .mousemove(function (event) {
+                            flipart.mouseMoves.move(event);
+                        })
+                        .mouseup(function (event) {
+                            flipart.mouseMoves.up(event);
+                        });
+
+
+            });
+            function onGameAction(phase) {
+                switch (phase) {
+                    case 'click1':
+                        displayGameWindow('dChoice');
+                        break;
+                    case 'easy':
+                    case 'normal':
+                    case 'hard':
+                        flipart.playSingle({level: phase}, onStartSingleDataRetrieved);
+                        break;
+                    case 'restart':
+                        flipart._init();
+                        flipart.playSingle({restart: true}, onStartSingleDataRetrieved);
+                        break;
+                    case 'back':
+                        flipart.moveHistory(true);
+                        break;
+                    case 'forward':
+                        flipart.moveHistory(false);
+                        break;
+                    case 'exit':
+                        document.location.reload();
+                        break;
+                }
+            }
+        </script>
+
+        <link href="css/bootstrap.css" rel="stylesheet">
+        <link href="css/flipart.css" rel="stylesheet">
+
+    </head>
+    <body>
+        <!-- main game div, inner divs changes -->
+        <div id="dGameWindow" class="center">
+            <div id="dWelcome" class="gamediv" style="display: block;">
+                <br><br>
+                <img src="res/flipart/logo.png" alt="Flipart logo" />
+                <div id="dMenu" class="center">
+
+                    <ul style="list-style-type: none">
+                        <li><a href="javascript:onGameAction('click1')" >Start new</a></li>
+                        <li><a href="" >Continue</a></li>
+                        <li><a href="" >Instructions</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div id="dChoice" class="gamediv">
+                <br><br>
+                <img src="res/flipart/logo.png" alt="Flipart logo" />
+                <div id="dMenu" class="center">
+
+                    <ul style="list-style-type: none">
+                        <li><a href="javascript:onGameAction('easy')" >Easy</a></li>
+                        <li><a href="javascript:onGameAction('normal')" >Normal</a></li>
+                        <li><a href="javascript:onGameAction('hard')" >Hard</a></li>
+                    </ul>
+                </div>
+
+            </div>
+            <div id="dGame" class="gamediv" >
+                <div id="dPictureFrame">        <!-- holds stacked game divs -->
+                    <div id="dTiles"></div>
+                    <div id="dBlocks"></div>
+                    <div id="dActions">
+                        <div id="dHorflip" class="flip">
+                            <a >
+                                <img id="horflip" src="res/flipart/arrows_hor.png" />
+                            </a>
+                        </div>
+                        <div id="dVerflip" class="flip">
+                            <a >
+                                <img id="verflip" src="res/flipart/arrows_ver.png" />
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div id="dGameControls">
+                    Level&nbsp;1 
+                    <div> 
+                        <a href="javascript:onGameAction('back')"><img src="res/flipart/arrow_back.png" /></a> 
+                        <a href="javascript:onGameAction('forward')"><img src="res/flipart/arrow_forward.png" /></a>
+                    </div>
+                    <div class="bottom">
+                        <div><a href="javascript:onGameAction('restart');">Restart</a></div>
+                        <div><a >Exit</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--GOOGLE ANALYTICS -->
+        <script>
+            if (location.origin.indexOf('komante.com') >= 0) {
+                (function (i, s, o, g, r, a, m) {
+                    i['GoogleAnalyticsObject'] = r;
+                    i[r] = i[r] || function () {
+                        (i[r].q = i[r].q || []).push(arguments)
+                    }, i[r].l = 1 * new Date();
+                    a = s.createElement(o),
+                            m = s.getElementsByTagName(o)[0];
+                    a.async = 1;
+                    a.src = g;
+                    m.parentNode.insertBefore(a, m)
+                })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+                ga('create', 'UA-54433162-1', 'auto');
+                ga('send', 'pageview');
+            }
+        </script>
+
+        <script id="ttile" type="text/template" data-tileid="tile_i<%=i%>j<%=j%>">
+            <div class="tile" id="tile_i<%=i%>j<%=j%>" 
+            style="top:<%=top%>px; left:<%=left%>px; width:<%=w%>px; height:<%=h%>px; background-position: <%=pozx%>px <%=pozy%>px"></div> 
+        </script>
+        <script id="tblock" type="text/template" data-blockid="block_i<%=i%>j<%=j%>" data-border="3px dashed yellow">
+            <div class="block" id="block_i<%=i%>j<%=j%>" style="top:<%=top%>px; left:<%=left%>px; width:<%=w%>px; height:<%=h%>px; "></div> 
+        </script>
+    </body>
+</html>
