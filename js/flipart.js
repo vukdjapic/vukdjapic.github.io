@@ -189,6 +189,7 @@ var flipart = {
         this.transformations.length =this.transIndex;
         this.flipMatrix(rec, isHorizontal);
         this.updateBackground(rec);
+        updateHistoryButtons({ back:true, forward:false });
     }
 
     /**flips part of flipart.matrix
