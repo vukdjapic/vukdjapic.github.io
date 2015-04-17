@@ -186,6 +186,37 @@ for (initialization; termination;
 				
 			</dl>
 		</div>
-
+                
+                <h4>DB</h4>
+                <div class="java db">
+                    <dl>
+                        <dt>How to create transaction with JDBC? 
+                        <dd>
+                            First disable auto commit. When a connection is created, it is in auto-commit mode.
+                            <pre>con.setAutoCommit(false);</pre>
+                             After the auto-commit mode is disabled, no SQL statements are committed until you call the method commit explicitly. All statements executed after the previous call to the method commit are included in the current transaction and committed together as a unit.
+                             <pre>con.commit();</pre>
+                        </dd>
+                        <dt>How to call stored procedure from Java?
+                        <dd>From Spring - class SimpleJdbcCall.
+                            <pre>Map outParams = jdbcCall.execute(inParams);</pre>
+                            With JDBC:
+                            <pre>cs = this.con.prepareCall("{call PROC_NAME()}");
+ResultSet rs = cs.executeQuery();
+                            </pre>
+                        </dd>
+						<dt>What are two roles of transaction?
+						<dd>Grouping statements together for execution as a unit, and help preserve the integrity of the data in a table (isolation levels are used for this).
+						</dd>
+						<dt>What are transaction's isolation levels?
+						<dd>
+						TRANSACTION_NONE<br>
+						TRANSACTION_READ_UNCOMMITTED just groups statements <br>
+						TRANSACTION_READ_COMMITTED prevents dirty reads<br>
+						TRANSACTION_REPEATABLE_READ prevents non-repeatable reads<br>
+						TRANSACTION_SERIALIZABLE prevents phantom reads
+                    </dl>
+                    
+                </div>
 	</body>
 </html>
