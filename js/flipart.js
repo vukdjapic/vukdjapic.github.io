@@ -1,9 +1,13 @@
 //DOM FUNCTIONS
 
 /** displays one div from game window div, hide others */
-function displayGameWindow(id) {
+function displayGameWindow(id, isinline) {
     $('div.gamediv').css('display', 'none');
-    $('#' + id).css('display', 'block');
+    if(isinline){
+        $('#' + id).css({ display:'inline-block', width:'auto' });
+    } else {
+        $('#' + id).css('display', 'block');
+    }
 }
 
 /** various game windows (welcome, play) can have different sizes 
@@ -38,7 +42,7 @@ function resizeGameWindow(phase) {
 function onStartSingleDataRetrieved(gameOptions, imageUrl) {
     _populateTilesAndBlocks(gameOptions, imageUrl, 'dPictureFrame', 'dTiles', 'dBlocks');
     resizeGameWindow('startsingle');
-    displayGameWindow('dGame');
+    displayGameWindow('dGame',true);
     flipart.mouseMoves.init('dActions');
 }
 

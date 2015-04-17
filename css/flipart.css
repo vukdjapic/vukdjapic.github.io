@@ -55,7 +55,7 @@ div.gamediv {
 #dGameControls {
     font-family: 'ControlsFont', sans-serif;
     font-size: 2.5em;
-    position: absolute;
+    position: relative;
     top: 0px;
     color: #656273;
 }
