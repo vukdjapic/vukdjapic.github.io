@@ -20,12 +20,13 @@ function resizeGameWindow(phase) {
         case 'startsingle':
             go = flipart.gameOptions;
             if (go && !go.absolute) {
-                gw.width(go.measures.w).height(go.measures.h);
+                //gw.width(go.measures.w).height(go.measures.h);
             }
             $('#dGameControls').css({
-                'left': (go.measures.w + 10) + 'px'
-                , 'height': go.measures.h + 'px'
+                'margin-left': (go.measures.w + 10) + 'px'
+                , 'height': (go.measures.h-5) + 'px'
             });
+            $('#dPictureFrame, #dGameControls').css('top', (flipart.gheight-go.measures.h)/2 +'px');
             break;
         default:
             console.error('no phase for resize');
@@ -70,11 +71,28 @@ function _populateTilesAndBlocks(gameOptions, imageUrl, picframe, tiles, blocks)
 
 }
 
+function updateHistoryButtons(bfEnabled){   
+    var imBack =document.getElementById('imBack');
+    var imForward =document.getElementById('imForward');
+    if(bfEnabled.back){
+        imBack.src ='res/flipart/arrow_back.png';
+    } else {
+        imBack.src ='res/flipart/arrow_back_d.png';
+    }
+    if(bfEnabled.forward){
+        imForward.src ='res/flipart/arrow_forward.png';
+    } else {
+        imForward.src ='res/flipart/arrow_forward_d.png';
+    }
+}
+
 var flipart = {
-    gwidth: null         //game width
-    , gheight: null      //game height
+    gwidth: null         //game window width
+    , gheight: null      //game window height 
     , wwidth: null       //window width
     , wheight: null      //window height
+    , fwidth: null      //frame width (for picture)
+    , fheight: null     //frame height
     , urls: {}          //server urls
     , actions: {
         'playsingle': 'playsingle'
@@ -93,7 +111,7 @@ var flipart = {
     }
     /** computes game window dimensions */
     , computeSize: function (winWidth, winHeight) {
-        var mf = .8;     //maximum factor how big game window can be
+        var mf = .9;     //maximum factor how big game window can be
         var hw = .75;    //aspect ratio height/width
         var w = this.wwidth = winWidth;
         var h = this.wheight = winHeight;
@@ -110,13 +128,22 @@ var flipart = {
             this.gwidth = w;
             this.gheight = hnew;
         }
+        
+        this.gwidth =Math.floor(this.gwidth);
+        this.gheight =Math.floor(this.gheight);
+        
+        this.fwidth =this.gwidth - 140;
+        this.fheight =this.gheight -30;
 
     }
     /**action on start new single game 
      * first gets game properites object, than adds all divs*/
     , playSingle: function (options, callback) {
         var fa = this;
-        var data = {};
+        var data = {
+            maxWidth: this.fwidth
+            , maxHeight: this.fheight
+        };
         if (options.level) {
             this.level = options.level;
         }
@@ -211,6 +238,7 @@ var flipart = {
     }
     , moveHistory: function(isBack){
         var tr, rec;
+        var res ={back:true, forward: true};
         if(isBack && this.transIndex>0){
             tr =this.transformations[this.transIndex-1];
             this.transIndex--;
@@ -218,12 +246,12 @@ var flipart = {
             tr =this.transformations[this.transIndex];
             this.transIndex++;
         } else {
-            console.log("Cannot move at "+this.transIndex);
-            return;
+            return {back:this.transIndex>0, forward:this.transIndex<this.transformations.length };
         }
         rec =this.getRectangle({i:tr.row1, j:tr.col1}, {i:tr.row2, j:tr.col2});
         this.flipMatrix(rec, tr.isHorizontal);
         this.updateBackground(rec);        
+        return {back:this.transIndex>0, forward:this.transIndex<this.transformations.length };
     }
     , mouseMoves: {
         isdown: false

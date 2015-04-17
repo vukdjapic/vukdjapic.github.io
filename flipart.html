@@ -22,6 +22,7 @@
 
             $(function () {
                 resizeGameWindow('welcome');
+                updateHistoryButtons({});
 
                 $('#dMenu img').on('mouseover', function () {
                     var sor = this.src;
@@ -50,7 +51,8 @@
                         .mouseup(function (event) {
                             flipart.mouseMoves.up(event);
                         });
-
+                $('#imBack').click(function(){ onGameAction('back'); });
+                $('#imForward').click(function(){ onGameAction('forward'); });
 
             });
             function onGameAction(phase) {
@@ -68,10 +70,12 @@
                         flipart.playSingle({restart: true}, onStartSingleDataRetrieved);
                         break;
                     case 'back':
-                        flipart.moveHistory(true);
+                        var bfEnabled =flipart.moveHistory(true);
+                        updateHistoryButtons(bfEnabled);
                         break;
                     case 'forward':
-                        flipart.moveHistory(false);
+                        var bfEnabled =flipart.moveHistory(false);
+                        updateHistoryButtons(bfEnabled);
                         break;
                     case 'exit':
                         document.location.reload();
@@ -132,8 +136,8 @@
                 <div id="dGameControls">
                     Level&nbsp;1 
                     <div> 
-                        <a href="javascript:onGameAction('back')"><img src="res/flipart/arrow_back.png" /></a> 
-                        <a href="javascript:onGameAction('forward')"><img src="res/flipart/arrow_forward.png" /></a>
+                        <img id="imBack" src="res/flipart/arrow_back.png" />
+                        <img id="imForward" src="res/flipart/arrow_forward.png" />
                     </div>
                     <div class="bottom">
                         <div><a href="javascript:onGameAction('restart');">Restart</a></div>
