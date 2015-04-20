@@ -14,13 +14,18 @@
         <script type="text/javascript" src="js/flipart.js"></script>
 
         <script type="text/javascript">
-            flipart.urls.newgame = '/kserver/flipart/newgame';
-            flipart.urls.image = '/kserver/flipart/image.png';
+            flipart.urls.base = '/kserver/flipart';
+            flipart.urls.newgame = flipart.urls.base + '/newgame';
+            flipart.urls.image = flipart.urls.base + '/image.png';
+            flipart.urls.galleries = flipart.urls.base + '/galleries';
             flipart.computeSize($(window).width(), $(window).height());
+
+
         </script>
         <script type="text/javascript">
 
             $(function () {
+                loadGalleries('dGalleries');
                 resizeGameWindow('welcome');
                 updateHistoryButtons({});
 
@@ -51,8 +56,12 @@
                         .mouseup(function (event) {
                             flipart.mouseMoves.up(event);
                         });
-                $('#imBack').click(function(){ onGameAction('back'); });
-                $('#imForward').click(function(){ onGameAction('forward'); });
+                $('#imBack').click(function () {
+                    onGameAction('back');
+                });
+                $('#imForward').click(function () {
+                    onGameAction('forward');
+                });
 
             });
             function onGameAction(phase) {
@@ -70,11 +79,11 @@
                         flipart.playSingle({restart: true}, onStartSingleDataRetrieved);
                         break;
                     case 'back':
-                        var bfEnabled =flipart.moveHistory(true);
+                        var bfEnabled = flipart.moveHistory(true);
                         updateHistoryButtons(bfEnabled);
                         break;
                     case 'forward':
-                        var bfEnabled =flipart.moveHistory(false);
+                        var bfEnabled = flipart.moveHistory(false);
                         updateHistoryButtons(bfEnabled);
                         break;
                     case 'exit':
@@ -94,7 +103,7 @@
             <div id="dWelcome" class="gamediv" style="display: block;">
                 <br><br>
                 <img src="res/flipart/logo.png" alt="Flipart logo" />
-                <div id="dMenu" class="center">
+                <div id="dMenu" class="center menu">
 
                     <ul style="list-style-type: none">
                         <li><a href="javascript:onGameAction('click1')" >Start new</a></li>
@@ -104,9 +113,17 @@
                 </div>
             </div>
             <div id="dChoice" class="gamediv">
-                <br><br>
-                <img src="res/flipart/logo.png" alt="Flipart logo" />
-                <div id="dMenu" class="center">
+                <div>
+                    <img class="logosmall" src="res/flipart/logo.png" alt="Flipart logo" />
+                    &nbsp;
+                    Galleries
+                </div>
+                <div id="dGalleries">
+                    <div>
+                        Loading galleries...
+                    </div>
+                </div>
+                <div id="dMenu" class="menu">
 
                     <ul style="list-style-type: none">
                         <li><a href="javascript:onGameAction('easy')" >Easy</a></li>
@@ -173,6 +190,13 @@
         </script>
         <script id="tblock" type="text/template" data-blockid="block_i<%=i%>j<%=j%>" data-border="3px dashed yellow">
             <div class="block" id="block_i<%=i%>j<%=j%>" style="top:<%=top%>px; left:<%=left%>px; width:<%=w%>px; height:<%=h%>px; "></div> 
+        </script>
+        <script id="temGalleryImage" type="text/template" >
+            <div class="galleryImage">      
+            <a href="">
+                <img class="img-rounded" id="img<%=galleryName%>" src="<%=gallerySrc%>"></img> 
+            </a>
+            </div>
         </script>
     </body>
 </html>

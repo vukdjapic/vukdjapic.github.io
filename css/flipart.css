@@ -28,6 +28,21 @@ div.gamediv {
     height: 100%;
     display: none;
 }
+div.menu {
+    position: absolute;
+    width: 100%;
+    bottom: 30px;
+    font-family: 'GameFont', sans-serif;
+}
+div.menu a {
+    text-decoration: none;
+    color: #656273;
+    font-size: 53px;
+    text-shadow: 0 5px 2px rgba(193, 193, 150, 0.73);
+}
+img.logosmall {
+    width: 100px;
+}
 #dGameWindow {
     border: "1px";
     border-style: solid;
@@ -35,23 +50,33 @@ div.gamediv {
     position: relative;
 
 }
-#dMenu {
-    position: absolute;
-    width: 100%;
-    bottom: 50px;
-    font-family: 'GameFont', sans-serif;
-}
-#dMenu a {
-    text-decoration: none;
-    color: #656273;
-    font-size: 53px;
-    text-shadow: 0 5px 2px rgba(193, 193, 150, 0.73);
-}
-#dMenu img:hover, #dMenu a:hover, #dGameControls a:hover {
+div.menu img:hover, div.menu a:hover, #dGameControls a:hover {
     cursor: pointer;
     color: #e0fa33;
 }
-
+#dChoice>div:first-child {
+    padding: 10px;
+    text-align: left;
+    font-family: 'ControlsFont', sans-serif;
+    font-size: 20px;
+}
+#dGalleries {
+    padding: 5px;   
+    height: 230px;
+    background-color: #C1C0C7;
+    overflow-y: scroll;
+}
+#dGalleries div.galleryImage{
+    float: left;
+    width: 140px;
+    height: 140px;
+    margin: 5px;
+}
+#dGalleries img {
+    width: 100%;
+    height: 100%;
+    margin-bottom: 10px;
+}
 #dGameControls {
     font-family: 'ControlsFont', sans-serif;
     font-size: 2.5em;

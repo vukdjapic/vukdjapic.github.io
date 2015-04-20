@@ -3,8 +3,8 @@
 /** displays one div from game window div, hide others */
 function displayGameWindow(id, isinline) {
     $('div.gamediv').css('display', 'none');
-    if(isinline){
-        $('#' + id).css({ display:'inline-block', width:'auto' });
+    if (isinline) {
+        $('#' + id).css({display: 'inline-block', width: 'auto'});
     } else {
         $('#' + id).css('display', 'block');
     }
@@ -28,9 +28,9 @@ function resizeGameWindow(phase) {
             }
             $('#dGameControls').css({
                 'margin-left': (go.measures.w + 10) + 'px'
-                , 'height': (go.measures.h-5) + 'px'
+                , 'height': (go.measures.h - 5) + 'px'
             });
-            $('#dPictureFrame, #dGameControls').css('top', (flipart.gheight-go.measures.h)/2 +'px');
+            $('#dPictureFrame, #dGameControls').css('top', (flipart.gheight - go.measures.h) / 2 + 'px');
             break;
         default:
             console.error('no phase for resize');
@@ -42,7 +42,7 @@ function resizeGameWindow(phase) {
 function onStartSingleDataRetrieved(gameOptions, imageUrl) {
     _populateTilesAndBlocks(gameOptions, imageUrl, 'dPictureFrame', 'dTiles', 'dBlocks');
     resizeGameWindow('startsingle');
-    displayGameWindow('dGame',true);
+    displayGameWindow('dGame', true);
     flipart.mouseMoves.init('dActions');
 }
 
@@ -75,20 +75,43 @@ function _populateTilesAndBlocks(gameOptions, imageUrl, picframe, tiles, blocks)
 
 }
 
-function updateHistoryButtons(bfEnabled){   
-    var imBack =document.getElementById('imBack');
-    var imForward =document.getElementById('imForward');
-    if(bfEnabled.back){
-        imBack.src ='res/flipart/arrow_back.png';
+function updateHistoryButtons(bfEnabled) {
+    var imBack = document.getElementById('imBack');
+    var imForward = document.getElementById('imForward');
+    if (bfEnabled.back) {
+        imBack.src = 'res/flipart/arrow_back.png';
     } else {
-        imBack.src ='res/flipart/arrow_back_d.png';
+        imBack.src = 'res/flipart/arrow_back_d.png';
     }
-    if(bfEnabled.forward){
-        imForward.src ='res/flipart/arrow_forward.png';
+    if (bfEnabled.forward) {
+        imForward.src = 'res/flipart/arrow_forward.png';
     } else {
-        imForward.src ='res/flipart/arrow_forward_d.png';
+        imForward.src = 'res/flipart/arrow_forward_d.png';
     }
 }
+
+//AJAX
+
+function loadGalleries(divGalleriesId) {
+    $.ajax(flipart.urls.galleries, {
+        dataType: 'json'
+    }).done(function (data) {
+        var i, gal;
+        var nogal =data.galleries.length;
+        var tem = _.template($('#temGalleryImage').html());
+        var jDivGal =$('#'+divGalleriesId+'>div');
+        jDivGal.html('')//.width(150*nogal);
+        console.log('gal: '+data.galleries);
+        for(i=0; i<nogal; i++){
+            gal =data.galleries[i];
+            jDivGal.append(tem({
+                galleryName: gal
+                , gallerySrc: flipart.urls.base +'/galleryImage?gallery='+gal
+            }));
+        }
+    });
+}
+
 
 var flipart = {
     gwidth: null         //game window width
@@ -111,14 +134,22 @@ var flipart = {
     , level: null          // 'easy', normal, hard
     , _init: function () {
         this.matrix = null;
-        this.transformations =[];
+        this.transformations = [];
     }
     /** computes game window dimensions */
     , computeSize: function (winWidth, winHeight) {
-        var mf = .9;     //maximum factor how big game window can be
+        var mf = .95;     //maximum factor how big game window can be
         var hw = .75;    //aspect ratio height/width
         var w = this.wwidth = winWidth;
         var h = this.wheight = winHeight;
+
+        hw = h / w;
+        if (hw <= 0.7) {
+            hw = .7;
+        } else if (hw >= 1) {
+            hw = 1;
+        }
+
         w *= mf;
         h *= mf;
 
@@ -132,12 +163,12 @@ var flipart = {
             this.gwidth = w;
             this.gheight = hnew;
         }
-        
-        this.gwidth =Math.floor(this.gwidth);
-        this.gheight =Math.floor(this.gheight);
-        
-        this.fwidth =this.gwidth - 140;
-        this.fheight =this.gheight -30;
+
+        this.gwidth = Math.floor(this.gwidth);
+        this.gheight = Math.floor(this.gheight);
+
+        this.fwidth = this.gwidth - 140;
+        this.fheight = this.gheight - 30;
 
     }
     /**action on start new single game 
@@ -188,12 +219,12 @@ var flipart = {
     /**on flip action */
     , flip: function (isHorizontal) {
         var rec = this.getRectangle(this.mouseMoves.start, this.mouseMoves.end);
-        this.transformations[this.transIndex] =new transformation(rec.imin,rec.jmin,rec.imax,rec.jmax,isHorizontal);
+        this.transformations[this.transIndex] = new transformation(rec.imin, rec.jmin, rec.imax, rec.jmax, isHorizontal);
         this.transIndex++;
-        this.transformations.length =this.transIndex;
+        this.transformations.length = this.transIndex;
         this.flipMatrix(rec, isHorizontal);
         this.updateBackground(rec);
-        updateHistoryButtons({ back:true, forward:false });
+        updateHistoryButtons({back: true, forward: false});
     }
 
     /**flips part of flipart.matrix
@@ -241,22 +272,22 @@ var flipart = {
             }
         }
     }
-    , moveHistory: function(isBack){
+    , moveHistory: function (isBack) {
         var tr, rec;
-        var res ={back:true, forward: true};
-        if(isBack && this.transIndex>0){
-            tr =this.transformations[this.transIndex-1];
+        var res = {back: true, forward: true};
+        if (isBack && this.transIndex > 0) {
+            tr = this.transformations[this.transIndex - 1];
             this.transIndex--;
-        } else if(!isBack && this.transIndex<this.transformations.length) {
-            tr =this.transformations[this.transIndex];
+        } else if (!isBack && this.transIndex < this.transformations.length) {
+            tr = this.transformations[this.transIndex];
             this.transIndex++;
         } else {
-            return {back:this.transIndex>0, forward:this.transIndex<this.transformations.length };
+            return {back: this.transIndex > 0, forward: this.transIndex < this.transformations.length};
         }
-        rec =this.getRectangle({i:tr.row1, j:tr.col1}, {i:tr.row2, j:tr.col2});
+        rec = this.getRectangle({i: tr.row1, j: tr.col1}, {i: tr.row2, j: tr.col2});
         this.flipMatrix(rec, tr.isHorizontal);
-        this.updateBackground(rec);        
-        return {back:this.transIndex>0, forward:this.transIndex<this.transformations.length };
+        this.updateBackground(rec);
+        return {back: this.transIndex > 0, forward: this.transIndex < this.transformations.length};
     }
     , mouseMoves: {
         isdown: false
@@ -372,13 +403,14 @@ var flipart = {
         }
     }
 
-}; 
+};
 
 /**matches server transformation */
-function transformation(row1,col1,row2,col2,isHorizontal){
-    this.row1 =row1;
-    this.col1 =col1;
-    this.row2 =row2;
-    this.col2 =col2;
-    this.isHorizontal =isHorizontal;
+function transformation(row1, col1, row2, col2, isHorizontal) {
+    this.row1 = row1;
+    this.col1 = col1;
+    this.row2 = row2;
+    this.col2 = col2;
+    this.isHorizontal = isHorizontal;
 }
+
