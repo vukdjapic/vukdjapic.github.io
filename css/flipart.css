@@ -68,14 +68,25 @@ div.menu img:hover, div.menu a:hover, #dGameControls a:hover {
 }
 #dGalleries div.galleryImage{
     float: left;
-    width: 140px;
-    height: 140px;
+    position: relative;
+    width: 144px;
+    height: 144px;
     margin: 5px;
+    border: 2px solid #C1C0C7;
 }
 #dGalleries img {
     width: 100%;
     height: 100%;
-    margin-bottom: 10px;
+}
+#dGalleries div.galleryImage:hover {
+    border: #e0fa33 2px solid;
+}
+#dGalleries div.galleryImage a>div{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
 }
 #dGameControls {
     font-family: 'ControlsFont', sans-serif;
