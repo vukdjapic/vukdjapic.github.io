@@ -64,7 +64,8 @@ div.menu img:hover, div.menu a:hover, #dGameControls a:hover {
     padding: 5px;   
     height: 230px;
     background-color: #C1C0C7;
-    overflow-y: scroll;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 #dGalleries div.galleryImage{
     float: left;
@@ -73,13 +74,17 @@ div.menu img:hover, div.menu a:hover, #dGameControls a:hover {
     height: 144px;
     margin: 5px;
     border: 2px solid #C1C0C7;
+    overflow: hidden;
+}
+#dGalleries div.galleryImage:hover {
+    border: #e0fa33 2px solid;
+}
+#dGalleries div.galleryImage.selected {
+    border: #656273 2px solid;
 }
 #dGalleries img {
     width: 100%;
     height: 100%;
-}
-#dGalleries div.galleryImage:hover {
-    border: #e0fa33 2px solid;
 }
 #dGalleries div.galleryImage a>div{
     width: 100%;
@@ -87,6 +92,15 @@ div.menu img:hover, div.menu a:hover, #dGameControls a:hover {
     position: absolute;
     top: 0px;
     left: 0px;
+}
+#dGalleries div.galleryText{
+    margin-top: 40%;
+    font-size: 20px;
+    font-family: 'ControlsFont', sans-serif;
+    color: #e0fa33;
+}
+#dGalleries div.galleryImage.selected div.galleryText{
+    color: #656273;
 }
 #dGameControls {
     font-family: 'ControlsFont', sans-serif;

@@ -90,6 +90,26 @@ function updateHistoryButtons(bfEnabled) {
     }
 }
 
+/** Mouse events on images in gallery */
+function onGalleryMouse(type, div) {
+    var gallery =$(div).data('gallery');
+    switch (type) {
+        case 'over':
+            $('div.galleryText', div).html(gallery);
+            break;
+        case 'out':
+            if(gallery!=flipart.selectedGallery){
+                $('div.galleryText', div).html('');    
+            }
+            break;
+        case 'click':
+            $('#dGalleries div.galleryText').html('').closest('div.galleryImage').removeClass('selected');
+            $('div.galleryText', div).html(gallery).closest('div.galleryImage').addClass('selected');
+            flipart.selectedGallery =gallery;
+            break;
+    }
+}
+
 //AJAX
 
 function loadGalleries(divGalleriesId) {
@@ -97,16 +117,16 @@ function loadGalleries(divGalleriesId) {
         dataType: 'json'
     }).done(function (data) {
         var i, gal;
-        var nogal =data.galleries.length;
+        var nogal = data.galleries.length;
         var tem = _.template($('#temGalleryImage').html());
-        var jDivGal =$('#'+divGalleriesId+'>div');
+        var jDivGal = $('#' + divGalleriesId + '>div');
         jDivGal.html('')//.width(150*nogal);
-        console.log('gal: '+data.galleries);
-        for(i=0; i<nogal; i++){
-            gal =data.galleries[i];
+        console.log('gal: ' + data.galleries);
+        for (i = 0; i < nogal; i++) {
+            gal = data.galleries[i];
             jDivGal.append(tem({
                 galleryName: gal
-                , gallerySrc: flipart.urls.base +'/galleryImage?gallery='+gal
+                , gallerySrc: flipart.urls.base + '/galleryImage?gallery=' + gal
             }));
         }
     });
@@ -132,6 +152,7 @@ var flipart = {
     , transformations: []
     , transIndex: 0         //index in transformations array history
     , level: null          // 'easy', normal, hard
+    , selectedGallery: null
     , _init: function () {
         this.matrix = null;
         this.transformations = [];
@@ -184,6 +205,9 @@ var flipart = {
         }
         if (options.restart) {
             data.restart = true;
+        }
+        if(flipart.selectedGallery!=null){
+            data.gallery =flipart.selectedGallery;
         }
         data.level = this.level;
         $.ajax(this.urls.newgame, {

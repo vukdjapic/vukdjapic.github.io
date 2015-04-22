@@ -61,7 +61,7 @@
                 });
                 $('#imForward').click(function () {
                     onGameAction('forward');
-                });
+                });                              
 
             });
             function onGameAction(phase) {
@@ -193,11 +193,13 @@
         </script>
         <script id="temGalleryImage" type="text/template" >
             <div class="galleryImage img-rounded">      
-            <a href="">
-                <img class="img-rounded" id="img<%=galleryName%>" src="<%=gallerySrc%>"></img> 
-                <div></div>
-            </a>
-    
+                <a href="#" onclick="(function(){ return false; })()">
+                    <img class="" id="img<%=galleryName%>" src="<%=gallerySrc%>"></img> 
+                    <div data-gallery="<%=galleryName%>" 
+                        onmouseover="onGalleryMouse('over',this)" onmouseout="onGalleryMouse('out',this)" onclick="onGalleryMouse('click',this)" >
+                            <div class="galleryText"></div>
+                    </div>
+                </a>
             </div>
         </script>
     </body>
