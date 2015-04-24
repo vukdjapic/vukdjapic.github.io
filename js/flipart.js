@@ -31,6 +31,8 @@ function resizeGameWindow(phase) {
                 , 'height': (go.measures.h - 5) + 'px'
             });
             $('#dPictureFrame, #dGameControls').css('top', (flipart.gheight - go.measures.h) / 2 + 'px');
+            $('#dPictureFrame').width(go.measures.w).height(go.measures.h);
+            $('#dLoading>div').css('margin-top',(go.measures.h/2-20)+'px');
             break;
         default:
             console.error('no phase for resize');
@@ -40,7 +42,13 @@ function resizeGameWindow(phase) {
 
 /**callback function when single game is started */
 function onStartSingleDataRetrieved(gameOptions, imageUrl) {
-    _populateTilesAndBlocks(gameOptions, imageUrl, 'dPictureFrame', 'dTiles', 'dBlocks');
+    //firt wait to load image, then put it in css background and remove loader
+    $('<img/>').attr('src', imageUrl).load(function () {
+        $(this).remove(); 
+        _populateTilesAndBlocks(gameOptions, imageUrl, 'dPictureFrame', 'dTiles', 'dBlocks');
+        $('#dLoading').hide();
+        
+    });
     resizeGameWindow('startsingle');
     displayGameWindow('dGame', true);
     flipart.mouseMoves.init('dActions');
@@ -52,7 +60,6 @@ function _populateTilesAndBlocks(gameOptions, imageUrl, picframe, tiles, blocks)
     var tem = _.template($('#ttile').html());
     var temb = _.template($('#tblock').html());
     var mes = gameOptions.measures;
-    pf.width(mes.w).height(mes.h);
     tiles.text('');
     blocks.text('');
     for (i = 0; i < mes.n; i++) {
@@ -92,20 +99,20 @@ function updateHistoryButtons(bfEnabled) {
 
 /** Mouse events on images in gallery */
 function onGalleryMouse(type, div) {
-    var gallery =$(div).data('gallery');
+    var gallery = $(div).data('gallery');
     switch (type) {
         case 'over':
             $('div.galleryText', div).html(gallery);
             break;
         case 'out':
-            if(gallery!=flipart.selectedGallery){
-                $('div.galleryText', div).html('');    
+            if (gallery != flipart.selectedGallery) {
+                $('div.galleryText', div).html('');
             }
             break;
         case 'click':
             $('#dGalleries div.galleryText').html('').closest('div.galleryImage').removeClass('selected');
             $('div.galleryText', div).html(gallery).closest('div.galleryImage').addClass('selected');
-            flipart.selectedGallery =gallery;
+            flipart.selectedGallery = gallery;
             break;
     }
 }
@@ -206,8 +213,8 @@ var flipart = {
         if (options.restart) {
             data.restart = true;
         }
-        if(flipart.selectedGallery!=null){
-            data.gallery =flipart.selectedGallery;
+        if (flipart.selectedGallery != null) {
+            data.gallery = flipart.selectedGallery;
         }
         data.level = this.level;
         $.ajax(this.urls.newgame, {

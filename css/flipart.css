@@ -160,3 +160,10 @@ div.menu img:hover, div.menu a:hover, #dGameControls a:hover {
     background-color: yellow;
 
 }
+#dLoading {
+    background-color: #e0e0e8;
+}
+#dLoading >div{
+    text-align: center;
+    font-family: "ControlsFont", sans-serif;
+}
