@@ -61,7 +61,7 @@
                 });
                 $('#imForward').click(function () {
                     onGameAction('forward');
-                });                              
+                });
 
             });
             function onGameAction(phase) {
@@ -72,7 +72,7 @@
                     case 'easy':
                     case 'normal':
                     case 'hard':
-                        flipart.playSingle({level: phase}, onStartSingleDataRetrieved);
+                        flipart.playSingle({difLevel: phase}, onStartSingleDataRetrieved);
                         break;
                     case 'restart':
                         flipart._init();
@@ -158,13 +158,16 @@
                 </div>
                 <div id="dGameControls">
                     &nbsp;Level&nbsp;1&nbsp; 
-                    <div> 
+                    <div id="dHistory"> 
                         <img id="imBack" src="res/flipart/arrow_back.png" />
                         <img id="imForward" src="res/flipart/arrow_forward.png" />
                     </div>
                     <div class="bottom">
+                        <div id="dNext">
+                            <a href="javascript:onGameAction('next');"><img src="res/flipart/next.png" /></a>
+                        </div>
                         <div><a href="javascript:onGameAction('restart');">Restart</a></div>
-                        <div><a >Exit</a></div>
+                        <div><a href="javascript:location.reload();">Exit</a></div>
                     </div>
                 </div>
             </div>
@@ -199,13 +202,13 @@
         </script>
         <script id="temGalleryImage" type="text/template" >
             <div class="galleryImage img-rounded">      
-                <a href="#" onclick="(function(){ return false; })()">
-                    <img class="" id="img<%=galleryName%>" src="<%=gallerySrc%>"></img> 
-                    <div data-gallery="<%=galleryName%>" 
-                        onmouseover="onGalleryMouse('over',this)" onmouseout="onGalleryMouse('out',this)" onclick="onGalleryMouse('click',this)" >
-                            <div class="galleryText"></div>
-                    </div>
-                </a>
+            <a href="#" onclick="(function(){ return false; })()">
+            <img class="" id="img<%=galleryName%>" src="<%=gallerySrc%>"></img> 
+            <div data-gallery="<%=galleryName%>" 
+            onmouseover="onGalleryMouse('over',this)" onmouseout="onGalleryMouse('out',this)" onclick="onGalleryMouse('click',this)" >
+            <div class="galleryText"></div>
+            </div>
+            </a>
             </div>
         </script>
     </body>

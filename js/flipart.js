@@ -156,9 +156,10 @@ var flipart = {
     }
     , gameOptions: null     //gameOptions object retrieved from server
     , matrix: null          //transformation matrix
+    , resultMatrix: null    //result matrix
     , transformations: []
     , transIndex: 0         //index in transformations array history
-    , level: null          // 'easy', normal, hard
+    , difLevel: null          // 'easy', normal, hard
     , selectedGallery: null
     , _init: function () {
         this.matrix = null;
@@ -207,8 +208,8 @@ var flipart = {
             maxWidth: this.fwidth
             , maxHeight: this.fheight
         };
-        if (options.level) {
-            this.level = options.level;
+        if (options.difLevel) {
+            this.difLevel = options.difLevel;
         }
         if (options.restart) {
             data.restart = true;
@@ -216,13 +217,14 @@ var flipart = {
         if (flipart.selectedGallery != null) {
             data.gallery = flipart.selectedGallery;
         }
-        data.level = this.level;
+        data.difLevel = this.difLevel;
         $.ajax(this.urls.newgame, {
             dataType: 'json'
             , data: data
         }).done(function (data) {
             fa.gameOptions = data.gameOptions;
             fa.matrix = data.matrix;
+            fa.resultMatrix =data.resultMatrix;
             if (callback) {
                 callback(fa.gameOptions, fa.urls.image + '?t=' + new Date().getTime());
             }
@@ -256,6 +258,10 @@ var flipart = {
         this.flipMatrix(rec, isHorizontal);
         this.updateBackground(rec);
         updateHistoryButtons({back: true, forward: false});
+        var solved =this.compareMatrices(this.matrix, this.resultMatrix, this.gameOptions.measures.n, this.gameOptions.measures.m);
+        if( solved ){
+            this.puzzleSolved();
+        }
     }
 
     /**flips part of flipart.matrix
@@ -283,6 +289,31 @@ var flipart = {
             }
         }
     }
+    /**
+     * @param {type} mat1 matrix{i,j,hflip,vflip}
+     * @param {type} mat2 matrix{i,j,hflip,vflip}
+     * @param {int} n,m mat dimensions
+     * @returns {Boolean} equal
+     */
+    , compareMatrices: function(mat1, mat2, n, m){
+        var equal =true;
+        var i,j, el1, el2;
+        for(i=0; i<n; i++){
+            for(j=0;j<m;j++){
+                el1 =mat1[i][j];
+                el2 =mat2[i][j];
+                if( el1.i!=el2.i || el1.j!=el2.j || el1.hflip!=el2.hflip || el1.vflip!=el2.vflip ){
+                    equal =false;
+                    break;
+                }
+            }
+            if(!equal){
+                break;
+            }
+        }
+        return equal;
+    }
+    
     , updateBackground: function (rec) {
         var imin = rec.imin;
         var imax = rec.imax;
@@ -319,6 +350,12 @@ var flipart = {
         this.flipMatrix(rec, tr.isHorizontal);
         this.updateBackground(rec);
         return {back: this.transIndex > 0, forward: this.transIndex < this.transformations.length};
+    }
+    , puzzleSolved: function(){
+        alert('Picture completed!');
+        $('#dNext').show().animate({
+            opacity:1
+        }, 2000);
     }
     , mouseMoves: {
         isdown: false
@@ -444,4 +481,3 @@ function transformation(row1, col1, row2, col2, isHorizontal) {
     this.col2 = col2;
     this.isHorizontal = isHorizontal;
 }
-
