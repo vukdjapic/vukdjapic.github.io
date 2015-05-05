@@ -14,7 +14,12 @@
         <script type="text/javascript" src="js/flipart.js"></script>
 
         <script type="text/javascript">
-            flipart.urls.base = '/kserver/flipart';
+            if (location.origin.indexOf('komante.com') >= 0) {
+                flipart.urls.base = 'http://api.komante.com/flipart';
+            } else {
+                flipart.urls.base = '/kserver/flipart';
+            }
+            
             flipart.urls.newgame = flipart.urls.base + '/newgame';
             flipart.urls.image = flipart.urls.base + '/image.png';
             flipart.urls.galleries = flipart.urls.base + '/galleries';
