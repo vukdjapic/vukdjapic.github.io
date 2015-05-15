@@ -32,7 +32,7 @@ function resizeGameWindow(phase) {
             });
             $('#dPictureFrame, #dGameControls').css('top', (flipart.gheight - go.measures.h) / 2 + 'px');
             $('#dPictureFrame').width(go.measures.w).height(go.measures.h);
-            $('#dLoading>div').css('margin-top',(go.measures.h/2-20)+'px');
+            $('#dLoading>div').css('margin-top', (go.measures.h / 2 - 20) + 'px');
             break;
         default:
             console.error('no phase for resize');
@@ -44,10 +44,10 @@ function resizeGameWindow(phase) {
 function onStartSingleDataRetrieved(gameOptions, imageUrl) {
     //firt wait to load image, then put it in css background and remove loader
     $('<img/>').attr('src', imageUrl).load(function () {
-        $(this).remove(); 
+        $(this).remove();
         _populateTilesAndBlocks(gameOptions, imageUrl, 'dPictureFrame', 'dTiles', 'dBlocks');
         $('#dLoading').hide();
-        
+
     });
     resizeGameWindow('startsingle');
     displayGameWindow('dGame', true);
@@ -224,7 +224,7 @@ var flipart = {
         }).done(function (data) {
             fa.gameOptions = data.gameOptions;
             fa.matrix = data.matrix;
-            fa.resultMatrix =data.resultMatrix;
+            fa.resultMatrix = data.resultMatrix;
             if (callback) {
                 callback(fa.gameOptions, fa.urls.image + '?t=' + new Date().getTime());
             }
@@ -258,8 +258,8 @@ var flipart = {
         this.flipMatrix(rec, isHorizontal);
         this.updateBackground(rec);
         updateHistoryButtons({back: true, forward: false});
-        var solved =this.compareMatrices(this.matrix, this.resultMatrix, this.gameOptions.measures.n, this.gameOptions.measures.m);
-        if( solved ){
+        var solved = this.compareMatrices(this.matrix, this.resultMatrix, this.gameOptions.measures.n, this.gameOptions.measures.m);
+        if (solved) {
             this.puzzleSolved();
         }
     }
@@ -295,25 +295,25 @@ var flipart = {
      * @param {int} n,m mat dimensions
      * @returns {Boolean} equal
      */
-    , compareMatrices: function(mat1, mat2, n, m){
-        var equal =true;
-        var i,j, el1, el2;
-        for(i=0; i<n; i++){
-            for(j=0;j<m;j++){
-                el1 =mat1[i][j];
-                el2 =mat2[i][j];
-                if( el1.i!=el2.i || el1.j!=el2.j || el1.hflip!=el2.hflip || el1.vflip!=el2.vflip ){
-                    equal =false;
+    , compareMatrices: function (mat1, mat2, n, m) {
+        var equal = true;
+        var i, j, el1, el2;
+        for (i = 0; i < n; i++) {
+            for (j = 0; j < m; j++) {
+                el1 = mat1[i][j];
+                el2 = mat2[i][j];
+                if (el1.i != el2.i || el1.j != el2.j || el1.hflip != el2.hflip || el1.vflip != el2.vflip) {
+                    equal = false;
                     break;
                 }
             }
-            if(!equal){
+            if (!equal) {
                 break;
             }
         }
         return equal;
     }
-    
+
     , updateBackground: function (rec) {
         var imin = rec.imin;
         var imax = rec.imax;
@@ -351,11 +351,19 @@ var flipart = {
         this.updateBackground(rec);
         return {back: this.transIndex > 0, forward: this.transIndex < this.transformations.length};
     }
-    , puzzleSolved: function(){
+    , puzzleSolved: function () {
         alert('Picture completed!');
         $('#dNext').show().animate({
-            opacity:1
+            opacity: 1
         }, 2000);
+    }
+    , animateFlip1: function (jSelectedBlocks) {
+        var def = $.Deferred();
+        jSelectedBlocks.css({'background-color': 'white', opacity: 0});
+        jSelectedBlocks.animate({opacity: 1}, 400, function () {
+            def.resolve();
+        });
+        return def;
     }
     , mouseMoves: {
         isdown: false
@@ -387,8 +395,9 @@ var flipart = {
             this.isdown = true;
             var blk = this._getCoordsForMouse(ev);
             var blockid;
+            var jSelectedBlocks = $('div.block.selected');
             if (this.state == 'empty' || this.state == 'click2') {
-                $('div.block').removeClass('selected').css('border', 'none');
+                jSelectedBlocks.removeClass('selected').css('border', 'none');
                 $('#dHorflip, #dVerflip').css('display', 'none');
             }
             switch (this.state) {
@@ -401,10 +410,26 @@ var flipart = {
                     break;
                 case 'click2':
                     this.state = 'empty';
+                    var horflip;
                     if (ev.target.id == 'horflip') {
-                        flipart.flip(true);
+                        horflip = true;
+//                        flipart.animateFlip1(jSelectedBlocks).done(function(){
+//                            jSelectedBlocks.css({ 'background-color':'transparent' });
+//                            flipart.flip(true);
+//                        });                        
                     } else if (ev.target.id == 'verflip') {
-                        flipart.flip(false);
+                        horflip = false;
+                    }
+                    if (horflip !== undefined) {
+                        $.when(flipart.animateFlip1(jSelectedBlocks))
+                                .then(function () {
+                                    flipart.flip(horflip);
+                                })
+                                .then(function () {
+                                    jSelectedBlocks.animate({opacity: 0}, 400, function () {
+                                        jSelectedBlocks.css({'background-color': '', opacity: ''});
+                                    });
+                                });
                     }
                     break;
             }
