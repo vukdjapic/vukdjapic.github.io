@@ -14,93 +14,96 @@
         <script type="text/javascript" src="js/flipart.js"></script>
 
         <script type="text/javascript">
-            if (location.origin.indexOf('komante.com') >= 0) {
-                flipart.urls.base = 'http://api.komante.com/flipart';
-            } else {
-                flipart.urls.base = '/kserver/flipart';
-            }
-            
-            flipart.urls.newgame = flipart.urls.base + '/newgame';
-            flipart.urls.image = flipart.urls.base + '/image.png';
-            flipart.urls.galleries = flipart.urls.base + '/galleries';
-            flipart.computeSize($(window).width(), $(window).height());
+			if (location.origin.indexOf('komante.com')>=0) {
+				flipart.urls.base='http://api.komante.com/flipart';
+			} else {
+				flipart.urls.base='/kserver/flipart';
+			}
+
+			flipart.urls.newgame=flipart.urls.base+'/newgame';
+			flipart.urls.image=flipart.urls.base+'/image.png';
+			flipart.urls.galleries=flipart.urls.base+'/galleries';
+			flipart.computeSize($(window).width(), $(window).height());
 
 
         </script>
         <script type="text/javascript">
 
-            $(function () {
-                loadGalleries('dGalleries');
-                resizeGameWindow('welcome');
-                updateHistoryButtons({});
+			$(function () {
+				loadGalleries('dGalleries');
+				resizeGameWindow('welcome');
+				updateHistoryButtons({});
 				flipart.audio.init(
-					document.getElementById('audBackmusic')
-					,document.getElementById('audFlip')
-					,document.getElementById('audSolved')		
-				);
+						document.getElementById('audBackmusic')
+						, document.getElementById('audFlip')
+						, document.getElementById('audSolved')
+						);
 
-                $('#dMenu img').on('mouseover', function () {
-                    var sor = this.src;
-                    sor = sor.replace('.png', '_sel.png');
-                    this.src = sor;
-                    //alert(sor)
-                }).on('mouseout', function () {
-                    var sor = this.src;
-                    sor = sor.replace('_sel.png', '.png');
-                    this.src = sor;
-                }).on('click', function () {
-                    var sor = this.src;
-                    if (sor.indexOf(flipart.actions.playsingle) >= 0) {
-                        flipart.playSingle({}, onStartSingleDataRetrieved);
-                    } else if (sor.indexOf(flipart.actions.startnew) >= 0) {
-                        alert('new');
-                    }
-                });
+				$('#dMenu img').on('mouseover', function () {
+					var sor=this.src;
+					sor=sor.replace('.png', '_sel.png');
+					this.src=sor;
+					//alert(sor)
+				}).on('mouseout', function () {
+					var sor=this.src;
+					sor=sor.replace('_sel.png', '.png');
+					this.src=sor;
+				}).on('click', function () {
+					var sor=this.src;
+					if (sor.indexOf(flipart.actions.playsingle)>=0) {
+						flipart.playSingle({}, onStartSingleDataRetrieved);
+					} else if (sor.indexOf(flipart.actions.startnew)>=0) {
+						alert('new');
+					}
+				});
 
-                $('#dActions').mousedown(function (event) {
-                    flipart.mouseMoves.down(event);
-                })
-                        .mousemove(function (event) {
-                            flipart.mouseMoves.move(event);
-                        })
-                        .mouseup(function (event) {
-                            flipart.mouseMoves.up(event);
-                        });
-                $('#imBack').click(function () {
-                    onGameAction('back');
-                });
-                $('#imForward').click(function () {
-                    onGameAction('forward');
-                });
+				$('#dActions').mousedown(function (event) {
+					flipart.mouseMoves.down(event);
+				})
+						.mousemove(function (event) {
+							flipart.mouseMoves.move(event);
+						})
+						.mouseup(function (event) {
+							flipart.mouseMoves.up(event);
+						});
+				$('#imBack').click(function () {
+					onGameAction('back');
+				});
+				$('#imForward').click(function () {
+					onGameAction('forward');
+				});
 
-            });
-            function onGameAction(phase) {
-                switch (phase) {
-                    case 'click1':
-                        displayGameWindow('dChoice');
-                        break;
-                    case 'easy':
-                    case 'normal':
-                    case 'hard':
-                        flipart.playSingle({difLevel: phase}, onStartSingleDataRetrieved);
-                        break;
-                    case 'restart':
-                        flipart.init();
-                        flipart.playSingle({restart: true}, onStartSingleDataRetrieved);
-                        break;
-                    case 'back':
-                        var bfEnabled = flipart.moveHistory(true);
-                        updateHistoryButtons(bfEnabled);
-                        break;
-                    case 'forward':
-                        var bfEnabled = flipart.moveHistory(false);
-                        updateHistoryButtons(bfEnabled);
-                        break;
-                    case 'exit':
-                        document.location.reload();
-                        break;
-                }
-            }
+			});
+			function onGameAction(phase) {
+				switch (phase) {
+					case 'click1':
+						displayGameWindow('dChoice');
+						break;
+					case 'easy':
+					case 'normal':
+					case 'hard':
+						flipart.playSingle({difLevel: phase}, onStartSingleDataRetrieved);
+						break;
+					case 'restart':
+						flipart.init();
+						flipart.playSingle({restart: true}, onStartSingleDataRetrieved);
+						break;
+					case 'back':
+						var bfEnabled=flipart.moveHistory(true);
+						updateHistoryButtons(bfEnabled);
+						break;
+					case 'forward':
+						var bfEnabled=flipart.moveHistory(false);
+						updateHistoryButtons(bfEnabled);
+						break;
+					case 'exit':
+						document.location.reload();
+						break;
+					case 'closeSolved':
+						$('#dSolved').hide();
+						break;
+				}
+			}
         </script>
 
         <link href="css/bootstrap.css" rel="stylesheet">
@@ -165,6 +168,19 @@
                             <img src="res/flipart/ajax-loader.gif" />
                         </div>                            
                     </div>
+					<div id="dSolved">
+						<div class="background"></div>
+						<div class="front">
+							<div>
+								<div>
+									Well done<br>Image revealed!
+								</div>
+								<div>
+									<a href="javascript:onGameAction('closeSolved');">Close</a> <a href="javascript:onGameAction('next');">Next</a>
+								</div>
+							</div>
+						</div>
+					</div>
                 </div>
                 <div id="dGameControls">
                     &nbsp;Level&nbsp;1&nbsp; 
@@ -174,7 +190,7 @@
                     </div>
                     <div class="bottom">
                         <div id="dNext">
-                            <a href="javascript:onGameAction('next');"><img src="res/flipart/next.png" /></a>
+                            <a href="javascript:onGameAction('next');">Next</a>
                         </div>
                         <div><a href="javascript:onGameAction('restart');">Restart</a></div>
                         <div><a href="javascript:location.reload();">Exit</a></div>
@@ -184,29 +200,29 @@
         </div>
 
 		<div id="dAudio" style="display1: none">
-			<audio id="audBackmusic" src="res/flipart/audio/backmusic.mp3" preload="auto" ></audio>
+			<audio id="audBackmusic" src="res/flipart/audio/backmusic.mp3" preload="auto" loop ></audio>
 			<audio id="audFlip" src="res/flipart/audio/flip.mp3" preload="auto"  ></audio>
 			<audio id="audSolved" src="res/flipart/audio/solved.mp3" preload="auto"  ></audio>
 		</div>
-		
+
         <!--GOOGLE ANALYTICS -->
         <script>
-            if (location.origin.indexOf('komante.com') >= 0) {
-                (function (i, s, o, g, r, a, m) {
-                    i['GoogleAnalyticsObject'] = r;
-                    i[r] = i[r] || function () {
-                        (i[r].q = i[r].q || []).push(arguments)
-                    }, i[r].l = 1 * new Date();
-                    a = s.createElement(o),
-                            m = s.getElementsByTagName(o)[0];
-                    a.async = 1;
-                    a.src = g;
-                    m.parentNode.insertBefore(a, m)
-                })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+			if (location.origin.indexOf('komante.com')>=0) {
+				(function (i, s, o, g, r, a, m) {
+					i['GoogleAnalyticsObject']=r;
+					i[r]=i[r]||function () {
+						(i[r].q=i[r].q||[]).push(arguments)
+					}, i[r].l=1*new Date();
+					a=s.createElement(o),
+							m=s.getElementsByTagName(o)[0];
+					a.async=1;
+					a.src=g;
+					m.parentNode.insertBefore(a, m)
+				})(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
-                ga('create', 'UA-54433162-1', 'auto');
-                ga('send', 'pageview');
-            }
+				ga('create', 'UA-54433162-1', 'auto');
+				ga('send', 'pageview');
+			}
         </script>
 
         <script id="ttile" type="text/template" data-tileid="tile_i<%=i%>j<%=j%>">

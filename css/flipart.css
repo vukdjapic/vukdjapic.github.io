@@ -120,7 +120,7 @@ div.menu img:hover, div.menu a:hover, #dGameControls a:hover {
 #dNext {
     display: none;
     opacity: 0;
-    margin-bottom: 10px;
+	color: #e8d15d;
 }
 #dNext img {
     width: 80px;
@@ -176,3 +176,44 @@ div.menu img:hover, div.menu a:hover, #dGameControls a:hover {
     text-align: center;
     font-family: "ControlsFont", sans-serif;
 }
+#dSolved {
+	display:none;
+}
+#dSolved>div, #dSolved div.front>div  {
+	width: 100%;
+	height: 100%;
+}
+#dSolved div.background {
+	position:absolute;
+	background-color: black;
+	opacity: 0.5;
+	z-index: 1;
+}
+#dSolved div.front {
+	position: absolute;
+	z-index: 2;
+	padding: 10px;
+}
+#dSolved div.front>div {
+	border: 2px solid #e0fa33;
+	border-radius: 5px;
+}
+#dSolved div.front>div>div:first-child {
+	font-family: "ControlsFont",sans-serif;
+	font-size: 50px;
+	color: #ffffff;
+	margin-top: 10%;
+}
+#dSolved div.front>div>div:last-child {
+	margin-top: 20px;
+}
+#dSolved div.front>div a {
+	font-size: 40px;
+	color: #e8d15d;
+	margin: 20px;
+}
+#dSolved div.front>div a:hover {
+	text-decoration: none;
+	cursor: pointer;
+}
+
