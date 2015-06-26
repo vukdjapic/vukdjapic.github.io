@@ -33,6 +33,11 @@
                 loadGalleries('dGalleries');
                 resizeGameWindow('welcome');
                 updateHistoryButtons({});
+				flipart.audio.init(
+					document.getElementById('audBackmusic')
+					,document.getElementById('audFlip')
+					,document.getElementById('audSolved')		
+				);
 
                 $('#dMenu img').on('mouseover', function () {
                     var sor = this.src;
@@ -80,7 +85,7 @@
                         flipart.playSingle({difLevel: phase}, onStartSingleDataRetrieved);
                         break;
                     case 'restart':
-                        flipart._init();
+                        flipart.init();
                         flipart.playSingle({restart: true}, onStartSingleDataRetrieved);
                         break;
                     case 'back':
@@ -178,6 +183,12 @@
             </div>
         </div>
 
+		<div id="dAudio" style="display1: none">
+			<audio id="audBackmusic" src="res/flipart/audio/backmusic.mp3" preload="auto" ></audio>
+			<audio id="audFlip" src="res/flipart/audio/flip.mp3" preload="auto"  ></audio>
+			<audio id="audSolved" src="res/flipart/audio/solved.mp3" preload="auto"  ></audio>
+		</div>
+		
         <!--GOOGLE ANALYTICS -->
         <script>
             if (location.origin.indexOf('komante.com') >= 0) {

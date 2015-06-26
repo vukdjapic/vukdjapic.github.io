@@ -47,6 +47,7 @@ img.logosmall {
     border: "1px";
     border-style: solid;
     border-color: #656273;  /* #80488f #e0fa33, yellow sun #e8d15d */
+	box-shadow: 0 0 20px 5px #34464A;
     position: relative;
 
 }

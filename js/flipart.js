@@ -47,12 +47,14 @@ function onStartSingleDataRetrieved(gameOptions, imageUrl) {
         $(this).remove();
         _populateTilesAndBlocks(gameOptions, imageUrl, 'dPictureFrame', 'dTiles', 'dBlocks');
         $('#dLoading').hide();
-
+		flipart.audio.startBackmusic();
     });
     resizeGameWindow('startsingle');
     displayGameWindow('dGame', true);
     flipart.mouseMoves.init('dActions');
 }
+
+
 
 function _populateTilesAndBlocks(gameOptions, imageUrl, picframe, tiles, blocks) {
     var i, j;
@@ -161,7 +163,7 @@ var flipart = {
     , transIndex: 0         //index in transformations array history
     , difLevel: null          // 'easy', normal, hard
     , selectedGallery: null
-    , _init: function () {
+    , init: function () {
         this.matrix = null;
         this.transformations = [];
     }
@@ -360,12 +362,15 @@ var flipart = {
     , animateFlip1: function (jSelectedBlocks) {
         var def = $.Deferred();
         jSelectedBlocks.css({'background-color': 'white', opacity: 0});
-        jSelectedBlocks.animate({opacity: 1}, 400, function () {
+        jSelectedBlocks.animate({opacity: 0.3}, 300, function () {
             def.resolve();
         });
         return def;
     }
-    , mouseMoves: {
+    
+};
+
+flipart.mouseMoves ={
         isdown: false
         , ismove: false
         , state: 'empty'       //states: empty, click1, click2
@@ -421,12 +426,13 @@ var flipart = {
                         horflip = false;
                     }
                     if (horflip !== undefined) {
+						flipart.audio.flip();
                         $.when(flipart.animateFlip1(jSelectedBlocks))
                                 .then(function () {
                                     flipart.flip(horflip);
                                 })
                                 .then(function () {
-                                    jSelectedBlocks.animate({opacity: 0}, 400, function () {
+                                    jSelectedBlocks.animate({opacity: 0}, 700, function () {
                                         jSelectedBlocks.css({'background-color': '', opacity: ''});
                                     });
                                 });
@@ -496,7 +502,23 @@ var flipart = {
         }
     }
 
-};
+
+flipart.audio ={	
+	init: function(nodeBackmusic, nodeFlip, nodeSolved){
+		this.backmusic =nodeBackmusic;
+		this.flipmusic =nodeFlip;
+		this.solvedmusic =nodeSolved;
+		
+		this.backmusic.volume =0.05;
+		this.flipmusic.volume =0.1; 
+	}
+	, startBackmusic: function(){
+		this.backmusic.play();
+	}
+	, flip: function(){
+		this.flipmusic.play();
+	}
+}
 
 /**matches server transformation */
 function transformation(row1, col1, row2, col2, isHorizontal) {
