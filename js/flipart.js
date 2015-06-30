@@ -40,22 +40,6 @@ function resizeGameWindow(phase) {
 
 }
 
-/**callback function when single game is started */
-function onStartSingleDataRetrieved(gameOptions, imageUrl) {
-	//firt wait to load image, then put it in css background and remove loader
-	$('<img/>').attr('src', imageUrl).load(function () {
-		$(this).remove();
-		_populateTilesAndBlocks(gameOptions, imageUrl, 'dPictureFrame', 'dTiles', 'dBlocks');
-		$('#dLoading').hide();
-		flipart.audio.startBackmusic();
-	});
-	resizeGameWindow('startsingle');
-	displayGameWindow('dGame', true);
-	flipart.mouseMoves.init('dActions');
-}
-
-
-
 function _populateTilesAndBlocks(gameOptions, imageUrl, picframe, tiles, blocks) {
 	var i, j;
 	var pf=$('#'+picframe), tiles=$('#'+tiles), blocks=$('#'+blocks);
@@ -121,6 +105,31 @@ function onGalleryMouse(type, div) {
 
 //AJAX
 
+/**action on start new single game 
+ * first gets game properites object, than adds all divs*/
+function playSingle(options) {
+	$.ajax(flipart.urls.newgame, {
+		dataType: 'json'
+		, data: flipart.newGameData(options)
+	}).done(function (data) {
+		flipart.gameOptions=data.gameOptions;
+		flipart.matrix=data.matrix;
+		flipart.resultMatrix=data.resultMatrix;
+	}).done(function () {
+		var imageUrl =flipart.urls.image+'?t='+new Date().getTime();
+		//firt wait to load image, then put it in css background and remove loader
+		$('<img/>').attr('src', imageUrl).load(function () {
+			$(this).remove();
+			_populateTilesAndBlocks(flipart.gameOptions, imageUrl, 'dPictureFrame', 'dTiles', 'dBlocks');
+			$('#dLoading').hide();
+			flipart.audio.startBackmusic();
+		});
+		resizeGameWindow('startsingle');
+		displayGameWindow('dGame', true);
+		flipart.mouseMoves.init('dActions');
+	});
+}
+
 function loadGalleries(divGalleriesId) {
 	$.ajax(flipart.urls.galleries, {
 		dataType: 'json'
@@ -166,7 +175,7 @@ var flipart={
 	, init: function () {
 		this.matrix=null;
 		this.transformations=[];
-		this.transIndex =0;
+		this.transIndex=0;
 	}
 	/** computes game window dimensions */
 	, computeSize: function (winWidth, winHeight) {
@@ -203,16 +212,14 @@ var flipart={
 		this.fheight=this.gheight-30;
 
 	}
-	/**action on start new single game 
-	 * first gets game properites object, than adds all divs*/
-	, playSingle: function (options, callback) {
-		var fa=this;
+	/** prepares data for new game */
+	, newGameData: function (options) {
 		var data={
-			maxWidth: this.fwidth
-			, maxHeight: this.fheight
+			maxWidth: flipart.fwidth
+			, maxHeight: flipart.fheight
 		};
 		if (options.difLevel) {
-			this.difLevel=options.difLevel;
+			flipart.difLevel=options.difLevel;
 		}
 		if (options.restart) {
 			data.restart=true;
@@ -220,18 +227,8 @@ var flipart={
 		if (flipart.selectedGallery!=null) {
 			data.gallery=flipart.selectedGallery;
 		}
-		data.difLevel=this.difLevel;
-		$.ajax(this.urls.newgame, {
-			dataType: 'json'
-			, data: data
-		}).done(function (data) {
-			fa.gameOptions=data.gameOptions;
-			fa.matrix=data.matrix;
-			fa.resultMatrix=data.resultMatrix;
-			if (callback) {
-				callback(fa.gameOptions, fa.urls.image+'?t='+new Date().getTime());
-			}
-		});
+		data.difLevel=flipart.difLevel;
+		return data;
 	}
 	/** for two diagonal ends of rectangle returns upper left and lower right point */
 	, getRectangle: function (start, end) {
@@ -432,12 +429,12 @@ flipart.mouseMoves={
 								var solved=flipart.flip(horflip);
 								return solved;
 							})
-							.then(function (solved) {   
+							.then(function (solved) {
 								jSelectedBlocks.animate({opacity: 0}, 700, function () {
 									jSelectedBlocks.css({'background-color': '', opacity: ''});
 									if (solved) {
 										flipart.puzzleSolved();
-										solved =false;
+										solved=false;
 									}
 								});
 							});

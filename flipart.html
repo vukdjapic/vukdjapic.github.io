@@ -51,7 +51,7 @@
 				}).on('click', function () {
 					var sor=this.src;
 					if (sor.indexOf(flipart.actions.playsingle)>=0) {
-						flipart.playSingle({}, onStartSingleDataRetrieved);
+						playSingle({});
 					} else if (sor.indexOf(flipart.actions.startnew)>=0) {
 						alert('new');
 					}
@@ -82,11 +82,11 @@
 					case 'easy':
 					case 'normal':
 					case 'hard':
-						flipart.playSingle({difLevel: phase}, onStartSingleDataRetrieved);
+						playSingle({difLevel: phase});
 						break;
 					case 'restart':
 						flipart.init();
-						flipart.playSingle({restart: true}, onStartSingleDataRetrieved);
+						playSingle({restart: true});
 						break;
 					case 'back':
 						var bfEnabled=flipart.moveHistory(true);
