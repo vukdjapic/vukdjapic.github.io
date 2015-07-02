@@ -103,14 +103,32 @@ function onGalleryMouse(type, div) {
 	}
 }
 
+function puzzleSolved() {
+	$('#dSolved').show();
+	flipart.audio.solve();
+	$('#dNext').show().animate({
+		opacity: 1
+	}, 2000);
+}
+
 //AJAX
 
 /**action on start new single game 
  * first gets game properites object, than adds all divs*/
 function playSingle(options) {
-	$.ajax(flipart.urls.newgame, {
+	$('#dSolved').hide();
+	var url =flipart.urls.newgame, data ={};
+	if(options.restart || options.next){
+		url =flipart.urls.nextgame;
+		if(options.restart){
+			data.restart =true;
+		}
+	} else {
+		data =flipart.newGameData(options);
+	}
+	$.ajax(url, {
 		dataType: 'json'
-		, data: flipart.newGameData(options)
+		, data: data
 	}).done(function (data) {
 		flipart.gameOptions=data.gameOptions;
 		flipart.matrix=data.matrix;
@@ -123,10 +141,11 @@ function playSingle(options) {
 			_populateTilesAndBlocks(flipart.gameOptions, imageUrl, 'dPictureFrame', 'dTiles', 'dBlocks');
 			$('#dLoading').hide();
 			flipart.audio.startBackmusic();
+			resizeGameWindow('startsingle');
+			displayGameWindow('dGame', true);
+			flipart.mouseMoves.init('dActions');
 		});
-		resizeGameWindow('startsingle');
-		displayGameWindow('dGame', true);
-		flipart.mouseMoves.init('dActions');
+		
 	});
 }
 
@@ -220,9 +239,6 @@ var flipart={
 		};
 		if (options.difLevel) {
 			flipart.difLevel=options.difLevel;
-		}
-		if (options.restart) {
-			data.restart=true;
 		}
 		if (flipart.selectedGallery!=null) {
 			data.gallery=flipart.selectedGallery;
@@ -349,13 +365,6 @@ var flipart={
 		this.updateBackground(rec);
 		return {back: this.transIndex>0, forward: this.transIndex<this.transformations.length};
 	}
-	, puzzleSolved: function () {
-		$('#dSolved').show();
-		flipart.audio.solve();
-		$('#dNext').show().animate({
-			opacity: 1
-		}, 2000);
-	}
 	, animateFlip1: function (jSelectedBlocks) {
 		var def=$.Deferred();
 		jSelectedBlocks.css({'background-color': 'white', opacity: 0});
@@ -433,7 +442,7 @@ flipart.mouseMoves={
 								jSelectedBlocks.animate({opacity: 0}, 700, function () {
 									jSelectedBlocks.css({'background-color': '', opacity: ''});
 									if (solved) {
-										flipart.puzzleSolved();
+										puzzleSolved();
 										solved=false;
 									}
 								});

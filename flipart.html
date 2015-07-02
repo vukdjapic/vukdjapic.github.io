@@ -21,6 +21,7 @@
 			}
 
 			flipart.urls.newgame=flipart.urls.base+'/newgame';
+			flipart.urls.nextgame=flipart.urls.base+'/nextgame';
 			flipart.urls.image=flipart.urls.base+'/image.png';
 			flipart.urls.galleries=flipart.urls.base+'/galleries';
 			flipart.computeSize($(window).width(), $(window).height());
@@ -38,24 +39,6 @@
 						, document.getElementById('audFlip')
 						, document.getElementById('audSolved')
 						);
-
-				$('#dMenu img').on('mouseover', function () {
-					var sor=this.src;
-					sor=sor.replace('.png', '_sel.png');
-					this.src=sor;
-					//alert(sor)
-				}).on('mouseout', function () {
-					var sor=this.src;
-					sor=sor.replace('_sel.png', '.png');
-					this.src=sor;
-				}).on('click', function () {
-					var sor=this.src;
-					if (sor.indexOf(flipart.actions.playsingle)>=0) {
-						playSingle({});
-					} else if (sor.indexOf(flipart.actions.startnew)>=0) {
-						alert('new');
-					}
-				});
 
 				$('#dActions').mousedown(function (event) {
 					flipart.mouseMoves.down(event);
@@ -76,7 +59,7 @@
 			});
 			function onGameAction(phase) {
 				switch (phase) {
-					case 'click1':
+					case 'firstStart':
 						displayGameWindow('dChoice');
 						break;
 					case 'easy':
@@ -87,6 +70,10 @@
 					case 'restart':
 						flipart.init();
 						playSingle({restart: true});
+						break;
+					case 'next':
+						flipart.init();
+						playSingle({next: true});
 						break;
 					case 'back':
 						var bfEnabled=flipart.moveHistory(true);
@@ -119,7 +106,7 @@
                 <div id="dMenu" class="center menu">
 
                     <ul style="list-style-type: none">
-                        <li><a href="javascript:onGameAction('click1')" >Start new</a></li>
+                        <li><a href="javascript:onGameAction('firstStart')" >Start new</a></li>
                         <li><a href="" >Continue</a></li>
                         <li><a href="" >Instructions</a></li>
                     </ul>
