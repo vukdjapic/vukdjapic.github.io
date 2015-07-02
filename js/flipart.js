@@ -117,6 +117,7 @@ function puzzleSolved() {
  * first gets game properites object, than adds all divs*/
 function playSingle(options) {
 	$('#dSolved').hide();
+	$('#dNext').hide();
 	var url =flipart.urls.newgame, data ={};
 	if(options.restart || options.next){
 		url =flipart.urls.nextgame;
@@ -133,6 +134,8 @@ function playSingle(options) {
 		flipart.gameOptions=data.gameOptions;
 		flipart.matrix=data.matrix;
 		flipart.resultMatrix=data.resultMatrix;
+		flipart.level =data.level;
+		flipart.numTransforms =data.numTransforms;
 	}).done(function () {
 		var imageUrl =flipart.urls.image+'?t='+new Date().getTime();
 		//firt wait to load image, then put it in css background and remove loader
@@ -140,6 +143,7 @@ function playSingle(options) {
 			$(this).remove();
 			_populateTilesAndBlocks(flipart.gameOptions, imageUrl, 'dPictureFrame', 'dTiles', 'dBlocks');
 			$('#dLoading').hide();
+			document.getElementById('dLevel').innerHTML =flipart.level;
 			flipart.audio.startBackmusic();
 			resizeGameWindow('startsingle');
 			displayGameWindow('dGame', true);
@@ -187,6 +191,8 @@ var flipart={
 	, gameOptions: null     //gameOptions object retrieved from server
 	, matrix: null          //transformation matrix
 	, resultMatrix: null    //result matrix
+	, level: null			//current level in the game (int from one)
+	, numTransforms: null	//number of flips needed to finish game
 	, transformations: []
 	, transIndex: 0         //index in transformations array history
 	, difLevel: null          // 'easy', normal, hard
@@ -227,7 +233,7 @@ var flipart={
 		this.gwidth=Math.floor(this.gwidth);
 		this.gheight=Math.floor(this.gheight);
 
-		this.fwidth=this.gwidth-140;
+		this.fwidth=this.gwidth-160;
 		this.fheight=this.gheight-30;
 
 	}
