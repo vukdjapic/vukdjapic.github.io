@@ -14,8 +14,14 @@
         <script type="text/javascript" src="js/flipart.js"></script>
 
         <script type="text/javascript">
+			var protocol ='http';
+			if(location.origin.indexOf('https')>=0){
+				protocol ='https';
+			}
 			if (location.origin.indexOf('komante.com')>=0) {
-				flipart.urls.base='http://api.komante.com/flipart';
+				flipart.urls.base=protocol + '://api.komante.com/flipart';
+			} else if (location.origin.indexOf('api-komante.rhcloud.com')>=0){
+				flipart.urls.base=protocol + '://api-komante.rhcloud.com/flipart';
 			} else {
 				flipart.urls.base='/kserver/flipart';
 			}
@@ -24,6 +30,7 @@
 			flipart.urls.nextgame=flipart.urls.base+'/nextgame';
 			flipart.urls.image=flipart.urls.base+'/image.png';
 			flipart.urls.galleries=flipart.urls.base+'/galleries';
+			flipart.urls.thumbnail=flipart.urls.base+'/thumbnail.png';
 			flipart.computeSize($(window).width(), $(window).height());
 
 
@@ -88,6 +95,9 @@
 						break;
 					case 'closeSolved':
 						$('#dSolved').hide();
+						break;
+					case 'pauseMusic':
+						flipart.audio.toogleMusic();
 						break;
 				}
 			}
@@ -175,7 +185,11 @@
                         <img id="imBack" src="res/flipart/arrow_back.png" />
                         <img id="imForward" src="res/flipart/arrow_forward.png" />
                     </div>
+					<div id="dThumbnail"></div>
                     <div class="bottom">
+						<div>
+							<a href="javascript:onGameAction('pauseMusic')"><img id="imMusic" src="res/flipart/music_on.png"/></a>
+						</div>
                         <div id="dNext">
                             <a href="javascript:onGameAction('next');">Next</a>
                         </div>
