@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+	
+
+
+	<head>
+		<title>Komante software solutions web games applications</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="Independent software development. Applications, games, web solutions. Complete online comment solution, small Javascript HTML5 games, file searcher">
+		<meta name="keywords" content="Komante, Vuk, Djapic, software, web, javascript, free, games, comments, java, solutions">
+
+
+		<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+		<script type="text/javascript" src="../js/lib/jquery.js"></script>
+		<script src="../js/lib/bootstrap.js"></script>
+		<script src="../js/komante.js"></script>		
+
+		<link href="../css/bootstrap.css" rel="stylesheet">
+		<link href="../css/bootstrap-theme.css" rel="stylesheet">
+		<link href="../css/komante.css" rel="stylesheet">
+
+		<script type="text/javascript">
+
+		</script>
+		<script type="text/javascript">
+
+			$(window).on('scroll', function() {
+				smoothBackgroundScroll("../res/back1.jpg");
+				activateScrolledSection('sideList');
+			});
+		</script>
+
+		<style>
+			body{
+				background-image: url("../res/back1.jpg");
+			}
+			.row a>img.img-thumbnail.img-responsive {
+				margin-top: 15px;
+			}
+			pre.prettyprint {
+				background-color: transparent;
+				border: 1px solid #ccc;
+				padding: 9.5px;
+			}
+			#imgBack {
+				z-index: -1;
+				display: none;
+			}
+			#secFirst{
+				margin-top: 100px;
+				margin-bottom: 40px;
+			}
+			#secApps {
+				background-color: white;
+			}
+			#secGames {
+				background1:  url("res/gamebck.jpg") repeat scroll 0 0 rgba(0, 0, 0, 0);
+				position: relative;
+			}
+			#secGames > .container {
+				background-color: white;
+				border-radius: 8px;
+				position: relative;
+			}
+		</style>
+	</head>
+	<body class="scrollingBackground">
+		<div style="position: fixed; width: 100%;">
+			<div id="navHor" class="navtop container" style="" >
+				<ul class="nav nav-pills navbar-default" >
+					<li><a href="../index.html">Komante</a></li>
+					<li><a href="../blog.html">Blog</a></li>
+					<li><a href="http://vuk.alwaysdata.net">Old website</a></li>
+					<li><a href="#">About</a></li>
+				</ul>
+			</div>
+		</div>
+
+		<section class="section" id="secFirst">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-10 col-md-offset-1 text-center">	
+						<!-- Site Title, your name, HELLO msg, etc. -->
+						<h1 class="title">	Automating customized development and production deployments
+</h1>
+
+						<h3 class="tagline">
+								Making custom configuration for multiple environments  
+	<br>and streamlining their build
+	<br>Example with Maven, Spring, and Java web application
+
+						</h3>
+						<!-- Nice place to describe your site in a sentence or two -->
+						<p></p>
+
+					</div> <!-- /col -->
+				</div> <!-- /row -->
+
+			</div>
+		</section>
+
+				<section id="secIntro">
+			<div class="container" >
+				<h2 class="col-md-10 col-md-offset-1 bmargin">The Problem</h2>
+				<div class="row">
+					<div class="col-md-10 col-md-offset-1 backed">
+						<p>
+							We frequently come in situation we need to customize config data, or even some business objects,
+							for multiple environments where we intend to deploy our application. Usually there are at least
+							development and production environments, but some others might be needed as well. Like for testing or multiple 
+							different productions.
+							<br>And most common things that need customizing are host names, ports, file locations, of our data sources,
+							db and other servers, paths of resources. Sometimes we use different implementations or libraries for our
+							development and production needs. Like described in<a href="">article about http session</a>, we might use
+							standard Tomcat session manager in development, and Spring Session with Redis in production.  						
+						<p>
+							Customizing deployments can be done in many ways. One common is to manually change config files after 
+							main application artifacts are deployed to their final locations. But this process is cumbersome. Config
+							files are usually bundled with classes in a single file (like war), there is lot of manual work, especially if we have 
+							frequent deployments, we can easily forget to change something or put wrong data.
+					</div>
+				</div>
+				
+				<br>
+				<h2 class="col-md-10 col-md-offset-1 bmargin">Solution</h2>
+				<div class="row">
+					<div class="col-md-10 col-md-offset-1 backed">
+						<p>
+							The best solution would be if can with one command get all customized bundles, or with just one
+							parameter control which bundle we want to build.
+							<br>This is also achievable in many ways, we will present one that is simple to implement and works well.
+							It is for Java web application, build with Maven, and with Spring configuration. This is common setting
+							for many applications that have this kind of problem. And all three of them have features that facilitate
+							customization. 
+							<br>Spring has possibility to configure multiple environments, Maven includes different profiles, and Java
+							web apps can have context and init parameters.
+						<p>
+					</div>
+				</div>					
+
+				<br>
+				<h2 class="col-md-10 col-md-offset-1 bmargin">Implementation</h2>
+				<div class="row">
+					<div class="col-md-10 col-md-offset-1 backed">
+						<p>
+							So we will implement changes for three different aspects of web application, in three different places: 
+							<br>applicationContext.xml, web.xml, and pom.xml. Here is what needs to be added to all of them. Suppose
+							our two target environments are named dev and production. And we need to configure different datasources
+							and http session handling in them.
+						<p>
+							<strong>applicationContext.xml</strong>
+							<pre class="prettyprint">		
+&lt;beans &gt;
+...												
+	&lt;beans profile="dev"&gt;
+		&lt;bean id="dataSource" class="org.postgresql.ds.PGPoolingDataSource"&gt;
+			&lt;property name="dataSourceName" value="ds1" /&gt;
+			&lt;property name="serverName" value="localhost" /&gt;
+			&lt;property name="databaseName" value="dbname1" /&gt;
+			&lt;property name="user" value="usr1" /&gt;
+			&lt;property name="password" value="pass1" /&gt;
+			&lt;property name="maxConnections" value="10" /&gt;
+		&lt;/bean&gt;
+
+	&lt;/beans&gt;
+	&lt;beans profile="production"&gt;
+		&lt;bean id="dataSource" class="org.postgresql.ds.PGPoolingDataSource"&gt;
+			&lt;property name="dataSourceName" value="ds2" /&gt;
+			&lt;property name="serverName" value="127.8.252.130" /&gt;
+			&lt;property name="databaseName" value="dbname2" /&gt;
+			&lt;property name="user" value="usr2" /&gt;
+			&lt;property name="password" value="pass2" /&gt;
+			&lt;property name="maxConnections" value="10" /&gt;
+		&lt;/bean&gt;
+		&lt;bean class="org.springframework.session.data.redis.config.annotation.web.http.RedisHttpSessionConfiguration" /&gt;
+		&lt;bean class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory" p:hostName="127.1.1.1"
+			p:port="12345" p:password="rtyhertEW$%Y#$%wht" /&gt;
+	&lt;/beans&gt;
+&lt;/beans &gt;								
+							</pre>
+							Here we added nested beans elements for our two environments, don't forget to put it at the end of file.
+							
+						<p><br>
+							For web app config differences we will actually use two files. One is already existing web.xml, where
+							dev params will reside. And the other is web-production.xml, for production.
+							
+							<br><br><strong>web.xml</strong>
+							<pre class="prettyprint">
+	&lt;context-param&gt;
+		&lt;param-name&gt;spring.profiles.active&lt;/param-name&gt;
+		&lt;param-value&gt;dev&lt;/param-value&gt;
+	&lt;/context-param&gt;
+							</pre>
+							Here we made dev profile active by default.
+
+							<br><br><strong>web-production.xml</strong>
+							<pre class="prettyprint">
+	&lt;context-param&gt;
+		&lt;param-name&gt;spring.profiles.active&lt;/param-name&gt;
+		&lt;param-value&gt;production&lt;/param-value&gt;
+	&lt;/context-param&gt;
+	...
+	&lt;filter&gt;
+		&lt;filter-name&gt;springSessionRepositoryFilter&lt;/filter-name&gt;
+		&lt;filter-class&gt;org.springframework.web.filter.DelegatingFilterProxy&lt;/filter-class&gt;
+	&lt;/filter&gt;
+	&lt;filter-mapping&gt;
+		&lt;filter-name&gt;springSessionRepositoryFilter&lt;/filter-name&gt;
+		&lt;url-pattern&gt;/*&lt;/url-pattern&gt;
+	&lt;/filter-mapping&gt;
+							</pre>
+							Here we made production profile active, and set filters to activate spring session.
+
+						<p><br>
+							<strong>pom.xml</strong>	
+							<pre class="prettyprint">
+	&lt;profile&gt;
+		&lt;id&gt;production&lt;/id&gt;
+		&lt;build&gt;
+			&lt;plugins&gt;
+				&lt;plugin&gt;
+					&lt;artifactId&gt;maven-antrun-plugin&lt;/artifactId&gt;
+					&lt;version&gt;1.7&lt;/version&gt;
+					&lt;executions&gt;
+						&lt;execution&gt;
+							&lt;id&gt;delwebxml&lt;/id&gt;
+							&lt;phase&gt;prepare-package&lt;/phase&gt;
+							&lt;configuration&gt;
+								&lt;target&gt;
+									&lt;delete file="target/${project.build.finalName}/WEB-INF/web.xml" /&gt;
+								&lt;/target&gt;
+							&lt;/configuration&gt;
+							&lt;goals&gt;
+								&lt;goal&gt;run&lt;/goal&gt;
+							&lt;/goals&gt;
+						&lt;/execution&gt;
+					&lt;/executions&gt;
+				&lt;/plugin&gt;
+				&lt;plugin&gt;
+					&lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+					&lt;artifactId&gt;maven-war-plugin&lt;/artifactId&gt;
+					&lt;configuration&gt;
+						&lt;webXml&gt;src/main/webapp/WEB-INF/web-production.xml&lt;/webXml&gt;
+					&lt;/configuration&gt;
+				&lt;/plugin&gt;
+			&lt;/plugins&gt;
+		&lt;/build&gt;
+	&lt;/profile&gt;								
+							</pre>
+							Here we made Maven profile for creating production artefact. So if we just type <code>mvn package</code>
+							development war will be created. And if we type <code>mvn package -Pproduction</code> then instead of
+							web.xml, web-production.xml will be put in its place, Spring will be configured with production profile,
+							and we have ready war for deployment. That's it!
+					</div>
+				</div>					
+			</div>
+		</section>
+
+	
+
+		
+		<script>
+			if (location.origin.indexOf('komante.com') >= 0) {
+
+				//GOOGLE ANALYTICS
+				(function(i, s, o, g, r, a, m) {
+					i['GoogleAnalyticsObject'] = r;
+					i[r] = i[r] || function() {
+						(i[r].q = i[r].q || []).push(arguments)
+					}, i[r].l = 1 * new Date();
+					a = s.createElement(o),
+							m = s.getElementsByTagName(o)[0];
+					a.async = 1;
+					a.src = g;
+					m.parentNode.insertBefore(a, m)
+				})(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+				ga('create', 'UA-54433162-1', 'auto');
+				ga('send', 'pageview');
+
+
+				//Komante
+				serverRequestlog('komante', 'index');
+			}
+		</script>
+
+	</body>
+</html>
