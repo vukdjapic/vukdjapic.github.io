@@ -215,8 +215,16 @@ ResultSet rs = cs.executeQuery();
 						TRANSACTION_READ_COMMITTED prevents dirty reads<br>
 						TRANSACTION_REPEATABLE_READ prevents non-repeatable reads<br>
 						TRANSACTION_SERIALIZABLE prevents phantom reads
-                    </dl>
-                    
+						
+						<dt>What does rollback() do? Why is it needed?
+						<dd>
+							Rollback returns database to some previous clean state. It keeps database state consistent.
+							<br>So why it is needed if without commit no transaction operations will be stored in db?
+							<br>It ends transaction (like commit). It means it releases locks and leaves everything in clean state.
+							With open transaction, starting new one could first commit all previous actions.
+							
+						</dd>
+					</dl>
                 </div>
 	</body>
 </html>
