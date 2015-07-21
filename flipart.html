@@ -11,7 +11,7 @@
         <script type="text/javascript" src="js/lib/jquery.js"></script>
         <script type="text/javascript" src="js/lib/underscore.js"></script>
 
-        <script type="text/javascript" src="js/flipart.js"></script>
+		<script type="text/javascript" src="js/flipart.js"></script>
 
         <script type="text/javascript">
 			var protocol ='http';
@@ -111,13 +111,17 @@
         <!-- main game div, inner divs changes -->
         <div id="dGameWindow" class="center">
             <div id="dWelcome" class="gamediv" style="display: block;">
-                <br><br>
-                <img src="res/flipart/logo.png" alt="Flipart logo" />
+				<div id="dLogo" class="center-block">
+					<div class="background center-block">
+						<img src="res/flipart/logoBackground.png" class="center-block" alt="Flipart logo background" />
+					</div>
+					<img src="res/flipart/logo.png" alt="Flipart logo"  />
+				</div>
+                
                 <div id="dMenu" class="center menu">
 
                     <ul style="list-style-type: none">
                         <li><a href="javascript:onGameAction('firstStart')" >Start new</a></li>
-                        <li><a href="" >Continue</a></li>
                         <li><a href="" >Instructions</a></li>
                     </ul>
                 </div>

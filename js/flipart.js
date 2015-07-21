@@ -59,7 +59,7 @@ for(d=g.imin;d<=g.imax;d++){for(b=g.jmin;b<=g.jmax;b++){c="#"+this.blockTemplate
 var c=Math.floor(e/this.tileHeight);var b=Math.floor(a/this.tileWidth);return{i:c,j:b}},_rectangleSelected:function(){var e=flipart.getRectangle(this.start,this.end);
 var b,a,d,c;b=e.jmin*this.tileWidth;a=(e.jmax+1)*this.tileWidth;d=e.imin*this.tileHeight;c=(e.imax+1)*this.tileHeight;$("#dHorflip").css({display:"block",top:d+"px",left:b+"px",width:(a-b)+"px"});
 $("#dVerflip").css({display:"block",top:(d-10+(c-d)/2)+"px",left:b+"px"})}};flipart.audio={init:function(c,a,b){this.backmusic=c;
-this.flipmusic=a;this.solvedmusic=b;this.backmusic.volume=0.1;this.flipmusic.volume=0.3},startBackmusic:function(){this.backmusic.play()
+this.flipmusic=a;this.solvedmusic=b;this.backmusic.volume=0.1;this.flipmusic.volume=0.3;this.solvedmusic.volume=0.3},startBackmusic:function(){this.backmusic.play()
 },flip:function(){this.flipmusic.play()},solve:function(){this.backmusic.pause();this.solvedmusic.play()},toogleMusic:function(){if(this.backmusic.paused){this.backmusic.play()
 }else{this.backmusic.pause()}}};function transformation(c,d,a,b,e){this.row1=c;this.col1=d;this.row2=a;this.col2=b;this.isHorizontal=e
 };

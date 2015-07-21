@@ -55,6 +55,22 @@ div.menu img:hover, div.menu a:hover, #dGameControls a:hover {
     cursor: pointer;
     color: #e0fa33;
 }
+#dLogo{
+	position: relative;
+	margin-top: 10px;
+}
+#dLogo>img {
+	margin-top: 10%;
+}
+#dLogo div.background {
+	position: absolute;
+	width: 100%;
+	z-index: -1;
+	opacity: 0.5;
+}
+#dLogo div.background img {
+	width: 70%;
+}
 #dChoice>div:first-child {
     padding: 10px;
     text-align: left;
