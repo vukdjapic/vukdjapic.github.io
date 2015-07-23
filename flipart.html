@@ -31,13 +31,14 @@
 			flipart.urls.image=flipart.urls.base+'/image.png';
 			flipart.urls.galleries=flipart.urls.base+'/galleries';
 			flipart.urls.thumbnail=flipart.urls.base+'/thumbnail.png';
-			flipart.computeSize($(window).width(), $(window).height());
+			flipart.urls.gameFinished=flipart.urls.base+'/gameFinished';
 
 
         </script>
         <script type="text/javascript">
 
 			$(function () {
+				flipart.computeSize($(window).width(), $(window).height(), {vertical:30, horizontal: $('#dGameControls').width()+2 });
 				loadGalleries('dGalleries');
 				resizeGameWindow('welcome');
 				updateHistoryButtons({});
@@ -72,6 +73,7 @@
 					case 'easy':
 					case 'normal':
 					case 'hard':
+						flipart.init();
 						playSingle({difLevel: phase});
 						break;
 					case 'restart':
@@ -176,6 +178,12 @@
 								<div>
 									Well done<br>Image revealed!
 								</div>
+								<div id="dNewPoints">
+									<table>
+										<tr><td>Points</td><td> &nbsp; </td><td class="value"></td>
+										<tr><td>Bonus</td><td> &nbsp; </td><td class="value"></td>	
+									</table>
+								</div>
 								<div>
 									<a href="javascript:onGameAction('closeSolved');">Close</a> <a href="javascript:onGameAction('next');">Next</a>
 								</div>
@@ -184,7 +192,16 @@
 					</div>
                 </div>
                 <div id="dGameControls">
-                    &nbsp;Level&nbsp;<span id="dLevel"></span> &nbsp;&nbsp; 
+					<div class="top">
+						<table>
+							<tr>
+								<td>Score</td><td> &nbsp; </td><td><span id="dScore">0</span></td>
+							</tr>
+							<tr>
+								<td>Level</td><td> &nbsp; </td><td><span id="dLevel"></span></td>
+							</tr>
+						</table>
+					</div>
                     <div id="dHistory"> 
                         <img id="imBack" src="res/flipart/arrow_back.png" />
                         <img id="imForward" src="res/flipart/arrow_forward.png" />
