@@ -124,7 +124,7 @@
 
                     <ul style="list-style-type: none">
                         <li><a href="javascript:onGameAction('firstStart')" >Start new</a></li>
-                        <li><a href="" >Instructions</a></li>
+                        <li><a href="javascript:displayGameWindow('dInstructions');" >Instructions</a></li>
                     </ul>
                 </div>
             </div>
@@ -219,6 +219,60 @@
                     </div>
                 </div>
             </div>
+			<div id="dInstructions" class="gamediv">
+				<div class="center-block">
+					Welcome to <img class="logosmall" src="res/flipart/logo.png" alt="Flipart logo" />
+					<br>picture puzzle game
+					<p>Your goal is to reveal original image. Some parts of it are flipped horizontally or vertically, making it a jumble. 
+						Use your mouse to select parts that don't fit and flip them, until whole picture is intact again.</p>
+				</div>
+				<div class="back center-block text-right">
+					<a href="javascript:displayGameWindow('dWelcome');">Back to game</a>
+				</div>
+				<div class="tutorial">
+					<div>
+						<img src="res/flipart/instruct/instruct1.png" /> 
+						Let's see it on example. Something is wrong with this picture, right?
+						Legs just don't run together with upper bodies! So make it natural again.  						
+					</div>
+					<div>
+						<img src="res/flipart/instruct/instruct2.png" /> 
+						First identify rectangular area that needs to be flipped, and click near
+						the corner of it. Obscured tile will appear.
+					</div>
+					<div>
+						<img src="res/flipart/instruct/instruct3.png" /> 
+						Move your mouse until all displaced area is obscured. Yellow rectangle will denote its boundaries.
+					</div>
+					<div>
+						<img src="res/flipart/instruct/instruct4.png" /> 
+						Click again, and two arrows buttons will appear. One on the right flips selected area vertically, and one on the
+						top flips it horizontally. Which one should you use?
+					</div>
+					<div>
+						<img src="res/flipart/instruct/instruct5.png" /> 
+						That's right, one on top. Click it and when selected area is flipped, image looks intact again. Runners can continue
+						to sprint right to the finish. Good job!
+					</div>
+					<div>
+						<img src="res/flipart/instruct/instruct6.png" /> 
+						Hey, what about this one? Heads and legs are all mixed up and down. How can they run this way?
+					</div>
+					<div>
+						<img src="res/flipart/instruct/instruct7.png" /> 
+						Don't panic. Here is a hint. First select denoted part of the image and flip it vertically. It will
+						become lot easier after that.
+						<br><br>
+						<p>
+							Now, go back to game and reveal all those beautiful pictures!
+						</p>
+					</div>
+					<div></div>
+				</div>
+				<div>
+					<div class="back center-block text-center"><a href="javascript:displayGameWindow('dWelcome');">Back to game</a></div>
+				</div>
+			</div>
         </div>
 
 		<div id="dAudio" style="display1: none">

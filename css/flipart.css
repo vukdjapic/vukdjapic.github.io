@@ -263,3 +263,48 @@ div.menu img:hover, div.menu a:hover, #dGameControls a:hover {
 	margin-left: 5px;
 	width: 140px;
 }
+
+#dInstructions {
+	overflow-y: scroll;
+}
+#dInstructions>div:first-child {
+	margin-top: 50px;
+	font-size: 2em;
+	font-family: Helvetica;
+	width: 80%;
+	
+}
+#dInstructions div.back {
+	width: 80%;
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+#dInstructions .back a {
+	color: #3A5978;
+	font-size: 1.5em;
+	font-family: "GameFont",sans-serif;
+}
+#dInstructions div.back a:hover {
+	color: #e0fa33;
+	text-decoration: none;
+}
+#dInstructions>div:first-child p {
+	font-size: 0.7em;
+	color: #3A5978;
+}
+#dInstructions img.logosmall{
+	width: 200px;
+}
+#dInstructions div.tutorial img {
+	width: 50%;
+	float: left;
+	margin: 0px 10px 10px 10px;
+}
+#dInstructions div.tutorial>div {
+	clear:both;
+	text-align: left;
+	margin-right: 10px;
+	font-size: 1.2em;
+}
+
+
