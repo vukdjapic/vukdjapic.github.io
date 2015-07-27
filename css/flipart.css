@@ -43,12 +43,18 @@ div.menu a {
 img.logosmall {
     width: 100px;
 }
+#dBackground, #dBackground img{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
 #dGameWindow {
     border: "1px";
     border-style: solid;
     border-color: #656273;  /* #80488f #e0fa33, yellow sun #e8d15d */
 	box-shadow: 0 0 20px 5px #34464A;
     position: relative;
+	background-color: white;
 
 }
 div.menu img:hover, div.menu a:hover, #dGameControls a:hover {
@@ -61,11 +67,12 @@ div.menu img:hover, div.menu a:hover, #dGameControls a:hover {
 }
 #dLogo>img {
 	margin-top: 10%;
+	position: relative;
+	z-index: 2;
 }
 #dLogo div.background {
 	position: absolute;
 	width: 100%;
-	z-index: -1;
 	opacity: 0.5;
 }
 #dLogo div.background img {
