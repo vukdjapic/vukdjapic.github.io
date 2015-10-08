@@ -315,3 +315,9 @@ div.menu img:hover, div.menu a:hover, #dGameControls a:hover {
 }
 
 
+/*Facebook page styles */
+#dFBInfo {
+	position: absolute;
+	margin-top: 10px;
+	margin-left: 10px;
+}

@@ -21,7 +21,7 @@
 			dd::before {
 				content: "";
 				display: block;	
-				height: 1px;
+				height: 30px;
 				width: 200px;
 				border-top: solid 1px;				
 				margin-top:5px;
@@ -55,9 +55,9 @@
 
 				<dt>
 				What is implicit casting?
-				<dd><pre>
+				<dd>
 Implicit casting is the process of simply assigning one entity to another without any transformation guidance to the compiler. This type of casting is not permitted in all kinds of transformations and may not work for all scenarios.
-
+					<pre>
 Example
 
 int i = 1000;
@@ -84,10 +84,13 @@ long j = i; //Implicit casting
 				</dd>
 				<dt>
 				How can I swap two variables without using a third variable?
-				<dd><pre>
+				<dd>
 Add two variables and assign the value into First variable. Subtract the Second value with the result Value. and assign to Second variable. Subtract the Result of First Variable With Result of Second Variable and Assign to First Variable. Example:
-
-int a=5,b=10;a=a+b; b=a-b; a=a-b;
+					<pre>
+int a=5,b=10;
+a=a+b; 
+b=a-b; 
+a=a-b;
 
 An other approach to the same question
 
@@ -103,7 +106,8 @@ a = a ^ b;
 
 
 
-
+					<dt>How to run a class from a jar file?
+					<dd>java -cp myjar.jar com.mypackage.myClass</dd>
 
 
 
