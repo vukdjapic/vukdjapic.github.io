@@ -55,6 +55,7 @@ img.logosmall {
 	box-shadow: 0 0 20px 5px #34464A;
     position: relative;
 	background-color: white;
+	background-image: url('../res/flipart/papertile.jpg');
 
 }
 div.menu img:hover, div.menu a:hover, #dGameControls a:hover {

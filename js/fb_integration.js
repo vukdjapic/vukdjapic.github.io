@@ -1,3 +1,5 @@
+var FBcache={ facebook:true };
+
 $(function () {
 
 	FB.init({
@@ -13,7 +15,6 @@ $(function () {
 });
 
 
-var friendCache={};
 
 
 function login(callback) {
@@ -29,9 +30,9 @@ function onStatusChange(response) {
 	if (response.status!='connected') {
 		login(loginCallback);
 	} else {
-		getMe(function () {
-			renderWelcome();
-		});
+		FBcache.accessToken =response.authResponse.accessToken;
+		FBcache.userID =response.authResponse.userID;
+		getMe();
 	}
 }
 function onAuthResponseChange(response) {
@@ -39,11 +40,17 @@ function onAuthResponseChange(response) {
 }
 
 
-function getMe(callback) {
+function getMe() {
 	FB.api('/me', {fields: 'id,name,first_name,picture.width(120).height(120)'}, function (response) {
 		if (!response.error) {
-			friendCache.me=response;
-			callback();
+			FBcache.me=response;
+			renderWelcome();
+			if(flipart){
+				userLoginNotify('facebook', FBcache.me.id, FBcache.me.first_name, {
+					fullname: FBcache.me.name
+					, accessToken: FBcache.accessToken
+				} );
+			}
 		} else {
 			console.error('/me', response);
 		}
@@ -52,8 +59,8 @@ function getMe(callback) {
 
 function renderWelcome() {
 	var welcome=$('#dFBInfo');
-	welcome.find('.first_name').html(friendCache.me.first_name);
-	//welcome.find('.profile').attr('src', friendCache.me.picture.data.url);
+	welcome.find('.first_name').html(FBcache.me.first_name);
+	//welcome.find('.profile').attr('src', FBcache.me.picture.data.url);
 }
 
 
