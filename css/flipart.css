@@ -322,3 +322,7 @@ div.menu img:hover, div.menu a:hover, #dGameControls a:hover {
 	margin-top: 10px;
 	margin-left: 10px;
 }
+
+#dFBInfo .spanInfo {
+	visibility: hidden;
+}

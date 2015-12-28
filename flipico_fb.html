@@ -103,6 +103,8 @@
 					case 'pauseMusic':
 						flipart.audio.toogleMusic();
 						break;
+					case 'highScores':
+						break;
 				}
 			}
         </script>
@@ -129,6 +131,7 @@
 
                     <ul style="list-style-type: none">
                         <li><a href="javascript:onGameAction('firstStart')" >Start new</a></li>
+						<li><a href="javascript:onGameAction('highScores')" >High scores</a></li>
                         <li><a href="javascript:displayGameWindow('dInstructions');" >Instructions</a></li>
                     </ul>
                 </div>
@@ -156,7 +159,9 @@
             </div>
             <div id="dGame" class="gamediv" >
 				<div id="dFBInfo" class="text-left" >
-					Hi <span class="first_name"></span>. <a href="javascript:onChallenge();">Invite friends</a>
+					Hi <span class="first_name"></span>!
+					<span class="scoreInfo">Your best score is <span class="score"></span>. Can you beat it?</span>
+					<a href="javascript:onChallenge();">Invite friends</a>
 				</div>
                 <div id="dPictureFrame">        <!-- holds stacked game divs -->
                     <div id="dTiles"></div>

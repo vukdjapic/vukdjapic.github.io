@@ -11,7 +11,25 @@ $(function () {
 	FB.Event.subscribe('auth.authResponseChange', onAuthResponseChange);
 	FB.Event.subscribe('auth.statusChange', onStatusChange);
 
-
+	/* when fb api is not available, set dummy user for test purposes */
+	setTimeout(function(){
+		if(!FBcache.me){
+			console.log('No FB user. Using dummy local.');
+			FBcache.me ={
+				id:4
+				, first_name: 'Laza'
+				, name: 'Laki Lazarevic'
+				, accessToken: 'AAA1234'
+			};
+			renderWelcome();
+			if(flipart){
+				userLoginNotify('facebook', FBcache.me.id, FBcache.me.first_name, {
+					fullname: FBcache.me.name
+					, accessToken: FBcache.accessToken
+				}, renderPlayerData );
+			}
+		}
+	}, 4000);
 });
 
 
@@ -49,7 +67,7 @@ function getMe() {
 				userLoginNotify('facebook', FBcache.me.id, FBcache.me.first_name, {
 					fullname: FBcache.me.name
 					, accessToken: FBcache.accessToken
-				} );
+				}, renderPlayerData );
 			}
 		} else {
 			console.error('/me', response);
@@ -58,9 +76,17 @@ function getMe() {
 }
 
 function renderWelcome() {
-	var welcome=$('#dFBInfo');
-	welcome.find('.first_name').html(FBcache.me.first_name);
+	var fbdiv=$('#dFBInfo');
+	fbdiv.find('.first_name').html(FBcache.me.first_name);
 	//welcome.find('.profile').attr('src', FBcache.me.picture.data.url);
+}
+
+function renderPlayerData(data){
+	var fbdiv=$('#dFBInfo');
+	if(data.bestScore){
+		fbdiv.find('.score').html(data.bestScore);
+		fbdiv.find('.scoreInfo').show();
+	}
 }
 
 
@@ -76,7 +102,7 @@ function sendChallenge(to, message, callback) {
 }
 
 function onChallenge() {
-  sendChallenge(null,'Friend Smash is great fun! Come and check it out!', function(response) {
+  sendChallenge(null,'Dive into magic world of picture puzzles. Turn scramble image into masterpiece', function(response) {
     console.log('sendChallenge',response);
   });
 }
