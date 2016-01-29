@@ -18,6 +18,7 @@ flipart.matrix=d.matrix;flipart.resultMatrix=d.resultMatrix;flipart.level=d.leve
 resizeGameWindow("startsingle");displayGameWindow("dGame",true);flipart.mouseMoves.init("dActions");$("<img/>").attr("src",e).load(function(){$(this).remove();
 _populateTilesAndBlocks(flipart.gameOptions,e,"dPictureFrame","dTiles","dBlocks");$("#dLoading").hide();document.getElementById("dLevel").innerHTML=flipart.level;
 flipart.audio.startBackmusic()});var d=new Image();d.src=flipart.urls.thumbnail+"?t="+new Date().getTime();$("#dThumbnail").html(d)
+}).done(function(){flipart.integration.notify(flipart.integration.events.gameLoaded,{picwidth:flipart.gameOptions.measures.w})
 })}function loadGalleries(a){$.ajax(flipart.urls.galleries,{dataType:"json"}).done(function(g){var f,e;var b=g.galleries.length;
 var d=_.template($("#temGalleryImage").html());var c=$("#"+a+">div");c.html("");console.log("gal: "+g.galleries);for(f=0;
 f<b;f++){e=g.galleries[f];c.append(d({galleryName:e,gallerySrc:flipart.urls.base+"/galleryImage?gallery="+e}))}})}function puzzleSolvedNotify(){$.ajax(flipart.urls.gameFinished,{method:"POST",dataType:"JSON",data:{transformations:"["+flipart.transformations+"]",isBack:flipart.isBack}}).done(function(c){var b="You earned "+c.points+" points on this level",a=$("#dNewPoints table");
@@ -66,5 +67,7 @@ var b,a,d,c;b=e.jmin*this.tileWidth;a=(e.jmax+1)*this.tileWidth;d=e.imin*this.ti
 $("#dVerflip").css({display:"block",top:(d-10+(c-d)/2)+"px",left:b+"px"})}};flipart.audio={init:function(c,a,b){this.backmusic=c;
 this.flipmusic=a;this.solvedmusic=b;this.backmusic.volume=0.1;this.flipmusic.volume=0.3;this.solvedmusic.volume=0.3},startBackmusic:function(){this.backmusic.play()
 },flip:function(){this.flipmusic.play()},solve:function(){this.backmusic.pause();this.solvedmusic.play()},toogleMusic:function(){if(this.backmusic.paused){this.backmusic.play()
-}else{this.backmusic.pause()}}};function transformation(c,d,a,b,e){this.row1=c;this.col1=d;this.row2=a;this.col2=b;this.isHorizontal=e
-}transformation.prototype.toString=function(){return JSON.stringify(this)};
+}else{this.backmusic.pause()}}};flipart.integration={integrators:[],events:{pageLoaded:"pageLoaded",gameLoaded:"gameLoaded"},notify:function(b,c){var a;
+for(a=0;a<this.integrators.length;a++){this.integrators[a].receive(b,c)}},add:function(a){this.integrators.push(a)},flipartAction:function(c,a,b){}};
+function transformation(c,d,a,b,e){this.row1=c;this.col1=d;this.row2=a;this.col2=b;this.isHorizontal=e}transformation.prototype.toString=function(){return JSON.stringify(this)
+};

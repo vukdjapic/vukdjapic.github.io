@@ -52,12 +52,27 @@ img.logosmall {
     border: "1px";
     border-style: solid;
     border-color: #656273;  /* #80488f #e0fa33, yellow sun #e8d15d */
-	box-shadow: 0 0 20px 5px #34464A;
+    box-shadow: 0 0 20px 5px #34464A;
     position: relative;
-	background-color: white;
-	background-image: url('../res/flipart/papertile.jpg');
-
+    background-color: white;
+    background-image: url('../res/flipart/papertile.jpg');
+    z-index: 2;
 }
+#dGameWindow.nobackground{
+    background-image: none;
+    background-color: transparent;
+}
+#dGameWindow.nobackground > .background  {
+  position: absolute;
+  top: 0; 
+  left: 0;
+  width: 100%; 
+  height: 100%;  
+  opacity: 0.5; 
+  z-index: -1;
+  background-color: white;
+}
+
 div.menu img:hover, div.menu a:hover, #dGameControls a:hover {
     cursor: pointer;
     color: #e0fa33;
@@ -175,7 +190,7 @@ div.menu img:hover, div.menu a:hover, #dGameControls a:hover {
     height: 100%;
 }
 #dPictureFrame div.tile, #dPictureFrame div.block {
-    //background-image: url('/kserver/flipart/image.png');
+    /*background-image: url('/kserver/flipart/image.png'); */
     position: absolute;
 }
 #dPictureFrame div.block.selected {
@@ -322,7 +337,11 @@ div.menu img:hover, div.menu a:hover, #dGameControls a:hover {
 	margin-top: 10px;
 	margin-left: 10px;
 }
-
-#dFBInfo .spanInfo {
-	visibility: hidden;
+#dFBInfo a {
+    float: right;
+    font-family: "Comic Sans MS";
+    font-weight: bold;
+}
+#dFBInfo .scoreInfo {
+	display:none;
 }

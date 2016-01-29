@@ -101,6 +101,14 @@
 					case 'pauseMusic':
 						flipart.audio.toogleMusic();
 						break;
+					case 'instructions':
+						$('#dGameWindow').addClass('nobackground');
+						displayGameWindow('dInstructions');
+						break;
+					case 'backToGame':
+						$('#dGameWindow').removeClass('nobackground');
+						displayGameWindow('dWelcome');
+						break;
 					case 'highScores':
 						
 						break;
@@ -118,6 +126,7 @@
 		</div>
         <!-- main game div, inner divs changes -->
         <div id="dGameWindow" class="center">
+			<div class="background" ></div>
             <div id="dWelcome" class="gamediv" style="display: block;">
 				<div id="dLogo" class="center-block">
 					<div class="background center-block">
@@ -131,7 +140,7 @@
                     <ul style="list-style-type: none">
                         <li><a href="javascript:onGameAction('firstStart')" >Start new</a></li>
 						<li><a href="javascript:onGameAction('highScores')" >High scores</a></li>
-                        <li><a href="javascript:displayGameWindow('dInstructions');" >Instructions</a></li>
+                        <li><a href="javascript:onGameAction('instructions');" >Instructions</a></li>
                     </ul>
                 </div>
             </div>
@@ -234,7 +243,7 @@
 						Use your mouse to select parts that don't fit and flip them, until whole picture is intact again.</p>
 				</div>
 				<div class="back center-block text-right">
-					<a href="javascript:displayGameWindow('dWelcome');">Back to game</a>
+					<a href="javascript:onGameAction('backToGame');">Back to game</a>
 				</div>
 				<div class="tutorial">
 					<div>
@@ -277,7 +286,7 @@
 					<div></div>
 				</div>
 				<div>
-					<div class="back center-block text-center"><a href="javascript:displayGameWindow('dWelcome');">Back to game</a></div>
+					<div class="back center-block text-center"><a href="javascript:onGameAction('backToGame');">Back to game</a></div>
 				</div>
 			</div>
         </div>
