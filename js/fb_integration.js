@@ -11,7 +11,9 @@ if (typeof flipart == 'undefined' || !flipart.integration) {
             FBinit();
         } else if (event == FI.events.gameLoaded) {
             $('#dFBInfo').width(obj.picwidth - 10);
-        }
+        } else if (event == FI.events.inviteFriends) {
+             onChallenge();
+        }        
     }
 
     FI.add(FBcache);

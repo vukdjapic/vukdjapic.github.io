@@ -93,7 +93,9 @@
 						updateHistoryButtons(bfEnabled);
 						break;
 					case 'exit':
-						document.location.reload();
+						//document.location.reload();
+						flipart.audio.stop();
+						displayGameWindow('dWelcome');
 						break;
 					case 'closeSolved':
 						$('#dSolved').hide();
@@ -231,7 +233,7 @@
                             <a href="javascript:onGameAction('next');">Next</a>
                         </div>
                         <div><a href="javascript:onGameAction('restart');">Restart</a></div>
-                        <div><a href="javascript:location.reload();">Exit</a></div>
+                        <div><a href="javascript:onGameAction('exit');">Exit</a></div>
                     </div>
                 </div>
             </div>

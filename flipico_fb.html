@@ -95,7 +95,9 @@
 						updateHistoryButtons(bfEnabled);
 						break;
 					case 'exit':
-						document.location.reload();
+						//document.location.reload();
+						flipart.audio.stop();
+						displayGameWindow('dWelcome');
 						break;
 					case 'closeSolved':
 						$('#dSolved').hide();
@@ -112,6 +114,9 @@
 						displayGameWindow('dWelcome');
 						break;
 					case 'highScores':
+						break;
+					case 'inviteFriends':
+						flipart.integration.notify(flipart.integration.events.inviteFriends);
 						break;
 				}
 			}
@@ -170,7 +175,7 @@
 				<div id="dFBInfo" class="text-left" >
 					Hi <span class="first_name"></span>!
 					<span class="scoreInfo">Your best score is <span class="score"></span>. Can you beat it?</span>
-					<a href="javascript:onChallenge();">Invite friends</a>
+					<a href="javascript:onGameAction('inviteFriends');">Invite friends</a>
 				</div>
                 <div id="dPictureFrame">        <!-- holds stacked game divs -->
                     <div id="dTiles"></div>
@@ -237,7 +242,7 @@
                             <a href="javascript:onGameAction('next');">Next</a>
                         </div>
                         <div><a href="javascript:onGameAction('restart');">Restart</a></div>
-                        <div><a href="javascript:location.reload();">Exit</a></div>
+                        <div><a href="javascript:onGameAction('exit');">Exit</a></div>
                     </div>
                 </div>
             </div>
