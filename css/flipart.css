@@ -297,17 +297,17 @@ div.menu img:hover, div.menu a:hover, #dGameControls a:hover {
 	width: 80%;
 	
 }
-#dInstructions div.back {
+div > div.back {
 	width: 80%;
 	margin-top: 50px;
 	margin-bottom: 50px;
 }
-#dInstructions .back a {
+div > .back a {
 	color: #3A5978;
 	font-size: 1.5em;
 	font-family: "GameFont",sans-serif;
 }
-#dInstructions div.back a:hover {
+div > div.back a:hover {
 	color: #e0fa33;
 	text-decoration: none;
 }
@@ -344,4 +344,28 @@ div.menu img:hover, div.menu a:hover, #dGameControls a:hover {
 }
 #dFBInfo .scoreInfo {
 	display:none;
+}
+
+#dHighscores h2 {
+    padding-top: 20px;
+    font-family: "GameFont",sans-serif;
+}
+#dHighscores > div {
+    height: 100%;
+}
+#dHighscores div.hscores{
+    height: 65%;
+    overflow-y: scroll;
+}
+#dHighscores table {
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+}
+#dHighscores table td, #dHighscores table th{
+    padding: 8px 35px;
+    font-family: "ControlsFont",sans-serif;
+}
+#dHighscores table td.name {
+    padding: 8px 40px 8px 0px;
 }

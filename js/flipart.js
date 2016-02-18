@@ -68,7 +68,7 @@ var b,a,d,c;b=e.jmin*this.tileWidth;a=(e.jmax+1)*this.tileWidth;d=e.imin*this.ti
 $("#dVerflip").css({display:"block",top:(d-10+(c-d)/2)+"px",left:b+"px"})}};flipart.audio={init:function(c,a,b){this.backmusic=c;
 this.flipmusic=a;this.solvedmusic=b;this.backmusic.volume=0.1;this.flipmusic.volume=0.3;this.solvedmusic.volume=0.3},startBackmusic:function(){this.backmusic.play()
 },flip:function(){this.flipmusic.play()},solve:function(){this.backmusic.pause();this.solvedmusic.play()},toogleMusic:function(){if(this.backmusic.paused){this.backmusic.play()
-}else{this.backmusic.pause()}},stop:function(){this.backmusic.pause();this.backmusic.currentTime=0}};flipart.integration={integrators:[],events:{pageLoaded:"pageLoaded",gameLoaded:"gameLoaded",inviteFriends:"inviteFriends"},notify:function(b,c){var a;
+}else{this.backmusic.pause()}},stop:function(){this.backmusic.pause();this.backmusic.currentTime=0}};flipart.integration={integrators:[],events:{pageLoaded:"pageLoaded",gameLoaded:"gameLoaded",inviteFriends:"inviteFriends",showHighscores:"showHighscores"},notify:function(b,c){var a;
 for(a=0;a<this.integrators.length;a++){this.integrators[a].receive(b,c)}},add:function(a){this.integrators.push(a)},flipartAction:function(c,a,b){}};
 function transformation(c,d,a,b,e){this.row1=c;this.col1=d;this.row2=a;this.col2=b;this.isHorizontal=e}transformation.prototype.toString=function(){return JSON.stringify(this)
 };

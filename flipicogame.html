@@ -33,7 +33,7 @@
 			flipart.urls.thumbnail=flipart.urls.base+'/thumbnail.png';
 			flipart.urls.gameFinished=flipart.urls.base+'/gameFinished';
 			flipart.urls.userLogin=flipart.urls.base+'/userLogin';
-
+			flipart.urls.highScores=flipart.urls.base+'/highScores';
         </script>
         <script type="text/javascript">
 
@@ -64,6 +64,7 @@
 					onGameAction('forward');
 				});
 
+                flipart.integration.notify(flipart.integration.events.pageLoaded);
 			});
 			function onGameAction(phase) {
 				switch (phase) {
@@ -110,9 +111,13 @@
 					case 'backToGame':
 						$('#dGameWindow').removeClass('nobackground');
 						displayGameWindow('dWelcome');
-						break;
-					case 'highScores':
-						
+                        break;
+                    case 'highScores':
+                        displayGameWindow('dHighscores');
+						flipart.integration.notify(flipart.integration.events.showHighscores, $('#dHighscores table tbody.hscores'));
+                        break;
+                    case 'inviteFriends':
+                        flipart.integration.notify(flipart.integration.events.inviteFriends);
 						break;
 				}
 			}
@@ -141,7 +146,6 @@
 
                     <ul style="list-style-type: none">
                         <li><a href="javascript:onGameAction('firstStart')" >Start new</a></li>
-						<li><a href="javascript:onGameAction('highScores')" >High scores</a></li>
                         <li><a href="javascript:onGameAction('instructions');" >Instructions</a></li>
                     </ul>
                 </div>

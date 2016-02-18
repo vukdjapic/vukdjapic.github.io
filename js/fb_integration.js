@@ -13,11 +13,14 @@ if (typeof flipart == 'undefined' || !flipart.integration) {
             $('#dFBInfo').width(obj.picwidth - 10);
         } else if (event == FI.events.inviteFriends) {
              onChallenge();
-        }        
+        } else if(event == FI.events.showHighscores){
+            loadHighScores(obj);
+        }       
     }
 
     FI.add(FBcache);
-
+    var i; 
+    
     function FBinit() {
         FB.init({
             appId: 1647382195498657,
@@ -34,8 +37,8 @@ if (typeof flipart == 'undefined' || !flipart.integration) {
                 console.log('No FB user. Using dummy local.');
                 FBcache.me = {
                     id: 4
-                    , first_name: 'Laza'
-                    , name: 'Laki Lazarevic'
+                    , first_name: 'Вук'
+                    , name: 'Вук Ђапић'
                     , accessToken: 'AAA1234'
                 };
                 renderWelcome();
@@ -43,6 +46,7 @@ if (typeof flipart == 'undefined' || !flipart.integration) {
                     userLoginNotify('facebook', FBcache.me.id, FBcache.me.first_name, {
                         fullname: FBcache.me.name
                         , accessToken: FBcache.accessToken
+                        , picture: "https://scontent.xx.fbcdn.net/hprofile-xft1/v/t1.0-1/c212.6.558.558/s50x50/10459920_10152580986564742_930615651060976411_n.jpg?oh=53c69234fcc1eb384e7dd176649229fb&oe=5763A48D"
                     }, renderPlayerData);
                 }
             }
@@ -73,7 +77,7 @@ if (typeof flipart == 'undefined' || !flipart.integration) {
 
 
     function getMe() {
-        FB.api('/me', {fields: 'id,name,first_name,picture.width(120).height(120)'}, function (response) {
+        FB.api('/me', {fields: 'id,name,first_name,picture'}, function (response) {
             if (!response.error) {
                 FBcache.me = response;
                 renderWelcome();
@@ -81,6 +85,7 @@ if (typeof flipart == 'undefined' || !flipart.integration) {
                     userLoginNotify('facebook', FBcache.me.id, FBcache.me.first_name, {
                         fullname: FBcache.me.name
                         , accessToken: FBcache.accessToken
+                        , picture: FBcache.me.picture.data.url
                     }, renderPlayerData);
                 }
             } else {
@@ -121,6 +126,17 @@ if (typeof flipart == 'undefined' || !flipart.integration) {
     function onChallenge() {
         sendChallenge(null, 'Play Flipico puzzles and reveal beutiful pictures', function (response) {
             console.log('sendChallenge', response);
+        });
+    }
+
+    function loadHighScores(jdiv){
+        $.ajax(flipart.urls.highScores, {dataType: 'json'}).done(function(data){
+            FBcache.highscores =data;
+            var tem=_.template($('#temHighscores').html());
+            jdiv.html('');
+            for(i=0;i<data.length;i++){
+                jdiv.append(tem({name:data[i].name, picture:data[i].picture, points:data[i].points, level:data[i].level}));
+            }
         });
     }
 

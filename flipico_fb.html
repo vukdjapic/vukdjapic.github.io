@@ -16,110 +16,113 @@
 		<script type="text/javascript" src="js/fb_integration.js" ></script>
 
         <script type="text/javascript">
-			var protocol='http';
-			if (location.origin.indexOf('https')>=0) {
-				protocol='https';
-			}
-			if (location.origin.indexOf('komante.com')>=0) {
-				flipart.urls.base=protocol+'://api.komante.com/flipart';
-			} else if (location.origin.indexOf('api-komante.rhcloud.com')>=0) {
-				flipart.urls.base=protocol+'://api-komante.rhcloud.com/flipart';
-			} else {
-				flipart.urls.base='/kserver/flipart';
-			}
+            var protocol = 'http';
+            if (location.origin.indexOf('https') >= 0) {
+                protocol = 'https';
+            }
+            if (location.origin.indexOf('komante.com') >= 0) {
+                flipart.urls.base = protocol + '://api.komante.com/flipart';
+            } else if (location.origin.indexOf('api-komante.rhcloud.com') >= 0) {
+                flipart.urls.base = protocol + '://api-komante.rhcloud.com/flipart';
+            } else {
+                flipart.urls.base = '/kserver/flipart';
+            }
 
-			flipart.urls.newgame=flipart.urls.base+'/newgame';
-			flipart.urls.nextgame=flipart.urls.base+'/nextgame';
-			flipart.urls.image=flipart.urls.base+'/image.jpg';
-			flipart.urls.galleries=flipart.urls.base+'/galleries';
-			flipart.urls.thumbnail=flipart.urls.base+'/thumbnail.png';
-			flipart.urls.gameFinished=flipart.urls.base+'/gameFinished';
-			flipart.urls.userLogin=flipart.urls.base+'/userLogin';
+            flipart.urls.newgame = flipart.urls.base + '/newgame';
+            flipart.urls.nextgame = flipart.urls.base + '/nextgame';
+            flipart.urls.image = flipart.urls.base + '/image.jpg';
+            flipart.urls.galleries = flipart.urls.base + '/galleries';
+            flipart.urls.thumbnail = flipart.urls.base + '/thumbnail.png';
+            flipart.urls.gameFinished = flipart.urls.base + '/gameFinished';
+            flipart.urls.userLogin = flipart.urls.base + '/userLogin';
 
+			flipart.urls.highScores=flipart.urls.base+'/highScores';
         </script>
         <script type="text/javascript">
 
-			$(function () {
-				flipart.computeSize($(window).width(), $(window).height(), {vertical: 30, horizontal: $('#dGameControls').width()+2});
-				loadGalleries('dGalleries');
-				resizeGameWindow('welcome');
-				updateHistoryButtons({});
-				flipart.audio.init(
-						document.getElementById('audBackmusic')
-						, document.getElementById('audFlip')
-						, document.getElementById('audSolved')
-						);
+            $(function () {
+                flipart.computeSize($(window).width(), $(window).height(), {vertical: 30, horizontal: $('#dGameControls').width() + 2});
+                loadGalleries('dGalleries');
+                resizeGameWindow('welcome');
+                updateHistoryButtons({});
+                flipart.audio.init(
+                        document.getElementById('audBackmusic')
+                        , document.getElementById('audFlip')
+                        , document.getElementById('audSolved')
+                        );
 
-				$('#dActions').mousedown(function (event) {
-					flipart.mouseMoves.down(event);
-				})
-						.mousemove(function (event) {
-							flipart.mouseMoves.move(event);
-						})
-						.mouseup(function (event) {
-							flipart.mouseMoves.up(event);
-						});
-				$('#imBack').click(function () {
-					onGameAction('back');
-				});
-				$('#imForward').click(function () {
-					onGameAction('forward');
-				});
-				flipart.integration.notify(flipart.integration.events.pageLoaded);
-			});
-			function onGameAction(phase) {
-				switch (phase) {
-					case 'firstStart':
-						displayGameWindow('dChoice');
-						break;
-					case 'easy':
-					case 'normal':
-					case 'hard':
-						flipart.init();
-						playSingle({difLevel: phase});
-						break;
-					case 'restart':
-						flipart.init();
-						playSingle({restart: true});
-						break;
-					case 'next':
-						flipart.init();
-						playSingle({next: true});
-						break;
-					case 'back':
-						var bfEnabled=flipart.moveHistory(true);
-						updateHistoryButtons(bfEnabled);
-						break;
-					case 'forward':
-						var bfEnabled=flipart.moveHistory(false);
-						updateHistoryButtons(bfEnabled);
-						break;
-					case 'exit':
-						//document.location.reload();
-						flipart.audio.stop();
-						displayGameWindow('dWelcome');
-						break;
-					case 'closeSolved':
-						$('#dSolved').hide();
-						break;
-					case 'pauseMusic':
-						flipart.audio.toogleMusic();
-						break;
-					case 'instructions':
-						$('#dGameWindow').addClass('nobackground');
-						displayGameWindow('dInstructions');
-						break;
-					case 'backToGame':
-						$('#dGameWindow').removeClass('nobackground');
-						displayGameWindow('dWelcome');
-						break;
-					case 'highScores':
-						break;
-					case 'inviteFriends':
-						flipart.integration.notify(flipart.integration.events.inviteFriends);
-						break;
-				}
-			}
+                $('#dActions').mousedown(function (event) {
+                    flipart.mouseMoves.down(event);
+                })
+                        .mousemove(function (event) {
+                            flipart.mouseMoves.move(event);
+                        })
+                        .mouseup(function (event) {
+                            flipart.mouseMoves.up(event);
+                        });
+                $('#imBack').click(function () {
+                    onGameAction('back');
+                });
+                $('#imForward').click(function () {
+                    onGameAction('forward');
+                });
+                flipart.integration.notify(flipart.integration.events.pageLoaded);
+            });
+            function onGameAction(phase) {
+                switch (phase) {
+                    case 'firstStart':
+                        displayGameWindow('dChoice');
+                        break;
+                    case 'easy':
+                    case 'normal':
+                    case 'hard':
+                        flipart.init();
+                        playSingle({difLevel: phase});
+                        break;
+                    case 'restart':
+                        flipart.init();
+                        playSingle({restart: true});
+                        break;
+                    case 'next':
+                        flipart.init();
+                        playSingle({next: true});
+                        break;
+                    case 'back':
+                        var bfEnabled = flipart.moveHistory(true);
+                        updateHistoryButtons(bfEnabled);
+                        break;
+                    case 'forward':
+                        var bfEnabled = flipart.moveHistory(false);
+                        updateHistoryButtons(bfEnabled);
+                        break;
+                    case 'exit':
+                        //document.location.reload();
+                        flipart.audio.stop();
+                        displayGameWindow('dWelcome');
+                        break;
+                    case 'closeSolved':
+                        $('#dSolved').hide();
+                        break;
+                    case 'pauseMusic':
+                        flipart.audio.toogleMusic();
+                        break;
+                    case 'instructions':
+                        $('#dGameWindow').addClass('nobackground');
+                        displayGameWindow('dInstructions');
+                        break;
+                    case 'backToGame':
+                        $('#dGameWindow').removeClass('nobackground');
+                        displayGameWindow('dWelcome');
+                        break;
+                    case 'highScores':
+                        displayGameWindow('dHighscores');
+						flipart.integration.notify(flipart.integration.events.showHighscores, $('#dHighscores table tbody.hscores'));
+                        break;
+                    case 'inviteFriends':
+                        flipart.integration.notify(flipart.integration.events.inviteFriends);
+                        break;
+                }
+            }
         </script>
 
         <link href="css/bootstrap.css" rel="stylesheet">
@@ -300,6 +303,31 @@
 					<div class="back center-block text-center"><a href="javascript:onGameAction('backToGame');">Back to game</a></div>
 				</div>
 			</div>
+			<div id="dHighscores" class="gamediv" >
+				<div class="center-block">
+					<h2>Highscores</h2>
+					<div class="hscores">
+						<table>
+							<thead>
+								<tr><th></th><th></th><th>Points</th><th>Level</th></tr>
+							</thead>
+							<tbody class="hscores">
+							</tbody>
+						</table>
+						<script id="temHighscores" type="text/template" >
+						<tr class="hscore">
+						<td class="picture"><img src="<%=picture%>" /></td>
+							<td class="name"><%=name%></td>
+							<td class="points"><%=points%></td>
+							<td class="level"><%=level%></td>
+						</tr>
+				        </script>
+					</div>
+					<div class="back center-block text-right">
+						<a href="javascript:onGameAction('backToGame');">Back to game</a>
+					</div>
+				</div>
+			</div>
         </div>
 
 		<div id="dAudio" style="display1: none">
@@ -310,22 +338,22 @@
 
         <!--GOOGLE ANALYTICS -->
         <script>
-			if (location.origin.indexOf('komante.com')>=0) {
-				(function (i, s, o, g, r, a, m) {
-					i['GoogleAnalyticsObject']=r;
-					i[r]=i[r]||function () {
-						(i[r].q=i[r].q||[]).push(arguments)
-					}, i[r].l=1*new Date();
-					a=s.createElement(o),
-							m=s.getElementsByTagName(o)[0];
-					a.async=1;
-					a.src=g;
-					m.parentNode.insertBefore(a, m)
-				})(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+            if (location.origin.indexOf('komante.com') >= 0) {
+                (function (i, s, o, g, r, a, m) {
+                    i['GoogleAnalyticsObject'] = r;
+                    i[r] = i[r] || function () {
+                        (i[r].q = i[r].q || []).push(arguments)
+                    }, i[r].l = 1 * new Date();
+                    a = s.createElement(o),
+                            m = s.getElementsByTagName(o)[0];
+                    a.async = 1;
+                    a.src = g;
+                    m.parentNode.insertBefore(a, m)
+                })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
-				ga('create', 'UA-54433162-1', 'auto');
-				ga('send', 'pageview');
-			}
+                ga('create', 'UA-54433162-1', 'auto');
+                ga('send', 'pageview');
+            }
         </script>
 
         <script id="ttile" type="text/template" data-tileid="tile_i<%=i%>j<%=j%>">
