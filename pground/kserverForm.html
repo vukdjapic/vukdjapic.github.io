@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Flipart proba</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div>
+            <br />
+            userLogin
+            <form action="//localhost:8080/kserver/flipart/userLogin">
+                <br/>method<input type="text" name="method" value="" />
+                <br/>id<input type="text" name="id" value="" />
+                <br/>name<input type="text" name="name" value="" />
+                <br/>fullName<input type="text" name="fullName" value="" />
+                <br/>firstName<input type="text" name="firstName" value="" />
+                
+                <br/><input type="submit" value="Submit" />
+            </form>
+            <br />
+            gameFinished
+            <form action="//localhost:8080/kserver/flipart/gameFinished">
+                <br />trans<input type="text" name="transformations" value="[]" />
+                <br />isBack<input type="text" name="isBack" value="false" />
+                
+                <br/><input type="submit" value="Submit" />
+            </form>
+            
+            <br />
+            newgame
+            <form action="//localhost:8080/kserver/flipart/newgame">
+                
+                
+                <br/><input type="submit" value="Submit" />
+            </form>
+          
+            <br />
+			state
+            <form action="//localhost:8080/kserver/flipart/getSessionStateZ">               
+                <br/><input type="submit" value="Submit" />
+            </form>
+          
+            <br />
+			high scores
+            <form action="//localhost:8080/kserver/flipart/highScores">               
+                <br/><input type="submit" value="Submit" />
+            </form>
+
+        </div>
+    </body>
+</html>
