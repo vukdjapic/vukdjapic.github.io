@@ -1,8 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-	
-
-
 	<head>
 		<title>Komante software solutions web games applications</title>
 		<meta charset="UTF-8">
@@ -66,6 +63,21 @@
 		</style>
 	</head>
 	<body class="scrollingBackground">
+		
+		
+		<!-- FACEBOOK COMMENTS -->
+		<div id="fb-root"></div>
+		<script>(function(d, s, id) {
+		  var js, fjs = d.getElementsByTagName(s)[0];
+		  if (d.getElementById(id)) return;
+		  js = d.createElement(s); js.id = id;
+		  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.4&appId=117313081669978";
+		  fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));</script>	
+	
+	
+	
+	
 		<div style="position: fixed; width: 100%;">
 			<div id="navHor" class="navtop container" style="" >
 				<ul class="nav nav-pills navbar-default" >
@@ -86,10 +98,9 @@
 </h1>
 
 						<h3 class="tagline">
-								Making custom configuration for multiple environments  
+	Making custom configuration for multiple environments  
 	<br>and streamlining their build
 	<br>Example with Maven, Spring, and Java web application
-
 						</h3>
 						<!-- Nice place to describe your site in a sentence or two -->
 						<p></p>
@@ -100,7 +111,7 @@
 			</div>
 		</section>
 
-				<section id="secIntro">
+		<section id="secIntro">
 			<div class="container" >
 				<h2 class="col-md-10 col-md-offset-1 bmargin">The Problem</h2>
 				<div class="row">
@@ -258,7 +269,37 @@
 		</section>
 
 	
+		
 
+		
+		<section id="secComments">
+			<div class="container" >
+				<h2 class="col-md-10 col-md-offset-1 bmargin">Comments</h2>
+				<div class="row">
+					<div class="col-md-10 col-md-offset-1 backed">
+
+						<!-- FACEBOOK COMMENTS -->
+						<div class="fb-comments" data-href="http://komante.com/articles/automated_development_and_production_environments_configuration" 
+							data-width="100%" data-numposts="5"></div>	
+
+
+						<!-- DISQUS COMMENTS -->
+						<div id="disqus_thread"></div>
+							<script type="text/javascript">
+							    /* * * CONFIGURATION VARIABLES * * */
+							    var disqus_shortname = 'komante';
+							    
+							    /* * * DON'T EDIT BELOW THIS LINE * * */
+							    (function() {
+							        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+							        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+							        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+							    })();
+							</script>	
+					</div>
+				</div>
+			</div>
+		</section>			
 		
 		<script>
 			if (location.origin.indexOf('komante.com') >= 0) {
