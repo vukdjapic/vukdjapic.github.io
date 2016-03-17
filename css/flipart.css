@@ -54,6 +54,7 @@ img.logosmall {
     border-color: #656273;  /* #80488f #e0fa33, yellow sun #e8d15d */
     box-shadow: 0 0 20px 5px #34464A;
     position: relative;
+	overflow-y: hidden;
     background-color: white;
     background-image: url('../res/flipart/papertile.jpg');
     z-index: 2;
@@ -291,6 +292,7 @@ div.menu img:hover, div.menu a:hover, #dGameControls a:hover {
 }
 #dSolved div.gallery a {
 	font-weight: bold;
+	font-size: 1.3em;
 }
 #dNewPoints {
 	font-size: 25px;

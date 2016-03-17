@@ -1,7 +1,9 @@
 function displayGameWindow(b,a){$("div.gamediv").css("display","none");if(a){$("#"+b).css({display:"inline-block",width:"auto"})
-}else{$("#"+b).css("display","block")}}function displayHardLevels(){$("#dMenu").css({display:"none"});$("#dMenuLevel").css({display:"block"})
-}function displayGalleries(){var a=flipart.level||1;$("#dChoice span.level").html(a);displayGameWindow("dChoice")}function resizeGameWindow(a){var c=$("#dGameWindow");
-var b;switch(a){case"welcome":c.width(flipart.gwidth).height(flipart.gheight).css("top",""+(flipart.wheight-flipart.gheight)/2+"px");
+}else{$("#"+b).css("display","block")}}function displayDiffLevels(){$("#dMenu").css({display:"none"});$("#dMenuLevel").css({display:"block"})
+}function displayGalleries(){var a=flipart.level||0;a++;$("#dChoice span.level").html(a);displayGameWindow("dChoice")}function displayGalleriesAfterLevel(){$("#dGalleries .galleryImage a").attr("data-action","next");
+var a=$("#dGame"),b=$("#dChoice");a.css({position:"relative",top:0,left:0});b.css({top:flipart.fheight-10,position:"absolute",display:"block"});
+b.animate({top:0},{duration:1000,step:function(c,d){if(d.prop=="top"){a.css("top",c-flipart.fheight)}},complete:function(){this.style.position="static";
+a.css({position:"static"});displayGalleries()}})}function resizeGameWindow(a){var c=$("#dGameWindow");var b;switch(a){case"welcome":c.width(flipart.gwidth).height(flipart.gheight).css("top",""+(flipart.wheight-flipart.gheight)/2+"px");
 break;case"startsingle":b=flipart.gameOptions;if(b&&!b.absolute){}$("#dGameControls").css({"margin-left":(b.measures.w+1)+"px",height:(b.measures.h)+"px"});
 $("#dPictureFrame, #dGameControls").css("top",(flipart.gheight-b.measures.h)/2+"px");$("#dPictureFrame").width(b.measures.w).height(b.measures.h);
 $("#dLoading>div").css("margin-top",(b.measures.h/2-20)+"px");break;default:console.error("no phase for resize")}}function _populateTilesAndBlocks(h,l,c,m,a){var e,d;
