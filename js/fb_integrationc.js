@@ -15,7 +15,10 @@ if (typeof flipart == 'undefined' || !flipart.integration) {
              onChallenge();
         } else if(event == FI.events.showHighscores){
             loadHighScores(obj);
-        }       
+        } else if(event == FI.events.userLoggedIn) {
+			displayInitialMenu('dMenu');
+			renderPlayerData(obj);
+		}      
     }
 
     FI.add(FBcache);
@@ -33,6 +36,9 @@ if (typeof flipart == 'undefined' || !flipart.integration) {
 
         /* when fb api is not available, set dummy user for test purposes */
         setTimeout(function () {
+			if(flipart.profile !='dev'){		//be sure to use it only in dev env
+				return;
+			}
             if (!FBcache.me) {
                 console.log('No FB user. Using dummy local.');
                 FBcache.me = {
@@ -47,10 +53,10 @@ if (typeof flipart == 'undefined' || !flipart.integration) {
                         fullname: FBcache.me.name
                         , accessToken: FBcache.accessToken
                         , picture: "https://scontent.xx.fbcdn.net/hprofile-xft1/v/t1.0-1/c212.6.558.558/s50x50/10459920_10152580986564742_930615651060976411_n.jpg?oh=53c69234fcc1eb384e7dd176649229fb&oe=5763A48D"
-                    }, renderPlayerData);
+                    });
                 }
             }
-        }, 4000);
+        }, 1000);
     }
 
     function login(callback) {

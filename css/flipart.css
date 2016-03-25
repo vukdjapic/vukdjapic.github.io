@@ -34,11 +34,15 @@ div.menu {
     bottom: 30px;
     font-family: 'GameFont', sans-serif;
 }
-div.menu a {
+div.menu, div.menu a  {
     text-decoration: none;
     color: #656273;
     font-size: 53px;
     text-shadow: 0 5px 2px rgba(193, 193, 150, 0.73);
+}
+div.menu a.play{
+	color: #e8d15d;
+	text-shadow: -3px -3px 0 #656273, 1px -3px 0 #656273, -3px 3px 0 #656273, 3px 3px 0 #656273;	
 }
 img.logosmall {
     width: 100px;
@@ -78,7 +82,7 @@ div.menu img:hover, div.menu a:hover, #dGameControls a:hover {
     cursor: pointer;
     color: #e0fa33;
 }
-#dMenuLevel{
+#dWelcome div.menu ~ div.menu{
 	display: none;
 }
 
