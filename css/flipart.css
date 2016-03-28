@@ -41,6 +41,7 @@ div.menu, div.menu a  {
     text-shadow: 0 5px 2px rgba(193, 193, 150, 0.73);
 }
 div.menu a.play{
+	visibility: hidden;
 	color: #e8d15d;
 	text-shadow: -3px -3px 0 #656273, 1px -3px 0 #656273, -3px 3px 0 #656273, 3px 3px 0 #656273;	
 }

@@ -16,6 +16,9 @@ if (typeof flipart == 'undefined' || !flipart.integration) {
         } else if(event == FI.events.showHighscores){
             loadHighScores(obj);
         } else if(event == FI.events.userLoggedIn) {
+			if(obj.canContinue){
+				$('#dMenu a.play').css('visibility','visible');
+			}
 			displayInitialMenu('dMenu');
 			renderPlayerData(obj);
 		}      
