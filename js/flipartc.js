@@ -1,6 +1,6 @@
 function displayGameWindow(b,a){$("div.gamediv").css("display","none");if(a){$("#"+b).css({display:"inline-block",width:"auto"})
 }else{$("#"+b).css("display","block")}}function displayInitialMenu(a){$("div.menu").css({display:"none"});$("#"+a).fadeIn(1000)
-}function displayGalleriesChoice(b,a){if(b){$("#dGalleries .galleryImage a").attr("data-action",b)}$("#dChoice span.level").html(flipart.level);
+}function displayGalleriesChoice(b,a){if(b){$("#dGalleries .galleryImage a").not(".disabled").attr("data-action",b)}$("#dChoice span.level").html(flipart.level);
 if(a){var c=$("#dGame"),d=$("#dChoice");c.css({position:"relative",top:0,left:0});d.css({top:flipart.fheight-10,position:"absolute",display:"block"});
 d.animate({top:0},{duration:1000,step:function(e,f){if(f.prop=="top"){c.css("top",e-flipart.fheight)}},complete:function(){this.style.position="static";
 c.css({position:"static"});displayGameWindow("dChoice")}})}else{displayGameWindow("dChoice")}}function resizeGameWindow(a){var c=$("#dGameWindow");
@@ -26,13 +26,16 @@ displayGameWindow("dGame",true);flipart.mouseMoves.init("dActions");$("<img/>").
 _populateTilesAndBlocks(flipart.gameOptions,e,"dPictureFrame","dTiles","dBlocks");$("#dLoading").hide();document.getElementById("dLevel").innerHTML=flipart.level;
 document.getElementById("dScore").innerHTML=flipart.score;flipart.audio.startBackmusic()});var d=new Image();d.src=flipart.urls.thumbnail+"?t="+new Date().getTime()+"&uid="+flipart.sessionID;
 $("#dThumbnail").html(d)}).done(function(){flipart.integration.notify(flipart.integration.events.gameLoaded,{picwidth:flipart.gameOptions.measures.w})
-})}function loadGalleries(a){$.ajax(flipart.urls.galleries,{dataType:"json"}).done(function(g){var f,e;var b=g.galleries.length;
-var d=_.template($("#temGalleryImage").html());var c=$("#"+a+">div");c.html("");console.log("gal: "+g.galleries);for(f=0;
-f<b;f++){e=g.galleries[f];c.append(d({galleryName:e,gallerySrc:flipart.urls.base+"/galleryImage?gallery="+e}))}})}function puzzleSolvedNotify(){$.ajax(flipart.urls.gameFinished,{method:"POST",dataType:"JSON",data:{uid:flipart.sessionID,transformations:"["+flipart.transformations+"]",isBack:flipart.isBack}}).done(function(c){var b="You earned "+c.points+" points on this level",a=$("#dNewPoints table");
+})}function loadGalleries(a){$.ajax(flipart.urls.galleries,{dataType:"json",data:{uid:flipart.sessionID}}).done(function(g){var f,e;
+var b=g.galleries.length;var d=_.template($("#temGalleryImage").html());var c=$("#"+a+">div");c.html("");console.log("gal: "+g.galleries);
+for(f=0;f<b;f++){e=g.galleries[f];c.append(d({galleryName:e,gallerySrc:flipart.urls.base+"/galleryImage?gallery="+e}))}for(f=0;
+f<g.disabledGalleries.length;f++){e=g.disabledGalleries[f];$('div[data-gallery="'+e+'"]',c).addClass("disabled");$('.galleryImage a[data-gallery="'+e+'"]',c).addClass("disabled").attr("data-action","buy")
+}})}function puzzleSolvedNotify(){$.ajax(flipart.urls.gameFinished,{method:"POST",dataType:"JSON",data:{uid:flipart.sessionID,transformations:"["+flipart.transformations+"]",isBack:flipart.isBack}}).done(function(c){var b="You earned "+c.points+" points on this level",a=$("#dNewPoints table");
 a.find("tr:first-child .value").text(c.points);a.find("tr:last-child .value").text(c.bonus);if(c.isMinMoves&&c.bonus>0){a.find("tr:last-child").css("visibility","visible");
 if(!c.isBack){}else{}}else{a.find("tr:last-child").css("visibility","hidden")}a.css("visibility","visible");document.getElementById("dScore").innerHTML=c.score;
 flipart.level=c.level})}function userLoginNotify(d,f,a,b,e){var c={app:d,id:f,name:a};_.extend(c,b);$.ajax(flipart.urls.userLogin,{method:"POST",dataType:"JSON",data:c}).done(function(g){if(g.status=="OK"){flipart.sessionID=g.uid;
-flipart.level=g.level}flipart.integration.notify(flipart.integration.events.userLoggedIn,g)})}var flipart={gwidth:null,gheight:null,wwidth:null,wheight:null,fwidth:null,fheight:null,urls:{},actions:{playsingle:"playsingle",startnew:"startnew","continue":"continue",instructions:"inst"},gameOptions:null,matrix:null,resultMatrix:null,level:null,numTransforms:null,transformations:[],transIndex:0,difLevel:null,selectedGallery:null,isBack:null,levelCompleted:null,init:function(){this.matrix=null;
+flipart.level=g.level;loadGalleries("dGalleries")}flipart.integration.notify(flipart.integration.events.userLoggedIn,g)})
+}var flipart={gwidth:null,gheight:null,wwidth:null,wheight:null,fwidth:null,fheight:null,urls:{},actions:{playsingle:"playsingle",startnew:"startnew","continue":"continue",instructions:"inst"},gameOptions:null,matrix:null,resultMatrix:null,level:null,numTransforms:null,transformations:[],transIndex:0,difLevel:null,selectedGallery:null,isBack:null,levelCompleted:null,init:function(){this.matrix=null;
 this.transformations=[];this.transIndex=0;this.isBack=false;this.levelCompleted=false},computeSize:function(b,c,a){var g=0.95;
 var i=0.75;var j=this.wwidth=b;var e=this.wheight=c;i=e/j;if(i<=0.7){i=0.7}else{if(i>=1){i=1}}j*=g;e*=g;var f=e/i;var d=j*i;
 if(f<j){this.gwidth=f;this.gheight=e}else{this.gwidth=j;this.gheight=d}this.gwidth=Math.floor(this.gwidth);this.gheight=Math.floor(this.gheight);
@@ -77,5 +80,9 @@ this.flipmusic=a;this.solvedmusic=b;this.backmusic.volume=0.1;this.flipmusic.vol
 this.solvedmusic.play()},toogleMusic:function(){if(this.backmusic.paused){this.backmusic.play()}else{this.backmusic.pause()
 }this.turnedOff=!this.turnedOff},stop:function(){this.backmusic.pause();this.backmusic.currentTime=0}};flipart.integration={integrators:[],events:{pageLoaded:"pageLoaded",gameLoaded:"gameLoaded",inviteFriends:"inviteFriends",showHighscores:"showHighscores",userLoggedIn:"userLoggedIn"},notify:function(b,c){var a;
 for(a=0;a<this.integrators.length;a++){this.integrators[a].receive(b,c)}},add:function(a){this.integrators.push(a)},flipartAction:function(c,a,b){}};
-function transformation(c,d,a,b,e){this.row1=c;this.col1=d;this.row2=a;this.col2=b;this.isHorizontal=e}transformation.prototype.toString=function(){return JSON.stringify(this)
+flipart.buy={init:function(a){document.getElementById("imBuy").src=flipart.urls.base+"/galleryImage?gallery="+a;$("#dBuy div.galleryText").text(a);
+$("#dBuy span.gallery").text(a);$("#dBuy div.preview img").each(function(b){this.src=flipart.urls.thumbPreview+"?gallery="+a+"&number="+b
+})},buyContinue:function(){var a=document.forms.fBuy.raAmount,b,c;jrac=$("#dBuy form input[name=raAmount]:checked");if(jrac.length){alert("Thank you for choosing Flipico. You selected option "+jrac.val()+". This functionality is not available yet.")
+}else{alert("Please select buying option.")}for(b=0;b<a.length;b++){if(a[b].checked){c=a[b]}}}};function transformation(c,d,a,b,e){this.row1=c;
+this.col1=d;this.row2=a;this.col2=b;this.isHorizontal=e}transformation.prototype.toString=function(){return JSON.stringify(this)
 };
