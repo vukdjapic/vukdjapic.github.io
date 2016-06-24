@@ -5,10 +5,7 @@
 
 /* External styles ***************/
 
-.navbar-default {
-    background-color:  rgba(248,248,248,0.2);
-    background-image: none;
-}
+
 .nav-pills > li.active > a,
 .nav-pills > li.active > a:hover,
 .nav-pills > li.active > a:focus {
@@ -22,6 +19,17 @@
     float: right;
     margin-right: 5px;
 }
+
+.navbar-default {
+	background-image: linear-gradient(to bottom, #fff 0%, #eee 100%);
+}
+@media (min-width: 768px) {
+.navbar-default {
+    background-color:  rgba(248,248,248,0.2);
+    background-image: none;
+}
+}
+
 /*************** External styles */
 
 

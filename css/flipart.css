@@ -34,11 +34,16 @@ div.menu {
     bottom: 30px;
     font-family: 'GameFont', sans-serif;
 }
-div.menu a {
+div.menu, div.menu a  {
     text-decoration: none;
     color: #656273;
     font-size: 53px;
     text-shadow: 0 5px 2px rgba(193, 193, 150, 0.73);
+}
+div.menu a.play{
+	visibility: hidden;
+	color: #e8d15d;
+	text-shadow: -3px -3px 0 #656273, 1px -3px 0 #656273, -3px 3px 0 #656273, 3px 3px 0 #656273;	
 }
 img.logosmall {
     width: 100px;
@@ -52,16 +57,36 @@ img.logosmall {
     border: "1px";
     border-style: solid;
     border-color: #656273;  /* #80488f #e0fa33, yellow sun #e8d15d */
-	box-shadow: 0 0 20px 5px #34464A;
+    box-shadow: 0 0 20px 5px #34464A;
     position: relative;
-	background-color: white;
-	background-image: url('../res/flipart/papertile.jpg');
-
+	overflow-y: hidden;
+    background-color: white;
+    background-image: url('../res/flipart/papertile.jpg');
+    z-index: 2;
 }
+#dGameWindow.nobackground{
+    background-image: none;
+    background-color: transparent;
+}
+#dGameWindow.nobackground > .background  {
+  position: absolute;
+  top: 0; 
+  left: 0;
+  width: 100%; 
+  height: 100%;  
+  opacity: 0.5; 
+  z-index: -1;
+  background-color: white;
+}
+
 div.menu img:hover, div.menu a:hover, #dGameControls a:hover {
     cursor: pointer;
     color: #e0fa33;
 }
+#dWelcome div.menu ~ div.menu{
+	display: none;
+}
+
 #dLogo{
 	position: relative;
 	margin-top: 10px;
@@ -85,6 +110,13 @@ div.menu img:hover, div.menu a:hover, #dGameControls a:hover {
     font-family: 'ControlsFont', sans-serif;
     font-size: 20px;
 }
+#dChoice>div.level {
+	padding: 50px 0px 80px;
+	color: #e8d15d;
+	font-family: 'ControlsFont', 'Comic Sans MS', sans-serif;
+	/* #e0fa33 , #e8d15d */
+	text-shadow: -3px -3px 0 #656273, 1px -3px 0 #656273, -3px 3px 0 #656273, 3px 3px 0 #656273;	
+}
 #dGalleries {
     padding: 5px;   
     height: 230px;
@@ -102,31 +134,73 @@ div.menu img:hover, div.menu a:hover, #dGameControls a:hover {
     overflow: hidden;
 }
 #dGalleries div.galleryImage:hover {
-    border: #e0fa33 2px solid;
-}
-#dGalleries div.galleryImage.selected {
     border: #656273 2px solid;
 }
-#dGalleries img {
+#dGalleries div.galleryImage.selected, #dBuy div.galleryImage {
+    border: #656273 2px solid;
+}
+#dGalleries img, #dBuy {
     width: 100%;
     height: 100%;
 }
-#dGalleries div.galleryImage a>div{
+#dGalleries div.galleryImage a>div, #dBuy div.galleryImage >div{
     width: 100%;
     height: 100%;
     position: absolute;
     top: 0px;
     left: 0px;
 }
-#dGalleries div.galleryText{
+#dGalleries div.galleryText, #dBuy div.galleryText{
     margin-top: 40%;
     font-size: 20px;
     font-family: 'ControlsFont', sans-serif;
-    color: #e0fa33;
+    color:  #e8d15d;
+	text-shadow: 0px 0px 1px #656273;	
+
 }
 #dGalleries div.galleryImage.selected div.galleryText{
     color: #656273;
 }
+#dGalleries div.disabled::after {
+	content: '';
+	background-image: url('../res/flipart/lock.png');
+    position: absolute;
+    bottom: 0px;
+	right: 0px;
+	width: 64px;
+	height: 64px;
+}
+
+#dBuy .title {
+    margin-top: 85px;
+    margin-bottom: 50px;
+	font-family: "ControlsFont",sans-serif;
+    background: rgba(0, 0, 0, 0) linear-gradient(#e8d15d, white) repeat scroll 0 0;
+    color: #656273;
+}
+#dBuy div.galleryImage {
+	width: 200px;
+	height: 200px;
+	margin: 40px auto;
+	overflow: hidden;
+	position: relative;
+}
+#dBuy div.container-fluid {
+	text-align: left;
+    font-family: "ControlsFont",sans-serif;
+}
+#dBuy div.preview>div {
+	margin-bottom: 10px;
+}
+#dBuy div.pics img{
+	/*width: 150px;*/
+	height: 100px;
+	margin-right: 10px;
+}
+#dBuy form {
+	font-family: Helvetica;
+}
+
 #dGameControls {
 	width: 150px;
     font-family: 'ControlsFont', sans-serif;
@@ -175,7 +249,7 @@ div.menu img:hover, div.menu a:hover, #dGameControls a:hover {
     height: 100%;
 }
 #dPictureFrame div.tile, #dPictureFrame div.block {
-    //background-image: url('/kserver/flipart/image.png');
+    /*background-image: url('/kserver/flipart/image.png'); */
     position: absolute;
 }
 #dPictureFrame div.block.selected {
@@ -231,6 +305,8 @@ div.menu img:hover, div.menu a:hover, #dGameControls a:hover {
 #dSolved div.front>div {
 	border: 2px solid #e0fa33;
 	border-radius: 5px;
+	position: relative;
+	box-sizing: content-box;
 }
 #dSolved div.front>div>div:first-child {
 	font-family: "ControlsFont",sans-serif;
@@ -238,10 +314,12 @@ div.menu img:hover, div.menu a:hover, #dGameControls a:hover {
 	color: #ffffff;
 	margin-top: 10%;
 }
-#dSolved div.front>div>div:last-child {
-	margin-top: 20px;
+#dSolved div.front div.actions {
+	qmargin-top: 20px;
+	position: relative;
+	bottom: 10px;
 }
-#dSolved div.front>div a {
+#dSolved div.front div.actions a {
 	font-size: 40px;
 	color: #e8d15d;
 	margin: 20px;
@@ -249,6 +327,17 @@ div.menu img:hover, div.menu a:hover, #dGameControls a:hover {
 #dSolved div.front>div a:hover {
 	text-decoration: none;
 	cursor: pointer;
+}
+#dSolved div.gallery {
+	position: absolute;
+	bottom: 2px;
+	height: 40px;
+	margin: 0 5px;
+	width: 100%;
+}
+#dSolved div.gallery a {
+	font-weight: bold;
+	font-size: 1.3em;
 }
 #dNewPoints {
 	font-size: 25px;
@@ -272,7 +361,7 @@ div.menu img:hover, div.menu a:hover, #dGameControls a:hover {
 	width: 140px;
 }
 
-#dInstructions {
+#dInstructions, #dBuy {
 	overflow-y: scroll;
 }
 #dInstructions>div:first-child {
@@ -282,17 +371,17 @@ div.menu img:hover, div.menu a:hover, #dGameControls a:hover {
 	width: 80%;
 	
 }
-#dInstructions div.back {
-	width: 80%;
+div > div.back {
 	margin-top: 50px;
 	margin-bottom: 50px;
+	width: 80%;
 }
-#dInstructions .back a {
+div > .back a {
 	color: #3A5978;
 	font-size: 1.5em;
 	font-family: "GameFont",sans-serif;
 }
-#dInstructions div.back a:hover {
+div > div.back a:hover {
 	color: #e0fa33;
 	text-decoration: none;
 }
@@ -322,7 +411,35 @@ div.menu img:hover, div.menu a:hover, #dGameControls a:hover {
 	margin-top: 10px;
 	margin-left: 10px;
 }
+#dFBInfo a {
+    float: right;
+    font-family: 'ControlsFont', 'Comic Sans MS', sans-serif;
+    font-weight: bold;
+}
+#dFBInfo .scoreInfo {
+	display:none;
+}
 
-#dFBInfo .spanInfo {
-	visibility: hidden;
+#dHighscores h2 {
+    padding-top: 20px;
+    font-family: "GameFont",sans-serif;
+}
+#dHighscores > div {
+    height: 100%;
+}
+#dHighscores div.hscores{
+    height: 65%;
+    overflow-y: scroll;
+}
+#dHighscores table {
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+}
+#dHighscores table td, #dHighscores table th{
+    padding: 8px 35px;
+    font-family: "ControlsFont",sans-serif;
+}
+#dHighscores table td.name {
+    padding: 8px 40px 8px 0px;
 }
