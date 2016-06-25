@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Komante products - Basic programming questions about java, db every developer should know
+</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="Independent software development. Applications, games, web solutions. Complete online comment solution, small Javascript HTML5 games, file searcher">
+		<meta name="keywords" content="  java, database, question, developer, test  ">
+
+
+		<script type="text/javascript" src="js/lib/jquery.js"></script>
+		<script src="js/lib/bootstrap.js"></script>
+		<script type="text/javascript" src="js/lib/jquery.colorbox.js"></script>
+		<script src="js/komante.js"></script>	
+
+
+		<link href="css/bootstrap.css" rel="stylesheet">
+		<link href="css/bootstrap-theme.css" rel="stylesheet">
+		<link href="css/komante.css" rel="stylesheet">
+		
+
+		<script type="text/javascript">
+			$.fn.colorbox.settings.transition ='none';
+			$.fn.colorbox.settings.maxWidth ='80%';
+			$.fn.colorbox.settings.maxHeight ='80%';
+			$.fn.colorbox.settings.onLoad =function(){
+				$('#cboxClose').addClass('btn btn-primary');
+			}
+		</script>
+		<script type="text/javascript">
+			$(function() {
+				$('a.colorbox').colorbox();
+			});
+
+			$(window).on('scroll', function() {
+				activateScrolledSection('sideList');
+			});
+		</script>
+		<style>
+			ul.features, dl.features {
+				margin-top: 40px;
+				list-style-type: square;
+			}
+			.dl-horizontal dt{
+				width: auto;
+			}
+			.dl-horizontal dd, .dl-horizontal dt {
+				padding-top: 10px;
+			}
+			.sidebar {
+				background-image: url("res/background.jpg");
+				background-color: #CCCCCC;
+			}
+			@media (min-width: 768px) {
+				.sidebar {
+					position: fixed;
+					top: 0;
+					left: 0;
+					bottom: 0;
+					z-index: 2;
+					display: block;
+					background-color: #CCCCCC;
+				}
+
+			}
+
+			#colorbox {
+				z-index: 100;
+			}
+			.backtitle {
+				width:107%; 
+				height:210px; 
+				position: relative; 
+				left: -16px;
+				border-top: 2px solid black; 
+				border-bottom: 2px solid black; 
+				padding-top:30px;
+				margin-bottom: 80px;
+			}
+
+		</style>
+	</head>
+	<body>
+
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-3 col-sm-3 col-xs-12 sidebar ">
+
+					<nav class="navbar-default center-block sidelist navtop" >
+						<ul  class="nav nav-pills nav-stacked" style="">
+							<li><a href="index.html"><strong>Komante</strong><br><small>Fun Solid Elegant</small></a></li>
+						</ul>
+					</nav>
+
+					<nav class="navbar-default center-block sidelist" style="margin-top: 100px;">
+						<ul id="sideList" class="nav nav-pills nav-stacked" style="">
+	<li><a href="#">Questions</a><hr style="margin: 0px auto; width: 90%; "></li>
+	<li><a href="#secIntro">Introduction</a></li>
+	<li><a href="#secJava">Java</a></li>
+	<li><a href="#secDB">Databases</a></li>
+
+						</ul>
+					</nav>
+				</div>
+				<div class="col-md-9 col-md-offset-3 col-sm-9 col-sm-offset-3 col-xs-12 " style="overflow-x: hidden;">
+					<div id="navHor" class="navtop"  >
+						<ul class="nav nav-pills navbar-default" >
+							<li><a href="//vuk.alwaysdata.net">Old website</a></li>
+							<li><a href="about">About</a></li>
+						</ul>
+						<div class="clearfix"></div>
+					</div>
+					<section class="section bg-primary backtitle" >
+	<h1 class="text-center ">Programming questions</h1>
+	<h3 class="text-center ">Every developer should know to answer</h3>
+					</section>
+
+	<section id="secIntro" class="section "  >
+		<div class="row">
+			<div class="col-md-offset-1 col-md-11">
+				<h3 class="subtitle">Introduction</h3>
+				<p><b>Basics first, then the rest.</b> This principle seems natural enough, but it's not always followed. The reason
+				might be impatience to go to the advanced level. And it is particularly important in software development. Because in
+				this area there are always new languages to learn, new libraries and tools to use, new approaches to apply. And if
+				we constantly learning new, it is easy to overlook what is beneath the new stuff, and beneath are the basics. 
+				<p>So, if I am Java programmer with ten years of experience, and want to ask myself, how well do I know Java? The main 
+				part of the answer would not be how many java libraries or tools I've use during that course 
+				(half of what is obsolete or forgotten). But how well do I know Java language itself and its basic classes. Something
+				that should be applied without using internet queries for usage.     
+				<p>And to know language well, we should test ourselves often against these basic things, and repeat it. 
+				Questions in this list are those we came upon during the time, or found on other web pages. We consider them
+				basic, for java, or databases. If you think you are proficient at these areas, have a try at them, and feel free 
+				to comment how well you pass it!
+				</p>					
+			</div>
+			
+		</div>
+
+	</section>
+	<section id="secJava" class="section "  >
+		<div class="row">
+			<div class="col-md-offset-1 col-md-11">
+				
+				<h3 class="subtitle">Java</h3>
+				
+			<dl>
+				<dt>
+				What is the ResourceBundle class?
+				<dd>
+					The ResourceBundle class is used to store locale-specific resources that can be loaded by a program to tailor the program’s appearance to the particular locale in which it is being run.
+				</dd>
+
+				<dt class="oop">
+				Describe the principles of OOPS.
+				<dd>
+					There are three main principals of oops which are called Polymorphism, Inheritance and Encapsulation.
+				</dd>
+
+				<dt>
+				Q: 	
+
+				What is the difference between an Interface and an Abstract class?
+				<dd>
+					A: 	An abstract class can have instance methods that implement a default behavior. An Interface can only declare constants and instance methods, but cannot implement default behavior and all methods are implicitly abstract. An interface has all public members and no implementation. An abstract class is a class which may have the usual flavors of class members (private, protected, etc.), but has some abstract methods.
+				</dd>
+
+				<dt>
+				What is implicit casting?
+				<dd>
+Implicit casting is the process of simply assigning one entity to another without any transformation guidance to the compiler. This type of casting is not permitted in all kinds of transformations and may not work for all scenarios.
+					<pre>
+Example
+
+int i = 1000;
+
+long j = i; //Implicit casting
+					</pre>
+				</dd>
+				<dt>
+				Is sizeof a keyword in java?
+				<dd>
+					The sizeof operator is not a keyword
+				</dd>
+
+				<dt>
+				What if I write static public void instead of public static void?
+				<dd>
+					Program compiles and runs properly.
+				</dd>
+
+				<dt>
+				What do you understand by numeric promotion?
+				<dd>
+					The Numeric promotion is the conversion of a smaller numeric type to a larger numeric type, so that integral and floating-point operations may take place. In the numerical promotion process the byte, char, and short values are converted to int values. The int values are also converted to long values, if necessary. The long and float values are converted to double values, as required.
+				</dd>
+				<dt>
+				How can I swap two variables without using a third variable?
+				<dd>
+Add two variables and assign the value into First variable. Subtract the Second value with the result Value. and assign to Second variable. Subtract the Result of First Variable With Result of Second Variable and Assign to First Variable. Example:
+					<pre>
+int a=5,b=10;
+a=a+b; 
+b=a-b; 
+a=a-b;
+
+An other approach to the same question
+
+You use an XOR swap.
+
+for example:
+
+int a = 5; int b = 10;
+a = a ^ b;
+b = a ^ b;
+a = a ^ b;
+					</pre></dd>
+
+
+
+					<dt>How to run a class from a jar file?
+					<dd>java -cp myjar.jar com.mypackage.myClass</dd>
+
+					<dt>
+				Does Map interface extends Collection ?
+				<dd>
+					No. Map instances have methods to return collection, entrySet(), keySet(), values().
+				</dd>
+
+				
+				<dt>Can you write: a) 'p'-'k' and whats the result? b) char c=77?
+				<dd>
+					a) Yes. Both are converted to int and result is int.
+					<br> b) Yes. Result is 'M'.
+				</dd>
+				
+				
+				<dt>How
+				<pre>
+for (String item : someList) {
+    System.out.println(item);
+}
+				</pre>
+				code works?
+				<dd>
+					It is equivalent to
+					<pre>
+for(Iterator<String> i = someList.iterator(); i.hasNext(); ) {
+    String item = i.next();
+    System.out.println(item);
+}						
+					</pre>
+				</dd>
+				
+				<dt>In
+				<pre>
+for(String s : myCollection.expensiveListGeneration()){
+      doSomething();
+}</pre>
+				how many times is expensiveListGeneration() invoked?
+				<dd>Once. See previous question.</dd>
+				
+				<dt> How for statement is executed?
+				<dd>
+					<pre>
+for (initialization; termination;
+     increment) {
+    statement(s)
+}						
+					</pre>
+					
+    The initialization expression initializes the loop; it's executed once, as the loop begins.
+    <br>When the termination expression evaluates to false, the loop terminates.
+    <br>The increment expression is invoked after each iteration through the loop; it is perfectly acceptable for this expression to increment or decrement a value.
+
+				</dd>
+
+				<dt>
+				How to remove a character from string?
+				<dd>
+					Cannot be done without creating ne string.
+					<br>occurrence - str.replace("char","")
+					<br>from position - str.substring(0, index) + str.substring(index+1)
+					<br>StringBuilder sb = new StringBuilder(str); sb.deleteCharAt(index); sb.toString();
+				</dd>
+				
+				<dt>
+				What are java system properties? How to set one?
+				<dd>
+					Those are properties initially set by JVM. They use dot notation, and some predefined are always set, like "java.version".
+					<pre>They are accessed through System.getProperties() and System.getProperty().
+					<pre>New property can be added with -D jvm argument, or with System.setProperty().
+				</dd>
+
+			</dl>				
+
+			</div>
+			
+		</div>
+
+	</section>
+	<section id="secDB" class="section "  >
+		<div class="row">
+			<div class="col-md-offset-1 col-md-11">
+				
+				<h3 class="subtitle">Databases</h3>
+                    <dl>
+                        <dt>How to create transaction with JDBC? 
+                        <dd>
+                            First disable auto commit. When a connection is created, it is in auto-commit mode.
+                            <pre>con.setAutoCommit(false);</pre>
+                             After the auto-commit mode is disabled, no SQL statements are committed until you call the method commit explicitly. All statements executed after the previous call to the method commit are included in the current transaction and committed together as a unit.
+                             <pre>con.commit();</pre>
+                        </dd>
+                        <dt>How to call stored procedure from Java?
+                        <dd>From Spring - class SimpleJdbcCall.
+                            <pre>Map outParams = jdbcCall.execute(inParams);</pre>
+                            With JDBC:
+                            <pre>cs = this.con.prepareCall("{call PROC_NAME()}");
+ResultSet rs = cs.executeQuery();
+                            </pre>
+                        </dd>
+						<dt>What are two roles of transaction?
+						<dd>Grouping statements together for execution as a unit, and help preserve the integrity of the data in a table (isolation levels are used for this).
+						</dd>
+						<dt>What are transaction's isolation levels?
+						<dd>
+						TRANSACTION_NONE<br>
+						TRANSACTION_READ_UNCOMMITTED just groups statements <br>
+						TRANSACTION_READ_COMMITTED prevents dirty reads<br>
+						TRANSACTION_REPEATABLE_READ prevents non-repeatable reads<br>
+						TRANSACTION_SERIALIZABLE prevents phantom reads
+						
+						<dt>What does rollback() do? Why is it needed?
+						<dd>
+							Rollback returns database to some previous clean state. It keeps database state consistent.
+							<br>So why it is needed if without commit no transaction operations will be stored in db?
+							<br>It ends transaction (like commit). It means it releases locks and leaves everything in clean state.
+							With open transaction, starting new one could first commit all previous actions.
+							
+						</dd>
+					</dl>
+			</div>			
+		</div>
+
+	</section>
+	
+	<script>
+		hideAnswersForQuestions();
+	</script>
+
+					<section id="secComments">
+						<div class="container" >
+							<h2 class="col-md-10 col-md-offset-1 bmargin">Comments</h2>
+							<div class="row">
+								<div class="col-md-10 col-md-offset-1 backed">
+			
+									<!-- FACEBOOK COMMENTS -->
+									<div class="fb-comments" data-href="http://komante.com/programming_questions" 
+										data-width="100%" data-numposts="5"></div>	
+			
+			
+									<!-- DISQUS COMMENTS -->
+									<div id="disqus_thread"></div>
+										<script type="text/javascript">
+										    /* * * CONFIGURATION VARIABLES * * */
+										    var disqus_shortname = 'komante';
+										    
+										    /* * * DON'T EDIT BELOW THIS LINE * * */
+										    (function() {
+										        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+										        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+										        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+										    })();
+										</script>	
+								</div>
+							</div>
+						</div>
+					</section>			
+				</div>
+			</div>
+		</div>
+
+		<!--GOOGLE ANALYTICS -->
+		<script>
+			if (location.origin.indexOf('komante.com') >= 0) {
+				(function(i, s, o, g, r, a, m) {
+					i['GoogleAnalyticsObject'] = r;
+					i[r] = i[r] || function() {
+						(i[r].q = i[r].q || []).push(arguments)
+					}, i[r].l = 1 * new Date();
+					a = s.createElement(o),
+							m = s.getElementsByTagName(o)[0];
+					a.async = 1;
+					a.src = g;
+					m.parentNode.insertBefore(a, m)
+				})(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+				ga('create', 'UA-54433162-1', 'auto');
+				ga('send', 'pageview');
+			}
+		</script>
+		
+	</body>
+</html>

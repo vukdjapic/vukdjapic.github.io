@@ -24,10 +24,10 @@
 	background-image: linear-gradient(to bottom, #fff 0%, #eee 100%);
 }
 @media (min-width: 768px) {
-.navbar-default {
-    background-color:  rgba(248,248,248,0.2);
-    background-image: none;
-}
+	.navbar-default {
+		background-color:  rgba(248,248,248,0.2);
+		background-image: none;
+	}
 }
 
 /*************** External styles */
@@ -81,3 +81,34 @@ h3.subtitle {
     position: relative;
     z-index: 95;
 }
+
+
+/*questions*/
+dt::after {
+	content: "";
+	display: block;	
+	height: 10px;
+	width: 10px;
+	Qmargin-bottom: 15px;
+}
+dt a {
+	font-weight: normal;
+}
+dd::after {
+	content: "";
+	display: block;	
+	height: 10px;
+	width: 10px;
+	border: solid 2px;
+	margin-bottom: 25px;
+}
+dd1::before {
+	content: "";
+	display: block;	
+	height: 30px;
+	width: 200px;
+	Qborder-top: solid 1px;				
+	margin-top:5px;
+}
+
+

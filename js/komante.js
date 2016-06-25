@@ -148,3 +148,12 @@ $4.submitMessage = function(form) {
 		}
 	});
 }
+
+function hideAnswersForQuestions(){
+	$('dd').hide();
+	$('dt').append('<a href="javascript:void(0)" onclick="showAnswerForQuestion(this)">Answer</a>');
+}
+
+function showAnswerForQuestion(elA){
+	$(elA.parentElement.nextSibling).show(500);
+}
