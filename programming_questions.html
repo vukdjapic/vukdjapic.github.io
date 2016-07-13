@@ -302,6 +302,106 @@ for (initialization; termination;
 					<pre>They are accessed through System.getProperties() and System.getProperty().
 					<pre>New property can be added with -D jvm argument, or with System.setProperty().
 				</dd>
+				
+				<dt>What are main methods in HttpServlet class to handle requests, and what parameters they receive? 
+				<dd>
+				Methods are doGet() and doPost() and they receive HttpServletRequest and HttpServletResponse objects
+				as parameters.
+				</dd>
+
+				<dt>How many times, when, and by who are called servlet's init() and destroy() methods? 
+				<dd>
+				They are called exactly once by servlet container. init() indicate to a servlet that the servlet is being 
+				placed into service, and destroy()  indicate to a servlet that the servlet is being taken out of service. 
+				</dd>
+
+				<dt>What happens if object's wait() method is called out of synchronized block?
+				<dd>
+				Program compiles but RuntimeException is thrown. wait() and notify() must be called from synchronized block 
+				with that object's monitor.
+				</dd>
+
+				<dt>In public static void main(String[] args) call, does args[0] contain class name or first parameter to program?
+				<dd>First parameter to program.
+				</dd>
+				
+				<dt>What levels of web application listeners exist and for what kind of events?
+				<dd>
+				There are two levels: servlet-context (application) and session level. Both can register listeners for
+				life cycle changes and attribute changes (4 listeners all together).
+				</dd>				
+
+				<dt>Does sleep() or interrupt() stop the thread?
+				<dd>No for both. sleep() pauses it, but thread does not lose ownership of any monitors. And interrupt()
+				just indicates to it that it should (probably) stop and return from run(). But it's up to thread to decide.
+				Either in catch block if it's in state which throws it, or by checking it's own isInterrupted() status.
+				</dd>				
+
+				<dt>If given are three classes, what would every assignment line produce (if run without other lines)?
+				<pre>
+class A{};
+class B extends A {};
+class C extends A {};
+
+A a=new A();
+B b=new B();
+C c=new C();
+a=b;	//1
+c=a;	//2
+b=(B)a;	//3
+b=(A)b;	//4				
+				</pre> 
+				<dd>
+				1 - OK. 2 - compile error. 3 - runtime exception. 4 - compile error.
+				</dd>				
+
+				<dt>In chained exception, how to get previous exception in chain? 
+				<dd>With getCause() method from Throwable.
+				</dd>				
+
+				<dt>Why SQLException has getNextException() method in addition to exception chaining?
+				<dd>Because SQL operation can fail for several independent reasons which are on the same level, none caused 
+				with another.
+				</dd>				
+
+				<dt>What are the differences between a HashMap and a Hashtable?
+				<dd>Hashtable is synchronized, HashMap is not.
+				<br>Hashtable does not allow null keys or values. HashMap allows one null key and any number of null values.
+				</dd>				
+
+				<dt>If synchronization is needed, which class is better option to use instead of HashMap and why?
+				<dd>ConcurrentHashMap, and not Hashtable or Collections.synchronizedMap(map). 
+				Because it avoid read locks and improves performance over other two. Hashtable and Collections.synchronizedMap(Map)
+				use the same simple synchronization, which means that only one thread can access the map at the same time. 
+				</dd>				
+
+				<dt>Which one (or both) is correct: <br>
+				public synchronized void  metod(){};
+				public void synchronized metod(){};
+				<dd>Just the first. Second is compile error.
+				</dd>				
+
+				<dt>In the following class, are two print statements correct?
+				<pre>
+class OC {
+	int i =12;
+	void ocm(){
+		int j =11;
+		class IC{
+			void icm(){
+				System.out.println(i);
+				System.out.println(j);
+			}
+		}
+	}
+}				
+				</pre> 
+				<dd>First one is correct, second is compile error. Which can be changed by adding final to j declaration.
+				</dd>				
+
+				<dt>
+				<dd>
+				</dd>				
 
 			</dl>				
 
