@@ -10,13 +10,13 @@ and open the template in the editor.
 
 @font-face {
     font-family: 'GameFont';
-    src: url('../res/font/ARCADE.TTF'); /* IE9 Compat Modes */
-    src: url('../res/font/ARCADE.TTF')  format('truetype'); /* Safari, Android, iOS */
+    src: url('../res/font/Carton_Six.ttf'); /* IE9 Compat Modes */		/* by Jayvee Enaguas, 100% free */
+    src: url('../res/font/Carton_Six.ttf')  format('truetype'); /* Safari, Android, iOS */
 }
 @font-face {
     font-family: 'ControlsFont';
-    src: url('../res/font/SFAtarianExtended.ttf'); /* IE9 Compat Modes */
-    src: url('../res/font/SFAtarianExtended.ttf')  format('truetype'); /* Safari, Android, iOS */
+    src: url('../res/font/Info.ttf'); /* IE9 Compat Modes */
+    src: url('../res/font/Info.ttf')  format('truetype'); /* Safari, Android, iOS */
 }
 .center {
     margin-left: auto;
@@ -55,13 +55,15 @@ img.logosmall {
 }
 #dGameWindow {
     border: "1px";
-    border-style: solid;
     border-color: #656273;  /* #80488f #e0fa33, yellow sun #e8d15d */
     box-shadow: 0 0 20px 5px #34464A;
     position: relative;
 	overflow-y: hidden;
-    background-color: white;
+    /*
+	background-color: white;
     background-image: url('../res/flipart/papertile.jpg');
+    border-style: solid;
+	*/
     z-index: 2;
 }
 #dGameWindow.nobackground{
@@ -189,6 +191,10 @@ div.menu img:hover, div.menu a:hover, #dGameControls a:hover {
 	text-align: left;
     font-family: "ControlsFont",sans-serif;
 }
+#dBuy div.container-fluid span {
+    font-style: italic;
+}
+
 #dBuy div.preview>div {
 	margin-bottom: 10px;
 }

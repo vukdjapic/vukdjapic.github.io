@@ -152,21 +152,24 @@ if (typeof flipart=='undefined'||!flipart.integration) {
 	}
 
 	function displayFacebookBuy(options) {
-		var requestId=FBcache.userID+'_'+options.gallery+'_'+options.value+'_'+new Date();
+		var requestId=options.gallery+'_'+FBcache.userID+'_'+options.value+'_'+new Date();
 		FB.ui({
 			method: 'pay',
 			action: 'purchaseitem',
 			//product: options.server+'/servercallback/fbflipico_coin',
-			product: 'http://komante.com/res/flipart/flipico_coin.html',
+			product: 'http://komante.com/res/flipart/facebook/flipico_coin.html',
 			quantity: options.value, // optional, defaults to 1
 			request_id: requestId // optional, must be unique for each payment
 		},
-		facebookBuyCallback
+		facebookBuyCallback(options.gallery)
 		);
 	}
 	
-	function facebookBuyCallback(response){
-		console.log('PAYMENTS RESPONSE: '+response);
+	function facebookBuyCallback(gallery, userID){
+		return function(response){
+			console.log('PAYMENTS RESPONSE FOR '+userID + ', gallery '+gallery);
+			console.log('RES: '+response);
+		}
 	}
 
 })(flipart.integration);
