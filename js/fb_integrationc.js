@@ -6,7 +6,7 @@ var FBcache={
 	facebook: true
 	, urls: {
 		flipicoCoin: 'http://komante.com/res/flipart/facebook/flipico_coin.html'
-		, paymentCallback: flipart.urls.server+'/servercallback/fbflipico_callback'
+		, paymentCallback: '/servercallback/fbflipico_callback'
 	}
 };
 
@@ -177,7 +177,7 @@ var FBcache={
 		return function (response) {
 			console.log('PAYMENTS RESPONSE FOR '+FBcache.userID+', gallery '+options.gallery);
 			console.log('RES: '+response);
-			$.ajax(FBcache.urls.paymentCallback, {
+			$.ajax(options.server + FBcache.urls.paymentCallback, {
 				dataType: 'json'
 				, method: 'POST'
 				, data: {
