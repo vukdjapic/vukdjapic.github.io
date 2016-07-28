@@ -1,8 +1,14 @@
-var FBcache={facebook: true};
-
 if (typeof flipart=='undefined'||!flipart.integration) {
 	throw "Flipart missing for FB integration";
 }
+
+var FBcache={
+	facebook: true
+	, urls: {
+		flipicoCoin: 'http://komante.com/res/flipart/facebook/flipico_coin.html'
+		, paymentCallback: flipart.urls.server+'/servercallback/fbflipico_callback'
+	}
+};
 
 (function (FI) {
 	FBcache.receive=function (event, obj) {
@@ -151,24 +157,38 @@ if (typeof flipart=='undefined'||!flipart.integration) {
 		});
 	}
 
+	/**when 'continue' on bying options is pressed, displays fb buy dialog */
 	function displayFacebookBuy(options) {
-		var requestId=options.gallery+'_'+FBcache.userID+'_'+options.value+'_'+new Date();
+		var requestId=options.sessionId+'_'+options.gallery+'_'+FBcache.userID+'_'+options.value+'_'+new Date().getTime();
 		FB.ui({
 			method: 'pay',
 			action: 'purchaseitem',
 			//product: options.server+'/servercallback/fbflipico_coin',
-			product: 'http://komante.com/res/flipart/facebook/flipico_coin.html',
+			product: FBcache.urls.flipicoCoin,
 			quantity: options.value, // optional, defaults to 1
 			request_id: requestId // optional, must be unique for each payment
 		},
-		facebookBuyCallback(options.gallery)
+			facebookBuyCallback(options)
 		);
 	}
-	
-	function facebookBuyCallback(gallery, userID){
-		return function(response){
-			console.log('PAYMENTS RESPONSE FOR '+userID + ', gallery '+gallery);
+
+	/**invoked from fb api, after buy is completed */
+	function facebookBuyCallback(options) {
+		return function (response) {
+			console.log('PAYMENTS RESPONSE FOR '+FBcache.userID+', gallery '+options.gallery);
 			console.log('RES: '+response);
+			$.ajax(FBcache.urls.paymentCallback, {
+				dataType: 'json'
+				, method: 'POST'
+				, data: {
+					sreq: response.signed_request
+					, gallery: options.gallery
+					, fbuserid: FBcache.userID
+					, uid: options.sessionId
+				}
+			}).done(function (data) {
+				
+			});
 		}
 	}
 
