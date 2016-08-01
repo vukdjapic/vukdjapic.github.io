@@ -6,7 +6,7 @@ var FBcache={
 	facebook: true
 	, urls: {
 		flipicoCoin: 'http://komante.com/res/flipart/facebook/flipico_coin.html'
-		, paymentCallback: '/servercallback/fbflipico_callback'
+		, paymentCallback: 'fbflipico_callback'
 	}
 };
 
@@ -159,14 +159,21 @@ var FBcache={
 
 	/**when 'continue' on bying options is pressed, displays fb buy dialog */
 	function displayFacebookBuy(options) {
-		var requestId=options.sessionId+'_'+options.gallery+'_'+FBcache.userID+'_'+options.value+'_'+new Date().getTime();
+		//var requestId=options.sessionId+'__'+options.gallery+'__'+FBcache.userID+'__'+options.value+'__'+new Date().getTime();
+		var requestId ={
+			uid: options.sessionId
+			, gallery: options.gallery
+			, fbuserId: FBcache.userID
+			, quantity: options.value
+			, time: new Date().getTime()
+		}
 		FB.ui({
 			method: 'pay',
 			action: 'purchaseitem',
 			//product: options.server+'/servercallback/fbflipico_coin',
 			product: FBcache.urls.flipicoCoin,
 			quantity: options.value, // optional, defaults to 1
-			request_id: requestId // optional, must be unique for each payment
+			request_id: JSON.stringify(requestId) // optional, must be unique for each payment
 		},
 			facebookBuyCallback(options)
 		);
