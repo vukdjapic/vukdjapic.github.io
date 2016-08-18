@@ -58,6 +58,8 @@ var FBcache={
 					, name: 'Вук Ђапић'
 					, accessToken: 'AAA1234'
 				};
+				FBcache.dummy=true;
+				FBcache.userID=4;
 				renderWelcome();
 				if (flipart) {
 					userLoginNotify('facebook', FBcache.me.id, FBcache.me.first_name, {
@@ -112,8 +114,11 @@ var FBcache={
 	}
 
 	function renderWelcome() {
+		/*
 		var fbdiv=$('#dFBInfo');
 		fbdiv.find('.first_name').html(FBcache.me.first_name);
+		*/
+		$('span.first_name').html(FBcache.me.first_name);
 		//welcome.find('.profile').attr('src', FBcache.me.picture.data.url);
 	}
 
@@ -160,12 +165,26 @@ var FBcache={
 	/**when 'continue' on bying options is pressed, displays fb buy dialog */
 	function displayFacebookBuy(options) {
 		//var requestId=options.sessionId+'__'+options.gallery+'__'+FBcache.userID+'__'+options.value+'__'+new Date().getTime();
-		var requestId ={
+		var requestId={
 			uid: options.sessionId
 			, gallery: options.gallery
 			, fbuserId: FBcache.userID
 			, quantity: options.value
 			, time: new Date().getTime()
+		}
+		if (flipart.profile=='dev'&&FBcache.dummy) {		//be sure to use it only in dev env
+			
+			 facebookBuyCallback(options)({
+			 "payment_id": 814634455333516,
+			 "amount": "1.00",
+			 "currency": "USD",
+			 "quantity": "2",
+			 "request_id": "{\"uid\":\"9d671d75-c4c9-49bf-8ac4-faeb5cfe9702\",\"gallery\":\"Nasa\",\"fbuserId\":\"10153595706859742\",\"quantity\":\"2\",\"time\":1470071268712}",
+			 "status": "completed",
+			 "signed_request": "ddDIN-KkjuEeHnGMKP0ma89UHQ9TlOGf75dn9dodAxY.eyJhbGdvcml0aG0iOiJITUFDLVNIQTI1NiIsImFtb3VudCI6IjEuMDAiLCJjdXJyZW5jeSI6IlVTRCIsImlzc3VlZF9hdCI6MTQ3MDA3MTI3NCwicGF5bWVudF9pZCI6ODE0NjM0NDU1MzMzNTE2LCJxdWFudGl0eSI6IjIiLCJyZXF1ZXN0X2lkIjoie1widWlkXCI6XCI5ZDY3MWQ3NS1jNGM5LTQ5YmYtOGFjNC1mYWViNWNmZTk3MDJcIixcImdhbGxlcnlcIjpcIk5hc2FcIixcImZidXNlcklkXCI6XCIxMDE1MzU5NTcwNjg1OTc0MlwiLFwicXVhbnRpdHlcIjpcIjJcIixcInRpbWVcIjoxNDcwMDcxMjY4NzEyfSIsInN0YXR1cyI6ImNvbXBsZXRlZCJ9"
+			 });
+			//afterBuyDialog({processingDone: true});
+			return;
 		}
 		FB.ui({
 			method: 'pay',
@@ -175,16 +194,16 @@ var FBcache={
 			quantity: options.value, // optional, defaults to 1
 			request_id: JSON.stringify(requestId) // optional, must be unique for each payment
 		},
-			facebookBuyCallback(options)
-		);
+		facebookBuyCallback(options)
+				);
 	}
 
 	/**invoked from fb api, after buy is completed */
 	function facebookBuyCallback(options) {
 		return function (response) {
-			console.log('PAYMENTS RESPONSE FOR '+FBcache.userID+', gallery '+options.gallery);
-			console.log('RES: '+response);
-			$.ajax(options.server + FBcache.urls.paymentCallback, {
+			FI.flipartAction('afterBuyProcessing', FBcache);
+			console.log('PAYMENTS RESPONSE FOR '+FBcache.userID+', gallery '+options.gallery+', RES: '+response);
+			$.ajax(options.server+'/'+FBcache.urls.paymentCallback, {
 				dataType: 'json'
 				, method: 'POST'
 				, data: {
@@ -193,8 +212,10 @@ var FBcache={
 					, fbuserid: FBcache.userID
 					, uid: options.sessionId
 				}
-			}).done(function (data) {
-				
+			}).done(function (data) {	//TODO check status from data
+				FI.flipartAction('afterBuyDone', FBcache);
+			}).fail( function(data){
+				console.log('Failed with: '+data)
 			});
 		}
 	}

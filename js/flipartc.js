@@ -79,10 +79,13 @@ this.flipmusic=a;this.solvedmusic=b;this.backmusic.volume=0.1;this.flipmusic.vol
 },startBackmusic:function(){if(!this.turnedOff){this.backmusic.play()}},flip:function(){this.flipmusic.play()},solve:function(){this.backmusic.pause();
 this.solvedmusic.play()},toogleMusic:function(){if(this.backmusic.paused){this.backmusic.play()}else{this.backmusic.pause()
 }this.turnedOff=!this.turnedOff},stop:function(){this.backmusic.pause();this.backmusic.currentTime=0}};flipart.integration={integrators:[],events:{pageLoaded:"pageLoaded",gameLoaded:"gameLoaded",inviteFriends:"inviteFriends",showHighscores:"showHighscores",userLoggedIn:"userLoggedIn",buyPressed:"buyPressed"},notify:function(b,c){var a;
-for(a=0;a<this.integrators.length;a++){this.integrators[a].receive(b,c)}},add:function(a){this.integrators.push(a)},flipartAction:function(c,a,b){}};
-flipart.buy={gallery:null,init:function(a){this.gallery=a;document.getElementById("imBuy").src=flipart.urls.base+"/galleryImage?gallery="+a;
-$("#dBuy div.galleryText").text(a);$("#dBuy span.gallery").text(a);$("#dBuy div.preview img").each(function(b){this.src=flipart.urls.thumbPreview+"?gallery="+a+"&number="+b
+for(a=0;a<this.integrators.length;a++){this.integrators[a].receive(b,c)}},add:function(a){this.integrators.push(a)},flipartAction:function(c,a,b){switch(c){case"afterBuyProcessing":flipart.buy.afterBuyProcessing(b);
+break;case"afterBuyDone":flipart.buy.afterBuyDone(b);break;default:console.log("No such action: "+c)}}};flipart.buy={gallery:null,init:function(a){this.gallery=a;
+$(".dbuy img.buy").each(function(){this.src=flipart.urls.base+"/galleryImage?gallery="+a});$(".dbuy div.galleryText").text(a);
+$(".dbuy span.gallery").text(a);$("#dBuy div.preview img").each(function(b){this.src=flipart.urls.thumbPreview+"?gallery="+a+"&number="+b
 })},buyContinue:function(){var a=document.forms.fBuy.raAmount,b,c,d;jrac=$("#dBuy form input[name=raAmount]:checked");if(jrac.length){d=jrac.val();
 flipart.integration.notify(flipart.integration.events.buyPressed,{server:flipart.urls.base,gallery:this.gallery,value:d,sessionId:flipart.sessionID})
-}else{alert("Please select buying option.")}}};function transformation(c,d,a,b,e){this.row1=c;this.col1=d;this.row2=a;this.col2=b;
+}else{alert("Please select buying option.")}},afterBuyProcessing:function(){displayGameWindow("dAfterBuy");$("div.afterbuyProcessing, div.afterbuyDone","#dAfterBuy").hide();
+$("#dAfterBuy div.afterbuyProcessing").fadeIn(1000)},afterBuyDone:function(a){displayGameWindow("dAfterBuy");$("#dAfterBuy div.afterbuyProcessing").hide();
+$("#dAfterBuy div.afterbuyDone").show()}};function transformation(c,d,a,b,e){this.row1=c;this.col1=d;this.row2=a;this.col2=b;
 this.isHorizontal=e}transformation.prototype.toString=function(){return JSON.stringify(this)};

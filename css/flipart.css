@@ -138,21 +138,21 @@ div.menu img:hover, div.menu a:hover, #dGameControls a:hover {
 #dGalleries div.galleryImage:hover {
     border: #656273 2px solid;
 }
-#dGalleries div.galleryImage.selected, #dBuy div.galleryImage {
+#dGalleries div.galleryImage.selected, .dbuy div.galleryImage {
     border: #656273 2px solid;
 }
-#dGalleries img, #dBuy {
+#dGalleries img, .dbuy {
     width: 100%;
     height: 100%;
 }
-#dGalleries div.galleryImage a>div, #dBuy div.galleryImage >div{
+#dGalleries div.galleryImage a>div, .dbuy div.galleryImage >div{
     width: 100%;
     height: 100%;
     position: absolute;
     top: 0px;
     left: 0px;
 }
-#dGalleries div.galleryText, #dBuy div.galleryText{
+#dGalleries div.galleryText, .dbuy div.galleryText{
     margin-top: 40%;
     font-size: 20px;
     font-family: 'ControlsFont', sans-serif;
@@ -173,29 +173,29 @@ div.menu img:hover, div.menu a:hover, #dGameControls a:hover {
 	height: 64px;
 }
 
-#dBuy .title {
+.dbuy .title {
     margin-top: 85px;
     margin-bottom: 50px;
 	font-family: "ControlsFont",sans-serif;
     background: rgba(0, 0, 0, 0) linear-gradient(#e8d15d, white) repeat scroll 0 0;
     color: #656273;
 }
-#dBuy div.galleryImage {
+.dbuy div.galleryImage {
 	width: 200px;
 	height: 200px;
 	margin: 40px auto;
 	overflow: hidden;
 	position: relative;
 }
-#dBuy div.container-fluid {
+.dbuy div.container-fluid {
 	text-align: left;
     font-family: "ControlsFont",sans-serif;
 }
-#dBuy div.container-fluid span {
+.dbuy div.container-fluid span {
     font-style: italic;
 }
 
-#dBuy div.preview>div {
+.dbuy div.preview>div {
 	margin-bottom: 10px;
 }
 #dBuy div.pics img{
@@ -367,7 +367,7 @@ div.menu img:hover, div.menu a:hover, #dGameControls a:hover {
 	width: 140px;
 }
 
-#dInstructions, #dBuy {
+#dInstructions, .dbuy {
 	overflow-y: scroll;
 }
 #dInstructions>div:first-child {
