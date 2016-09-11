@@ -1,0 +1,453 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Apr 4, 2015, 2:36:27 PM
+    Author     : vuk
+*/
+
+@font-face {
+    font-family: 'GameFont';
+    src: url('../res/font/Carton_Six.ttf'); /* IE9 Compat Modes */		/* by Jayvee Enaguas, 100% free */
+    src: url('../res/font/Carton_Six.ttf')  format('truetype'); /* Safari, Android, iOS */
+}
+@font-face {
+    font-family: 'ControlsFont';
+    src: url('../res/font/Info.ttf'); /* IE9 Compat Modes */
+    src: url('../res/font/Info.ttf')  format('truetype'); /* Safari, Android, iOS */
+}
+.center {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+div.gamediv {
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+#dMainMenu {
+	background-image: url('../res/flipartB/gradient-mainmenu.png');
+	background-size: 100%;
+}
+div.menu {
+    margin-top: 50px;
+    width: 100%;
+    bottom: 30px;
+    font-family: 'GameFont', sans-serif;
+}
+div.menu, div.menu a  {
+    text-decoration: none;
+    color: #656273;
+    font-size: 53px;
+    text-shadow: 0 5px 2px rgba(193, 193, 150, 0.73);
+}
+div.menu a.play{
+	visibility: hidden;
+	color: #e8d15d;
+	text-shadow: -3px -3px 0 #656273, 1px -3px 0 #656273, -3px 3px 0 #656273, 3px 3px 0 #656273;	
+}
+img.logosmall {
+    width: 100px;
+}
+#dBackground{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+body {
+	background-image: url("/kweb/res/flipartB/flipico-background.png");
+	background-repeat: repeat;
+}
+#dGameWindow {
+    position: relative;
+	//overflow-y: hidden;
+    /*
+	background-color: white;
+    background-image: url('../res/flipart/papertile.jpg');
+    border-style: solid;
+	*/
+    z-index: 2;
+}
+#dGameWindow.nobackground{
+    background-image: none;
+    background-color: transparent;
+}
+#dGameWindow.nobackground > .background  {
+  position: absolute;
+  top: 0; 
+  left: 0;
+  width: 100%; 
+  height: 100%;  
+  opacity: 0.5; 
+  z-index: -1;
+  background-color: white;
+}
+#dLogo {
+	height: 40%;
+}
+#dLogo img {
+	height: 100%;
+}
+
+div.menu img:hover, div.menu a:hover, #dGameControls a:hover {
+    cursor: pointer;
+    color: #e0fa33;
+}
+#dWelcome div.menu ~ div.menu{
+	display: none;
+}
+
+#dLogo div.background {
+	position: absolute;
+	width: 100%;
+	opacity: 0.5;
+}
+#dLogo div.background img {
+	width: 70%;
+}
+#dChoice>div:first-child {
+    padding: 10px;
+    text-align: left;
+    font-family: 'ControlsFont', sans-serif;
+    font-size: 20px;
+}
+#dChoice>div.level {
+	padding: 50px 0px 80px;
+	color: #e8d15d;
+	font-family: 'ControlsFont', 'Comic Sans MS', sans-serif;
+	/* #e0fa33 , #e8d15d */
+	text-shadow: -3px -3px 0 #656273, 1px -3px 0 #656273, -3px 3px 0 #656273, 3px 3px 0 #656273;	
+}
+#dGalleries {
+    padding: 5px;   
+    height: 230px;
+    background-color: #C1C0C7;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+#dGalleries div.galleryImage{
+    float: left;
+    position: relative;
+    width: 144px;
+    height: 144px;
+    margin: 5px;
+    border: 2px solid #C1C0C7;
+    overflow: hidden;
+}
+#dGalleries div.galleryImage:hover {
+    border: #656273 2px solid;
+}
+#dGalleries div.galleryImage.selected, .dbuy div.galleryImage {
+    border: #656273 2px solid;
+}
+#dGalleries img, .dbuy {
+    width: 100%;
+    height: 100%;
+}
+#dGalleries div.galleryImage a>div, .dbuy div.galleryImage >div{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+#dGalleries div.galleryText, .dbuy div.galleryText{
+    margin-top: 40%;
+    font-size: 20px;
+    font-family: 'ControlsFont', sans-serif;
+    color:  #e8d15d;
+	text-shadow: 0px 0px 1px #656273;	
+
+}
+#dGalleries div.galleryImage.selected div.galleryText{
+    color: #656273;
+}
+#dGalleries div.disabled::after {
+	content: '';
+	background-image: url('../res/flipart/lock.png');
+    position: absolute;
+    bottom: 0px;
+	right: 0px;
+	width: 64px;
+	height: 64px;
+}
+
+.dbuy .title {
+    margin-top: 85px;
+    margin-bottom: 50px;
+	font-family: "ControlsFont",sans-serif;
+    background: rgba(0, 0, 0, 0) linear-gradient(#e8d15d, white) repeat scroll 0 0;
+    color: #656273;
+}
+.dbuy div.galleryImage {
+	width: 200px;
+	height: 200px;
+	margin: 40px auto;
+	overflow: hidden;
+	position: relative;
+}
+.dbuy div.container-fluid {
+	text-align: left;
+    font-family: "ControlsFont",sans-serif;
+}
+.dbuy div.container-fluid span {
+    font-style: italic;
+}
+
+.dbuy div.preview>div {
+	margin-bottom: 10px;
+}
+#dBuy div.pics img{
+	/*width: 150px;*/
+	height: 100px;
+	margin-right: 10px;
+}
+#dBuy form {
+	font-family: Helvetica;
+}
+
+#dGameControls {
+	width: 150px;
+    font-family: 'ControlsFont', sans-serif;
+    font-size: 2.0em;
+    position: relative;
+    top: 0px;
+    color: #656273;
+}
+#dGameControls a {
+    color: inherit;
+    text-decoration: none;
+}
+#dGameControls .top {
+	font-size: 0.7em;
+}
+#dGameControls .top table {
+	margin-left: auto;
+	margin-right: auto;
+
+}
+#dGameControls .bottom {
+    position: absolute;
+	width: 100%;
+    bottom: 0px;
+}
+#dHistory img {
+    width:30px;
+}
+#dNext {
+    display: none;
+    opacity: 0;
+	color: #e8d15d;
+}
+#dNext img {
+    width: 80px;
+}
+
+#dPictureFrame {
+    position: relative;
+    float: left;
+    Qborder: solid blue 1px;
+}
+#dPictureFrame > div {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+#dPictureFrame div.tile, #dPictureFrame div.block {
+    /*background-image: url('/kserver/flipart/image.png'); */
+    position: absolute;
+}
+#dPictureFrame div.block.selected {
+    background-color: black;
+    opacity: 0.5;
+}
+#dActions div.flip {
+    display: none;
+    position: absolute;
+    text-align: center;
+    vertical-align: middle;
+}
+#dActions div.flip a {
+    color: yellow;
+    font-family: comic sans ms;
+    font-size: large;
+    font-style: italic;
+    Qfont-weight: bold;
+}
+#dActions div.flip img {
+    width: 30px;
+}
+#dActions div.flip img:hover {
+    border: 1px solid #285e8e;
+    background-color: yellow;
+
+}
+#dLoading {
+    background-color: #e0e0e8;
+}
+#dLoading >div{
+    text-align: center;
+    font-family: "ControlsFont", sans-serif;
+}
+#dSolved {
+	display:none;
+}
+#dSolved>div, #dSolved div.front>div  {
+	width: 100%;
+	height: 100%;
+}
+#dSolved div.background {
+	position:absolute;
+	background-color: black;
+	opacity: 0.5;
+	z-index: 1;
+}
+#dSolved div.front {
+	position: absolute;
+	z-index: 2;
+	padding: 10px;
+}
+#dSolved div.front>div {
+	border: 2px solid #e0fa33;
+	border-radius: 5px;
+	position: relative;
+	box-sizing: content-box;
+}
+#dSolved div.front>div>div:first-child {
+	font-family: "ControlsFont",sans-serif;
+	font-size: 50px;
+	color: #ffffff;
+	margin-top: 10%;
+}
+#dSolved div.front div.actions {
+	qmargin-top: 20px;
+	position: relative;
+	bottom: 10px;
+}
+#dSolved div.front div.actions a {
+	font-size: 40px;
+	color: #e8d15d;
+	margin: 20px;
+}
+#dSolved div.front>div a:hover {
+	text-decoration: none;
+	cursor: pointer;
+}
+#dSolved div.gallery {
+	position: absolute;
+	bottom: 2px;
+	height: 40px;
+	margin: 0 5px;
+	width: 100%;
+}
+#dSolved div.gallery a {
+	font-weight: bold;
+	font-size: 1.3em;
+}
+#dNewPoints {
+	font-size: 25px;
+	color: #c0c0c0;
+	visibility: hidden;
+}
+#dNewPoints table{
+	margin-left: auto;
+	margin-right: auto;
+}
+#imMusic {
+	width: 30px;
+}
+#dThumbnail{
+	position: absolute;
+	top: 30%;
+	left: 0px;
+}
+#dThumbnail img{
+	margin-left: 5px;
+	width: 140px;
+}
+
+#dInstructions, .dbuy {
+	overflow-y: scroll;
+}
+#dInstructions>div:first-child {
+	margin-top: 50px;
+	font-size: 2em;
+	font-family: Helvetica;
+	width: 80%;
+	
+}
+div > div.back {
+	margin-top: 50px;
+	margin-bottom: 50px;
+	width: 80%;
+}
+div > .back a {
+	color: #3A5978;
+	font-size: 1.5em;
+	font-family: "GameFont",sans-serif;
+}
+div > div.back a:hover {
+	color: #e0fa33;
+	text-decoration: none;
+}
+#dInstructions>div:first-child p {
+	font-size: 0.7em;
+	color: #3A5978;
+}
+#dInstructions img.logosmall{
+	width: 200px;
+}
+#dInstructions div.tutorial img {
+	width: 50%;
+	float: left;
+	margin: 0px 10px 10px 10px;
+}
+#dInstructions div.tutorial>div {
+	clear:both;
+	text-align: left;
+	margin-right: 10px;
+	font-size: 1.2em;
+}
+
+
+/*Facebook page styles */
+#dFBInfo {
+	position: absolute;
+	margin-top: 10px;
+	margin-left: 10px;
+}
+#dFBInfo a {
+    float: right;
+    font-family: 'ControlsFont', 'Comic Sans MS', sans-serif;
+    font-weight: bold;
+}
+#dFBInfo .scoreInfo {
+	display:none;
+}
+
+#dHighscores h2 {
+    padding-top: 20px;
+    font-family: "GameFont",sans-serif;
+}
+#dHighscores > div {
+    height: 100%;
+}
+#dHighscores div.hscores{
+    height: 65%;
+    overflow-y: scroll;
+}
+#dHighscores table {
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+}
+#dHighscores table td, #dHighscores table th{
+    padding: 8px 35px;
+    font-family: "ControlsFont",sans-serif;
+}
+#dHighscores table td.name {
+    padding: 8px 40px 8px 0px;
+}
