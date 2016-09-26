@@ -7,9 +7,10 @@ c.css({position:"static"});displayGameWindow("dChoice")}})}else{displayGameWindo
 var b;switch(a){case"welcome":c.width(flipart.gwidth).height(flipart.gheight).css("top",""+(flipart.wheight-flipart.gheight)/2+"px");
 break;case"startsingle":b=flipart.gameOptions;if(b&&!b.absolute){}$("#dGameControls").css({"margin-left":(b.measures.w+1)+"px",height:(b.measures.h)+"px"});
 $("#dPictureFrame, #dGameControls").css("top",(flipart.gheight-b.measures.h)/2+"px");$("#dPictureFrame").width(b.measures.w).height(b.measures.h);
-$("#dLoading>div").css("margin-top",(b.measures.h/2-20)+"px");break;default:console.error("no phase for resize")}}function _populateTilesAndBlocks(h,l,c,m,a){var e,d;
-var k=$("#"+c),m=$("#"+m),a=$("#"+a);var b=_.template($("#ttile").html());var f=_.template($("#tblock").html());var g=h.measures;
-m.text("");a.text("");for(e=0;e<g.n;e++){for(d=0;d<g.m;d++){m.append(b({i:e,j:d,w:g.tileWidth,h:g.tileHeight,top:e*g.tileHeight,left:d*g.tileWidth,pozx:-d*g.tileWidth,pozy:-e*g.tileHeight}));
+$("#dLoading>div").css("margin-top",(b.measures.h/2-20)+"px");$("#dGame>div.logo").height((flipart.gheight-b.measures.h)/2);
+break;default:console.error("no phase for resize")}}function _populateTilesAndBlocks(h,l,c,m,a){var e,d;var k=$("#"+c),m=$("#"+m),a=$("#"+a);
+var b=_.template($("#ttile").html());var f=_.template($("#tblock").html());var g=h.measures;m.text("");a.text("");for(e=0;
+e<g.n;e++){for(d=0;d<g.m;d++){m.append(b({i:e,j:d,w:g.tileWidth,h:g.tileHeight,top:e*g.tileHeight,left:d*g.tileWidth,pozx:-d*g.tileWidth,pozy:-e*g.tileHeight}));
 a.append(f({i:e,j:d,w:g.tileWidth,h:g.tileHeight,top:e*g.tileHeight,left:d*g.tileWidth}))}}$(".tile",m).css("background-image","url("+l+")")
 }function updateHistoryButtons(b){var a=document.getElementById("imBack");var c=document.getElementById("imForward");if(b.back){a.src=flipart.urls.staticPrefix+"res/flipart/arrow_back.png"
 }else{a.src=flipart.urls.staticPrefix+"res/flipart/arrow_back_d.png"}if(b.forward){c.src=flipart.urls.staticPrefix+"res/flipart/arrow_forward.png"
@@ -23,7 +24,7 @@ flipart.level=d.level;flipart.score=d.score;flipart.numTransforms=d.numTransform
 resizeGameWindow("startsingle");displayGameWindow("dGame",true);flipart.mouseMoves.init("dActions");$("<img/>").attr("src",e).load(function(){$(this).remove();
 _populateTilesAndBlocks(flipart.gameOptions,e,"dPictureFrame","dTiles","dBlocks");$("#dLoading").hide();document.getElementById("dLevel").innerHTML=flipart.level;
 document.getElementById("dScore").innerHTML=flipart.score;flipart.audio.startBackmusic()});var d=new Image();d.src=flipart.urls.thumbnail+"?t="+new Date().getTime()+"&uid="+flipart.sessionID;
-$("#dThumbnail").html(d)}).done(function(){flipart.integration.notify(flipart.integration.events.gameLoaded,{picwidth:flipart.gameOptions.measures.w})
+$("#dThumbnail").html(d)}).done(function(){flipart.integration.notify(flipart.integration.events.gameLoaded,{picwidth:flipart.gameOptions.measures.w,picheight:flipart.gameOptions.measures.h,gameheight:flipart.gheight})
 })}function loadGalleries(a){$.ajax(flipart.urls.galleries,{dataType:"json",data:{uid:flipart.sessionID}}).done(function(h){var g,f;
 var b=h.galleries.length;var d=_.template($("#temGalleryImage").html());var c=$("#"+a+">div");c.html("");console.log("gal: "+h.galleries);
 for(g=0;g<b;g++){f=h.galleries[g];c.append(d({galleryName:f,gallerySrc:flipart.urls.base+"/galleryImage?gallery="+f}))}for(g=0;

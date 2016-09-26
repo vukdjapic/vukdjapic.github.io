@@ -46,8 +46,8 @@ div.menu, div.menu a  {
 }
 div.menu a.play{
 	visibility: hidden;
-	color: #e8d15d;
-	text-shadow: -3px -3px 0 #656273, 1px -3px 0 #656273, -3px 3px 0 #656273, 3px 3px 0 #656273;	
+	color: white;
+	Qtext-shadow: -3px -3px 0 #656273, 1px -3px 0 #656273, -3px 3px 0 #656273, 3px 3px 0 #656273;	
 }
 img.logosmall {
     width: 100px;
@@ -85,21 +85,21 @@ body {
   z-index: -1;
   background-color: white;
 }
-div.logo {
-	height: 40%;
-}
 div.logo img {
 	height: 100%;
 }
 
 div.menu img:hover, div.menu a:hover, #dGameControls a:hover {
     cursor: pointer;
-    color: #e0fa33;
+    color: #004880;
 }
 #dWelcome div.menu ~ div.menu{
 	display: none;
 }
 
+#dChoice div.logo {
+	height: 40%;
+}
 #dChoice div.level {
 	float: left;
 	color: white;
@@ -165,7 +165,7 @@ div.menu img:hover, div.menu a:hover, #dGameControls a:hover {
 #dGalleries div.galleryImage.selected div.galleryText{
     color: #656273;
 }
-#dGalleries div.disabled::after {
+#dGalleries a.disabled::after {
 	content: '';
 	background-image: url('../res/flipart/lock.png');
     position: absolute;
@@ -208,31 +208,51 @@ div.menu img:hover, div.menu a:hover, #dGameControls a:hover {
 #dBuy form {
 	font-family: Helvetica;
 }
-
+#dGame {
+	position: relative;
+}
+#dGame div.logo {
+	position: absolute;
+	height: 100px;
+}
 #dGameControls {
 	width: 150px;
     font-family: 'ControlsFont', sans-serif;
     font-size: 2.0em;
     position: relative;
     top: 0px;
-    color: #656273;
+    color: white;
 }
 #dGameControls a {
     color: inherit;
     text-decoration: none;
 }
 #dGameControls .top {
-	font-size: 0.7em;
 }
 #dGameControls .top table {
+	font-size: 0.7em;
 	margin-left: auto;
 	margin-right: auto;
-
+}
+#dGameControls .top img {
+	width: 100px;
 }
 #dGameControls .bottom {
     position: absolute;
 	width: 100%;
     bottom: 0px;
+}
+#dGameControls > div.background {
+	position: absolute; 
+	top: -50px; 
+	bottom: -50px; 
+	right: 0px; 
+	z-index: -1;
+}
+#dGameControls > div.background img {
+	height: 100%;
+	display: inherit;
+	margin-left: auto;
 }
 #dHistory img {
     width:30px;
@@ -249,7 +269,7 @@ div.menu img:hover, div.menu a:hover, #dGameControls a:hover {
 #dPictureFrame {
     position: relative;
     float: left;
-    Qborder: solid blue 1px;
+    border: solid white 1px;
 }
 #dPictureFrame > div {
     position: absolute;
@@ -418,11 +438,13 @@ div > div.back a:hover {
 	position: absolute;
 	margin-top: 10px;
 	margin-left: 10px;
+	color: white;
 }
 #dFBInfo a {
     float: right;
     font-family: 'ControlsFont', 'Comic Sans MS', sans-serif;
     font-weight: bold;
+	color: white;
 }
 #dFBInfo .scoreInfo {
 	display:none;

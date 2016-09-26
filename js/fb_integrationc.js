@@ -16,7 +16,7 @@ var FBcache={
 		if (event==FI.events.pageLoaded) {
 			FBinit();
 		} else if (event==FI.events.gameLoaded) {
-			$('#dFBInfo').width(obj.picwidth-10);
+			$('#dFBInfo').width(obj.picwidth-10).css('top',(obj.gameheight + obj.picheight)/2);
 		} else if (event==FI.events.inviteFriends) {
 			onChallenge();
 		} else if (event==FI.events.showHighscores) {
