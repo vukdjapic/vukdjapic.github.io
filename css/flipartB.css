@@ -85,10 +85,10 @@ body {
   z-index: -1;
   background-color: white;
 }
-#dLogo {
+div.logo {
 	height: 40%;
 }
-#dLogo img {
+div.logo img {
 	height: 100%;
 }
 
@@ -100,42 +100,43 @@ div.menu img:hover, div.menu a:hover, #dGameControls a:hover {
 	display: none;
 }
 
-#dLogo div.background {
-	position: absolute;
-	width: 100%;
-	opacity: 0.5;
-}
-#dLogo div.background img {
-	width: 70%;
-}
-#dChoice>div:first-child {
-    padding: 10px;
-    text-align: left;
-    font-family: 'ControlsFont', sans-serif;
-    font-size: 20px;
-}
-#dChoice>div.level {
-	padding: 50px 0px 80px;
-	color: #e8d15d;
+#dChoice div.level {
+	float: left;
+	color: white;
 	font-family: 'ControlsFont', 'Comic Sans MS', sans-serif;
 	/* #e0fa33 , #e8d15d */
 	text-shadow: -3px -3px 0 #656273, 1px -3px 0 #656273, -3px 3px 0 #656273, 3px 3px 0 #656273;	
 }
+#dChoice div.level h1 {
+	margin: 0;
+}
+#dChoice div.topmenu{
+	position: absolute;
+	width: 100%;
+}
+#dChoice div.topmenu img {
+	max-width: 30%;
+}
+#dGalleryContainer {
+	background-image: url('../res/flipartB/gradient-galleries.png');
+	background-size: 100%;
+}
+#dGalleryContainer>div:first-child {
+	padding: 20px 0 30px 0;
+}
 #dGalleries {
     padding: 5px;   
     height: 230px;
-    background-color: #C1C0C7;
     overflow-y: auto;
-    overflow-x: hidden;
+    overflow-x: scroll;
 }
 #dGalleries div.galleryImage{
     float: left;
-    position: relative;
+	position: relative;
     width: 144px;
     height: 144px;
     margin: 5px;
     border: 2px solid #C1C0C7;
-    overflow: hidden;
 }
 #dGalleries div.galleryImage:hover {
     border: #656273 2px solid;
@@ -147,7 +148,7 @@ div.menu img:hover, div.menu a:hover, #dGameControls a:hover {
     width: 100%;
     height: 100%;
 }
-#dGalleries div.galleryImage a>div, .dbuy div.galleryImage >div{
+#dGalleries div.galleryImage a>div:first-child, .dbuy div.galleryImage >div:first-child{
     width: 100%;
     height: 100%;
     position: absolute;
@@ -155,10 +156,9 @@ div.menu img:hover, div.menu a:hover, #dGameControls a:hover {
     left: 0px;
 }
 #dGalleries div.galleryText, .dbuy div.galleryText{
-    margin-top: 40%;
     font-size: 20px;
     font-family: 'ControlsFont', sans-serif;
-    color:  #e8d15d;
+    color:  white;
 	text-shadow: 0px 0px 1px #656273;	
 
 }

@@ -201,6 +201,10 @@ var FBcache={
 	/**invoked from fb api, after buy is completed */
 	function facebookBuyCallback(options) {
 		return function (response) {
+			if(response.error_code){
+				console.log("Failed transaction. Code:"+ response.error_code+" "+response.error_message);
+				return;
+			}
 			FI.flipartAction('afterBuyProcessing', FBcache);
 			console.log('PAYMENTS RESPONSE FOR '+FBcache.userID+', gallery '+options.gallery+', RES: '+response);
 			$.ajax(options.server+'/'+FBcache.urls.paymentCallback, {
