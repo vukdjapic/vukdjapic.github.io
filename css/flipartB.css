@@ -18,6 +18,9 @@ and open the template in the editor.
     src: url('../res/font/Info.ttf'); /* IE9 Compat Modes */
     src: url('../res/font/Info.ttf')  format('truetype'); /* Safari, Android, iOS */
 }
+body {
+	color: white;
+}
 .center {
     margin-left: auto;
     margin-right: auto;
@@ -58,7 +61,7 @@ img.logosmall {
 	height: 100%;
 }
 body {
-	background-image: url("/kweb/res/flipartB/flipico-background.png");
+	background-image: url("../res/flipartB/flipico-background.png");
 	background-repeat: repeat;
 }
 #dGameWindow {
@@ -92,6 +95,10 @@ div.logo img {
 div.menu img:hover, div.menu a:hover, #dGameControls a:hover {
     cursor: pointer;
     color: #004880;
+}
+
+#dWelcome .logo {
+	height: 40%;
 }
 #dWelcome div.menu ~ div.menu{
 	display: none;
@@ -237,10 +244,14 @@ div.menu img:hover, div.menu a:hover, #dGameControls a:hover {
 #dGameControls .top img {
 	width: 100px;
 }
-#dGameControls .bottom {
+#dGameControls div.bottom {
     position: absolute;
 	width: 100%;
     bottom: 0px;
+	margin-left: 10px;
+}
+#dGameControls div.bottom img {
+	width: 140px;
 }
 #dGameControls > div.background {
 	position: absolute; 
@@ -376,9 +387,7 @@ div.menu img:hover, div.menu a:hover, #dGameControls a:hover {
 	margin-left: auto;
 	margin-right: auto;
 }
-#imMusic {
-	width: 30px;
-}
+
 #dThumbnail{
 	position: absolute;
 	top: 30%;
@@ -450,16 +459,21 @@ div > div.back a:hover {
 	display:none;
 }
 
-#dHighscores h2 {
-    padding-top: 20px;
-    font-family: "GameFont",sans-serif;
+#dHighscores div.logo {
+	height: 200px;
+	position: absolute;
+	top: -30px;
+	left: 0px;
 }
-#dHighscores > div {
-    height: 100%;
+#dHighscores > div:last-child {
+	margin-top: 70px;
+	background-image: url('../res/flipartB/gradient-scoreboard.png');
+    background-size: cover;
+	padding-top: 30px;
+	height: 75%;
 }
 #dHighscores div.hscores{
-    height: 65%;
-    overflow-y: scroll;
+    Qheight: 65%;
 }
 #dHighscores table {
     margin-top: 50px;
