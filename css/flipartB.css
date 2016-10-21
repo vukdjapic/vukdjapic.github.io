@@ -74,20 +74,7 @@ body {
 	*/
     z-index: 2;
 }
-#dGameWindow.nobackground{
-    background-image: none;
-    background-color: transparent;
-}
-#dGameWindow.nobackground > .background  {
-  position: absolute;
-  top: 0; 
-  left: 0;
-  width: 100%; 
-  height: 100%;  
-  opacity: 0.5; 
-  z-index: -1;
-  background-color: white;
-}
+
 div.logo img {
 	height: 100%;
 }
@@ -397,15 +384,8 @@ div.menu img:hover, div.menu a:hover, #dGameControls a:hover {
 	width: 140px;
 }
 
-#dInstructions, .dbuy {
+.dbuy {
 	overflow-y: scroll;
-}
-#dInstructions>div:first-child {
-	margin-top: 50px;
-	font-size: 2em;
-	font-family: Helvetica;
-	width: 80%;
-	
 }
 div > div.back {
 	margin-top: 50px;
@@ -439,7 +419,10 @@ div > div.back a:hover {
 	margin-right: 10px;
 	font-size: 1.2em;
 }
-
+#dInstructions div.content img.subtitle {
+	width: 90%;
+	margin: 40px 0;
+}
 
 /*Facebook page styles */
 #dFBInfo {
@@ -458,18 +441,19 @@ div > div.back a:hover {
 	display:none;
 }
 
-#dHighscores div.logo {
+#dHighscores div.logo, #dInstructions div.logo {
 	height: 200px;
 	position: absolute;
 	top: -30px;
 	left: 0px;
 }
-#dHighscores > div:last-child {
+#dHighscores div.content, #dInstructions div.content {
 	margin-top: 70px;
 	background-image: url('../res/flipartB/gradient-scoreboard.png');
     background-size: cover;
 	padding-top: 30px;
 	height: 75%;
+	overflow-y: auto;
 }
 #dHighscores div.hscores{
     Qheight: 65%;
