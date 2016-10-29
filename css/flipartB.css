@@ -18,8 +18,15 @@ and open the template in the editor.
     src: url('../res/font/Info.ttf'); /* IE9 Compat Modes */
     src: url('../res/font/Info.ttf')  format('truetype'); /* Safari, Android, iOS */
 }
+@font-face {
+    font-family: 'DinproBold';
+    src: url('../res/font/DINPro-Bold.otf'); /* IE9 Compat Modes */
+    src: url('../res/font/DINPro-Bold.otf')  format('truetype'); /* Safari, Android, iOS */
+}
+
 body {
 	color: white;
+	font-family: DinproBold;
 }
 .center {
     margin-left: auto;
@@ -299,11 +306,10 @@ div.menu img:hover, div.menu a:hover, #dGameControls a:hover {
 }
 #dActions div.flip img {
     width: 30px;
+	cursor: pointer;
 }
 #dActions div.flip img:hover {
-    border: 1px solid #285e8e;
-    background-color: yellow;
-
+    background-color: rgba(255,255,255,0.3);
 }
 #dLoading {
     background-color: #e0e0e8;
@@ -408,19 +414,33 @@ div > div.back a:hover {
 #dInstructions img.logosmall{
 	width: 200px;
 }
-#dInstructions div.tutorial img {
-	width: 50%;
-	float: left;
-	margin: 0px 10px 10px 10px;
-}
+
 #dInstructions div.tutorial>div {
 	clear:both;
 	text-align: left;
-	margin-right: 10px;
+	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 330px;
 	font-size: 1.2em;
 }
+#dInstructions div.tutorial div.step>img{
+	width: 45%;
+	margin: 0px 20px 30px 10px;
+	border: white solid 3px;
+	float: left;
+}
+#dInstructions div.tutorial div.step>div {
+	width: 40%;
+	display: inline-block;
+}
+#dInstructions div.tutorial div.step>div img {
+	margin: 5px 0 20px 0;
+	display: block;
+}
+
 #dInstructions div.content img.subtitle {
-	width: 90%;
+	width: 80%;
 	margin: 40px 0;
 }
 
@@ -452,7 +472,7 @@ div > div.back a:hover {
 	background-image: url('../res/flipartB/gradient-scoreboard.png');
     background-size: cover;
 	padding-top: 30px;
-	height: 75%;
+	height: 80%;
 	overflow-y: auto;
 }
 #dHighscores div.hscores{
