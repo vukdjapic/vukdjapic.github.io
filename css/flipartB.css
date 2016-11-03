@@ -121,6 +121,7 @@ div.menu img:hover, div.menu a:hover, #dGameControls a:hover {
 #dGalleryContainer {
 	background-image: url('../res/flipartB/gradient-galleries.png');
 	background-size: 100%;
+	width:80%;
 }
 #dGalleryContainer>div:first-child {
 	padding: 20px 0 30px 0;
@@ -129,7 +130,7 @@ div.menu img:hover, div.menu a:hover, #dGameControls a:hover {
     padding: 5px;   
     height: 230px;
     overflow-y: auto;
-    overflow-x: scroll;
+    overflow-x: auto;
 }
 #dGalleries div.galleryImage{
     float: left;
