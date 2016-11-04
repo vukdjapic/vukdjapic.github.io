@@ -143,7 +143,7 @@ div.menu img:hover, div.menu a:hover, #dGameControls a:hover {
 #dGalleries div.galleryImage:hover {
     border: #656273 2px solid;
 }
-#dGalleries div.galleryImage.selected, .dbuy div.galleryImage {
+#dGalleries div.galleryImage.selected {
     border: #656273 2px solid;
 }
 #dGalleries img, .dbuy {
@@ -186,18 +186,26 @@ div.menu img:hover, div.menu a:hover, #dGameControls a:hover {
     background: rgba(0, 0, 0, 0) linear-gradient(#e8d15d, white) repeat scroll 0 0;
     color: #656273;
 }
+.dbuy .sampletext {
+    font-size: 1.5em;
+}
+.dbuy img + .sampletext {
+    margin-top: 40px;
+}
+
+.dbuy .preview {
+	margin: 20px 0 0;
+}
+
 .dbuy div.galleryImage {
+	display: inline-block;
 	width: 200px;
 	height: 200px;
-	margin: 40px auto;
+	margin: 10px 10px;
+	border: 2px solid white;
 	overflow: hidden;
-	position: relative;
 }
-.dbuy div.container-fluid {
-	text-align: left;
-    font-family: "ControlsFont",sans-serif;
-}
-.dbuy div.container-fluid span {
+.dbuy span.gallery {
     font-style: italic;
 }
 
@@ -209,9 +217,35 @@ div.menu img:hover, div.menu a:hover, #dGameControls a:hover {
 	height: 100px;
 	margin-right: 10px;
 }
-#dBuy form {
-	font-family: Helvetica;
+#dBuy img.buyingoptions {
+	margin-top: 40px;
 }
+#dBuy form {
+	Qfont-family: Helvetica;
+	margin: 40px 0;
+}
+#dBuy img.continue {
+	margin: 40px 0 20px 0;
+}
+#dBuy input[type=radio   ]:not(old){
+	width   : 36px;
+	height: 36px;
+	margin  : 0;
+	padding : 0;
+	opacity : 0;
+}
+#dBuy input[type=radio   ]:not(old) + label{
+	display      : inline-block;
+	margin-left  : -36px;
+	padding-left : 50px;
+	background   : url('../res/flipartB/check-box-off.png') no-repeat 0 0;
+	line-height  : 36px;
+	vertical-align: bottom;
+}
+#dBuy input[type=radio]:not(old):checked + label{
+	background : url('../res/flipartB/check-box-on.png') no-repeat 0 0;
+}
+
 #dGame {
 	position: relative;
 }
@@ -391,9 +425,6 @@ div.menu img:hover, div.menu a:hover, #dGameControls a:hover {
 	width: 140px;
 }
 
-.dbuy {
-	overflow-y: scroll;
-}
 div > div.back {
 	margin-top: 50px;
 	margin-bottom: 50px;
@@ -462,19 +493,18 @@ div > div.back a:hover {
 	display:none;
 }
 
-#dHighscores div.logo, #dInstructions div.logo {
+#dHighscores div.logo, #dInstructions div.logo, #dBuy div.logo {
 	height: 200px;
 	position: absolute;
 	top: -30px;
 	left: 0px;
 }
-#dHighscores div.content, #dInstructions div.content {
+#dHighscores div.content, #dInstructions div.content, #dBuy div.content {
 	margin-top: 70px;
 	background-image: url('../res/flipartB/gradient-scoreboard.png');
     background-size: cover;
 	padding-top: 30px;
 	height: 80%;
-	overflow-y: auto;
 }
 #dHighscores div.hscores{
     Qheight: 65%;
