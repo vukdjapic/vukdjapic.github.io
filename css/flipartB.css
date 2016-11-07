@@ -82,7 +82,7 @@ body {
     z-index: 2;
 }
 
-div.logo img {
+div.logo img, div.topleftlogo img {
 	height: 100%;
 }
 
@@ -204,6 +204,13 @@ div.menu img:hover, div.menu a:hover, #dGameControls a:hover {
 	margin: 10px 10px;
 	border: 2px solid white;
 	overflow: hidden;
+}
+#dAfterBuy div.galleryImage {
+	display: block;
+	margin: 50px auto 20px;
+}
+#dAfterBuy .afterbuyDone a img {
+	margin: 30px;
 }
 .dbuy span.gallery {
     font-style: italic;
@@ -453,7 +460,7 @@ div > div.back a:hover {
 	width: 90%;
 	margin-left: auto;
 	margin-right: auto;
-	margin-bottom: 330px;
+	margin-bottom: 220px;
 	font-size: 1.2em;
 }
 #dInstructions div.tutorial div.step>img{
@@ -493,17 +500,19 @@ div > div.back a:hover {
 	display:none;
 }
 
-#dHighscores div.logo, #dInstructions div.logo, #dBuy div.logo {
+div.topleftlogo {
 	height: 200px;
 	position: absolute;
 	top: -30px;
 	left: 0px;
 }
-#dHighscores div.content, #dInstructions div.content, #dBuy div.content {
+#dHighscores div.content, #dInstructions div.content, #dBuy div.content , #dAfterBuy div.content {
 	margin-top: 70px;
 	background-image: url('../res/flipartB/gradient-scoreboard.png');
-    background-size: cover;
+    background-size: 100%;
 	padding-top: 30px;
+}
+#dHighscores div.content, #dInstructions div.content {
 	height: 80%;
 }
 #dHighscores div.hscores{
