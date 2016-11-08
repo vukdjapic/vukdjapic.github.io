@@ -209,6 +209,9 @@ div.menu img:hover, div.menu a:hover, #dGameControls a:hover {
 	display: block;
 	margin: 50px auto 20px;
 }
+#dAfterBuy .afterbuyDone {
+	font-size: larger;
+}
 #dAfterBuy .afterbuyDone a img {
 	margin: 30px;
 }
@@ -229,7 +232,7 @@ div.menu img:hover, div.menu a:hover, #dGameControls a:hover {
 }
 #dBuy form {
 	Qfont-family: Helvetica;
-	margin: 40px 0;
+	margin: 40px 0 0;
 }
 #dBuy img.continue {
 	margin: 40px 0 20px 0;
@@ -240,6 +243,7 @@ div.menu img:hover, div.menu a:hover, #dGameControls a:hover {
 	margin  : 0;
 	padding : 0;
 	opacity : 0;
+	float: none;
 }
 #dBuy input[type=radio   ]:not(old) + label{
 	display      : inline-block;
@@ -251,6 +255,12 @@ div.menu img:hover, div.menu a:hover, #dGameControls a:hover {
 }
 #dBuy input[type=radio]:not(old):checked + label{
 	background : url('../res/flipartB/check-box-on.png') no-repeat 0 0;
+}
+@media (min-width: 768px) {
+	#dBuy div.radio > div  {
+		display: inline-block;
+		margin: 0px 10px;
+	}
 }
 
 #dGame {
@@ -529,4 +539,11 @@ div.topleftlogo {
 }
 #dHighscores table td.name {
     padding: 8px 40px 8px 0px;
+}
+#buySelectSomething.modal {
+	overflow-y: hidden;
+}
+#buySelectSomething .modal-dialog {
+	margin-top: 35%;
+	color: black;
 }

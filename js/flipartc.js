@@ -87,7 +87,7 @@ $(".dbuy img.buy").each(function(){this.src=flipart.urls.base+"/galleryImage?gal
 $(".dbuy span.gallery").text(a);$("#dBuy div.preview img").each(function(b){this.src=flipart.urls.thumbPreview+"?gallery="+a+"&number="+b
 })},buyContinue:function(){var a=document.forms.fBuy.raAmount,b,c,d;jrac=$("#dBuy form input[name=raAmount]:checked");if(jrac.length){d=jrac.val();
 flipart.integration.notify(flipart.integration.events.buyPressed,{server:flipart.urls.base,gallery:this.gallery,value:d,sessionId:flipart.sessionID})
-}else{alert("Please select buying option.")}},afterBuyProcessing:function(){displayGameWindow("dAfterBuy");$("div.afterbuyProcessing, div.afterbuyDone","#dAfterBuy").hide();
+}else{$("#buySelectSomething").modal({show:true})}},afterBuyProcessing:function(){displayGameWindow("dAfterBuy");$("div.afterbuyProcessing, div.afterbuyDone","#dAfterBuy").hide();
 $("#dAfterBuy div.afterbuyProcessing").fadeIn(1000)},afterBuyDone:function(a){displayGameWindow("dAfterBuy");$("#dAfterBuy div.afterbuyProcessing").hide();
 $("#dAfterBuy div.afterbuyDone").show()}};function transformation(c,d,a,b,e){this.row1=c;this.col1=d;this.row2=a;this.col2=b;
 this.isHorizontal=e}transformation.prototype.toString=function(){return JSON.stringify(this)};
