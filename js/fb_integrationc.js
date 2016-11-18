@@ -217,9 +217,17 @@ var FBcache={
 					, uid: options.sessionId
 				}
 			}).done(function (data) {	//TODO check status from data
-				FI.flipartAction('afterBuyDone', FBcache);
-			}).fail( function(data){
-				console.log('Failed with: '+data)
+				if(data.status==='OK'){
+					FI.flipartAction('afterBuyDone', FBcache, options);					
+				} else {
+					alert('An error occured in processing. Please wait for a minute and reload.'
+						+' If you purchase isn\'t visible please contact suppport with error info: '
+						+JSON.stringify(data, null, 2));
+				}
+			}).fail( function(qXHR, textStatus, errorThrown){
+				alert('An error occured in processing. Please wait for a minute and reload.'
+						+' If you purchase isn\'t visible please contact suppport with error info: '
+						+textStatus+', '+errorThrown);
 			});
 		}
 	}

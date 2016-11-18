@@ -146,7 +146,7 @@ div.menu img:hover, div.menu a:hover, #dGameControls a:hover {
 #dGalleries div.galleryImage.selected {
     border: #656273 2px solid;
 }
-#dGalleries img, .dbuy {
+#dGalleries img, .dbuy div.galleryImage img {
     width: 100%;
     height: 100%;
 }
@@ -540,10 +540,10 @@ div.topleftlogo {
 #dHighscores table td.name {
     padding: 8px 40px 8px 0px;
 }
-#buySelectSomething.modal {
+div.modal {
 	overflow-y: hidden;
 }
-#buySelectSomething .modal-dialog {
+div.modal .modal-dialog {
 	margin-top: 35%;
 	color: black;
 }
