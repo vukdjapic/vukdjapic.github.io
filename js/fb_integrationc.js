@@ -141,10 +141,13 @@ var FBcache={
 			method: 'apprequests'
 			, title: 'Invite friends to join Flipico'
 		};
-		if (to)
+		if (to){
 			options.to=to;
-		if (message)
+		}
+		if (message){
 			options.message=message;
+			options.new_style_message=true;
+		}
 		FB.ui(options, function (response) {
 			if (callback)
 				callback(response);

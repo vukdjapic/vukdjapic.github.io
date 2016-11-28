@@ -522,8 +522,12 @@ div.topleftlogo {
     background-size: 100%;
 	padding-top: 30px;
 }
-#dHighscores div.content, #dInstructions div.content {
+#dInstructions div.content {
 	height: 80%;
+}
+#dHighscores div.content{
+    margin-bottom: 50px;
+    padding-bottom: 20px;
 }
 #dHighscores div.hscores{
     Qheight: 65%;
