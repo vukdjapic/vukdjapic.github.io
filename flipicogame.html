@@ -1,345 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <title>Flipico online puzzle game</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="Online free puzzle game. Flip image parts">
-        <meta name="keywords" content="game, play, flip, image, puzzle">
+<html>
+	<head>
+		<title>Flipico picture puzzle game, play now!
+</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="Play exciting Flipico game, reveal beutiful images hidden in picture puzzles">
+		<meta name="keywords" content="  game, puzzle, picture, flip, symetry  ">
 
 
-        <script type="text/javascript" src="js/lib/jquery.js"></script>
-        <script type="text/javascript" src="js/lib/underscore.js"></script>
+		<script type="text/javascript" src="js/lib/jquery.js"></script>
+		<script src="js/lib/bootstrap.js"></script>
+		<script src="js/komante.js"></script>	
 
-		<script type="text/javascript" src="js/flipart.js"></script>
 
-        <script type="text/javascript">
-			var protocol='http';
-			if (location.origin.indexOf('https')>=0) {
-				protocol='https';
+		<link href="css/bootstrap.css" rel="stylesheet">
+		<link href="css/bootstrap-theme.css" rel="stylesheet">
+		<link href="css/komante.css" rel="stylesheet">
+		
+
+		<script type="text/javascript">
+		</script>
+		<script type="text/javascript">
+
+		</script>
+		<style>
+			body {
+				width: 100%;
+				overflow: hidden;
 			}
-			if (location.origin.indexOf('komante.com')>=0) {
-				flipart.urls.base=protocol+'://api.komante.com/flipart';
-			} else if (location.origin.indexOf('api-komante.rhcloud.com')>=0) {
-				flipart.urls.base=protocol+'://api-komante.rhcloud.com/flipart';
-			} else {
-				flipart.urls.base='/kserver/flipart';
+
+			iframe {
+				width: 100%;
+				height: 100vh;
+				border: none;
 			}
 
-			flipart.urls.newgame=flipart.urls.base+'/newgame';
-			flipart.urls.nextgame=flipart.urls.base+'/nextgame';
-			flipart.urls.image=flipart.urls.base+'/image.jpg';
-			flipart.urls.galleries=flipart.urls.base+'/galleries';
-			flipart.urls.thumbnail=flipart.urls.base+'/thumbnail.png';
-			flipart.urls.gameFinished=flipart.urls.base+'/gameFinished';
-			flipart.urls.userLogin=flipart.urls.base+'/userLogin';
-			flipart.urls.highScores=flipart.urls.base+'/highScores';
-        </script>
-        <script type="text/javascript">
-
-			$(function () {
-				flipart.computeSize($(window).width(), $(window).height(), {vertical: 30, horizontal: $('#dGameControls').width()+2});
-				loadGalleries('dGalleries');
-				resizeGameWindow('welcome');
-				updateHistoryButtons({});
-				flipart.audio.init(
-						document.getElementById('audBackmusic')
-						, document.getElementById('audFlip')
-						, document.getElementById('audSolved')
-						);
-
-				$('#dActions').mousedown(function (event) {
-					flipart.mouseMoves.down(event);
-				})
-						.mousemove(function (event) {
-							flipart.mouseMoves.move(event);
-						})
-						.mouseup(function (event) {
-							flipart.mouseMoves.up(event);
-						});
-				$('#imBack').click(function () {
-					onGameAction('back');
-				});
-				$('#imForward').click(function () {
-					onGameAction('forward');
-				});
-
-                flipart.integration.notify(flipart.integration.events.pageLoaded);
-			});
-			function onGameAction(phase) {
-				switch (phase) {
-					case 'firstStart':
-						displayGameWindow('dChoice');
-						break;
-					case 'easy':
-					case 'normal':
-					case 'hard':
-						flipart.init();
-						playSingle({difLevel: phase});
-						break;
-					case 'restart':
-						flipart.init();
-						playSingle({restart: true});
-						break;
-					case 'next':
-						flipart.init();
-						playSingle({next: true});
-						break;
-					case 'back':
-						var bfEnabled=flipart.moveHistory(true);
-						updateHistoryButtons(bfEnabled);
-						break;
-					case 'forward':
-						var bfEnabled=flipart.moveHistory(false);
-						updateHistoryButtons(bfEnabled);
-						break;
-					case 'exit':
-						//document.location.reload();
-						flipart.audio.stop();
-						displayGameWindow('dWelcome');
-						break;
-					case 'closeSolved':
-						$('#dSolved').hide();
-						break;
-					case 'pauseMusic':
-						flipart.audio.toogleMusic();
-						break;
-					case 'instructions':
-						$('#dGameWindow').addClass('nobackground');
-						displayGameWindow('dInstructions');
-						break;
-					case 'backToGame':
-						$('#dGameWindow').removeClass('nobackground');
-						displayGameWindow('dWelcome');
-                        break;
-                    case 'highScores':
-                        displayGameWindow('dHighscores');
-						flipart.integration.notify(flipart.integration.events.showHighscores, $('#dHighscores table tbody.hscores'));
-                        break;
-                    case 'inviteFriends':
-                        flipart.integration.notify(flipart.integration.events.inviteFriends);
-						break;
-				}
-			}
-        </script>
-
-        <link href="css/bootstrap.css" rel="stylesheet">
-        <link href="css/flipart.css" rel="stylesheet">
-
-    </head>
-    <body>
-		<div id="dBackground">
-			<img src="res/flipart/gameBackground.jpg" />
-		</div>
-        <!-- main game div, inner divs changes -->
-        <div id="dGameWindow" class="center">
-			<div class="background" ></div>
-            <div id="dWelcome" class="gamediv" style="display: block;">
-				<div id="dLogo" class="center-block">
-					<div class="background center-block">
-						<img src="res/flipart/logoBackground.jpg" class="center-block" alt="Flipart logo background" />
-					</div>
-					<img src="res/flipart/logo.png" alt="Flipart logo"  />
-				</div>
-
-                <div id="dMenu" class="center menu">
-
-                    <ul style="list-style-type: none">
-                        <li><a href="javascript:onGameAction('firstStart')" >Start new</a></li>
-                        <li><a href="javascript:onGameAction('instructions');" >Instructions</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div id="dChoice" class="gamediv">
-                <div>
-                    <img class="logosmall" src="res/flipart/logo.png" alt="Flipart logo" />
-                    &nbsp;
-                    Galleries
-                </div>
-                <div id="dGalleries">
-                    <div>
-                        Loading galleries...
-                    </div>
-                </div>
-                <div id="dMenu" class="menu">
-
-                    <ul style="list-style-type: none">
-                        <li><a href="javascript:onGameAction('easy')" >Easy</a></li>
-                        <li><a href="javascript:onGameAction('normal')" >Normal</a></li>
-                        <li><a href="javascript:onGameAction('hard')" >Hard</a></li>
-                    </ul>
-                </div>
-
-            </div>
-            <div id="dGame" class="gamediv" >
-                <div id="dPictureFrame">        <!-- holds stacked game divs -->
-                    <div id="dTiles"></div>
-                    <div id="dBlocks"></div>
-                    <div id="dActions">
-                        <div id="dHorflip" class="flip">
-                            <a >
-                                <img id="horflip" src="res/flipart/arrows_hor.png" />
-                            </a>
-                        </div>
-                        <div id="dVerflip" class="flip">
-                            <a >
-                                <img id="verflip" src="res/flipart/arrows_ver.png" />
-                            </a>
-                        </div>                        
-                    </div>
-                    <div id="dLoading">
-                        <div>
-                            Loading...<br>
-                            <img src="res/flipart/ajax-loader.gif" />
-                        </div>                            
-                    </div>
-					<div id="dSolved">
-						<div class="background"></div>
-						<div class="front">
-							<div>
-								<div>
-									Well done<br>Image revealed!
-								</div>
-								<div id="dNewPoints">
-									<table>
-										<tr><td>Points</td><td> &nbsp; </td><td class="value"></td>
-										<tr><td>Bonus</td><td> &nbsp; </td><td class="value"></td>	
-									</table>
-								</div>
-								<div>
-									<a href="javascript:onGameAction('closeSolved');">Close</a> <a href="javascript:onGameAction('next');">Next</a>
-								</div>
-							</div>
-						</div>
-					</div>
-                </div>
-                <div id="dGameControls">
-					<div class="top">
-						<table>
-							<tr>
-								<td>Score</td><td> &nbsp; </td><td><span id="dScore">0</span></td>
-							</tr>
-							<tr>
-								<td>Level</td><td> &nbsp; </td><td><span id="dLevel"></span></td>
-							</tr>
-						</table>
-					</div>
-                    <div id="dHistory"> 
-                        <img id="imBack" src="res/flipart/arrow_back.png" />
-                        <img id="imForward" src="res/flipart/arrow_forward.png" />
-                    </div>
-					<div id="dThumbnail"></div>
-                    <div class="bottom">
-						<div>
-							<a href="javascript:onGameAction('pauseMusic')"><img id="imMusic" src="res/flipart/music_on.png"/></a>
-						</div>
-                        <div id="dNext">
-                            <a href="javascript:onGameAction('next');">Next</a>
-                        </div>
-                        <div><a href="javascript:onGameAction('restart');">Restart</a></div>
-                        <div><a href="javascript:onGameAction('exit');">Exit</a></div>
-                    </div>
-                </div>
-            </div>
-			<div id="dInstructions" class="gamediv">
-				<div class="center-block">
-					Welcome to <img class="logosmall" src="res/flipart/logo.png" alt="Flipart logo" />
-					<br>picture puzzle game
-					<p>Your goal is to reveal original image. Some parts of it are flipped horizontally or vertically, making it a jumble. 
-						Use your mouse to select parts that don't fit and flip them, until whole picture is intact again.</p>
-				</div>
-				<div class="back center-block text-right">
-					<a href="javascript:onGameAction('backToGame');">Back to game</a>
-				</div>
-				<div class="tutorial">
-					<div>
-						<img src="res/flipart/instruct/instruct1.png" /> 
-						Let's see it on example. Something is wrong with this picture, right?
-						Legs just don't run together with upper bodies! So make it natural again.  						
-					</div>
-					<div>
-						<img src="res/flipart/instruct/instruct2.png" /> 
-						First identify rectangular area that needs to be flipped, and click near
-						the corner of it. Obscured tile will appear.
-					</div>
-					<div>
-						<img src="res/flipart/instruct/instruct3.png" /> 
-						Move your mouse until all displaced area is obscured. Yellow rectangle will denote its boundaries.
-					</div>
-					<div>
-						<img src="res/flipart/instruct/instruct4.png" /> 
-						Click again, and two arrows buttons will appear. One on the right flips selected area vertically, and one on the
-						top flips it horizontally. Which one should you use?
-					</div>
-					<div>
-						<img src="res/flipart/instruct/instruct5.png" /> 
-						That's right, one on top. Click it and when selected area is flipped, image looks intact again. Runners can continue
-						to sprint right to the finish. Good job!
-					</div>
-					<div>
-						<img src="res/flipart/instruct/instruct6.png" /> 
-						Hey, what about this one? Heads and legs are all mixed up and down. How can they run this way?
-					</div>
-					<div>
-						<img src="res/flipart/instruct/instruct7.png" /> 
-						Don't panic. Here is a hint. First select denoted part of the image and flip it vertically. It will
-						become lot easier after that.
-						<br><br>
-						<p>
-							Now, go back to game and reveal all those beautiful pictures!
-						</p>
-					</div>
-					<div></div>
-				</div>
-				<div>
-					<div class="back center-block text-center"><a href="javascript:onGameAction('backToGame');">Back to game</a></div>
-				</div>
-			</div>
-        </div>
-
-		<div id="dAudio" style="display1: none">
-			<audio id="audBackmusic" src="res/flipart/audio/backmusic.mp3" preload="auto" loop ></audio>
-			<audio id="audFlip" src="res/flipart/audio/flip.mp3" preload="auto"  ></audio>
-			<audio id="audSolved" src="res/flipart/audio/solved.mp3" preload="auto"  ></audio>
-		</div>
-
-        <!--GOOGLE ANALYTICS -->
-        <script>
-			if (location.origin.indexOf('komante.com')>=0) {
-				(function (i, s, o, g, r, a, m) {
-					i['GoogleAnalyticsObject']=r;
-					i[r]=i[r]||function () {
-						(i[r].q=i[r].q||[]).push(arguments)
-					}, i[r].l=1*new Date();
-					a=s.createElement(o),
-							m=s.getElementsByTagName(o)[0];
-					a.async=1;
-					a.src=g;
-					m.parentNode.insertBefore(a, m)
-				})(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-
-				ga('create', 'UA-54433162-1', 'auto');
-				ga('send', 'pageview');
-			}
-        </script>
-
-        <script id="ttile" type="text/template" data-tileid="tile_i<%=i%>j<%=j%>">
-            <div class="tile" id="tile_i<%=i%>j<%=j%>" 
-            style="top:<%=top%>px; left:<%=left%>px; width:<%=w%>px; height:<%=h%>px; background-position: <%=pozx%>px <%=pozy%>px"></div> 
-        </script>
-        <script id="tblock" type="text/template" data-blockid="block_i<%=i%>j<%=j%>" data-border="3px dashed yellow">
-            <div class="block" id="block_i<%=i%>j<%=j%>" style="top:<%=top%>px; left:<%=left%>px; width:<%=w%>px; height:<%=h%>px; "></div> 
-        </script>
-        <script id="temGalleryImage" type="text/template" >
-            <div class="galleryImage img-rounded">      
-            <a href="#" onclick="(function(){ return false; })()">
-            <img class="" id="img<%=galleryName%>" src="<%=gallerySrc%>"></img> 
-            <div data-gallery="<%=galleryName%>" 
-            onmouseover="onGalleryMouse('over',this)" onmouseout="onGalleryMouse('out',this)" onclick="onGalleryMouse('click',this)" >
-            <div class="galleryText"></div>
-            </div>
-            </a>
-            </div>
-        </script>
-    </body>
+		</style>
+	</head>
+	<body>
+		<iframe src="//api-komante.rhcloud.com/flipartc/?app=website" />
+			
+	</body>
 </html>
