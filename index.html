@@ -1,375 +1,395 @@
 <!DOCTYPE html>
 
 <html lang="en">
-	<head>
-		<title>Komante software, java and javascript web games applications</title>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta name="description" content="Independent software development. Applications, games, web solutions. Complete online comment solution, small Javascript HTML5 games, file searcher">
-		<meta name="keywords" content="Komante, Vuk, Djapic, software, web, javascript, free, games, comments, java, solutions">
+
+<head>
+	<title>Komante software, java and javascript web games applications</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description"
+		content="Independent software development. Applications, games, web solutions. Complete online comment solution, small Javascript HTML5 games, file searcher">
+	<meta name="keywords"
+		content="Komante, Vuk, Djapic, software, web, javascript, free, games, comments, java, solutions">
 
 
-		<script type="text/javascript" src="js/lib/jquery.js"></script>
-		<script src="js/lib/bootstrap.js"></script>
-		<script src="js/komante.js"></script>		
+	<script type="text/javascript" src="js/lib/jquery.js"></script>
+	<script src="js/lib/bootstrap.js"></script>
+	<script src="js/komante.js"></script>
 
-		<link href="css/bootstrap.css" rel="stylesheet">
-		<link href="css/bootstrap-theme.css" rel="stylesheet">
-		<link href="css/komante.css" rel="stylesheet">
+	<link href="css/bootstrap.css" rel="stylesheet">
+	<link href="css/bootstrap-theme.css" rel="stylesheet">
+	<link href="css/komante.css" rel="stylesheet">
 
-		<script type="text/javascript">
+	<script type="text/javascript">
 
-		</script>
-		<script type="text/javascript">
-			$(function() {
-				positionSecondSection('secFirst', 'secIntro');
+	</script>
+	<script type="text/javascript">
+		$(function () {
+			positionSecondSection('secFirst', 'secIntro');
 
-			});
+		});
 
-			$(window).on('scroll', function() {
-				activateScrolledSection('sideList');
-			});
-		</script>
+		$(window).on('scroll', function () {
+			activateScrolledSection('sideList');
+		});
+	</script>
 
-		<style>
-			body{
-				background-image: url("res/background.jpg");
-				background-repeat: no-repeat;
-				background-size: 100% auto;
-				background-position: 0px 60px;
-				overflow-x: hidden;
-			}
-			.row a>img.img-thumbnail.img-responsive {
-				margin-top: 15px;
-			}
+	<style>
+		body {
+			background-image: url("res/background.jpg");
+			background-repeat: no-repeat;
+			background-size: 100% auto;
+			background-position: 0px 60px;
+			overflow-x: hidden;
+		}
 
-			#imgBack {
-				z-index: -1;
-				display: none;
-			}
+		.row a>img.img-thumbnail.img-responsive {
+			margin-top: 15px;
+		}
 
+		#imgBack {
+			z-index: -1;
+			display: none;
+		}
+
+		#leftmenu {
+			position: fixed;
+			z-index: 2;
+			top: 0px;
+			left: 0px;
+			width: 140px;
+		}
+
+		@media (min-width: 992px) {
 			#leftmenu {
-				position: fixed; 
-				z-index: 2;
-				top: 0px;
-				left: 0px;
-				width: 140px;
+				top: auto;
+				left: auto;
+				width: 180px;
 			}
-			@media (min-width: 992px) {
-				#leftmenu {
-					top: auto;
-					left: auto;
-					width:180px; 
-				}
-			}
-			#leftmenu .navbar-collapse {
-				padding-left: 0px;
-				padding-right: 0px;
-			}
-			#leftmenu .navbar-default {
-				border-color: transparent;
-			}
-			#secFirst{
-				margin-top: 50px;
-				margin-bottom: 1000px;
-			}
-			#secApps {
-				background-color: white;
-			}
-			#secGames {
-				background1:  url("res/gamebck.jpg") repeat scroll 0 0 rgba(0, 0, 0, 0);
-				position: relative;
-			}
-			#secGames > .container {
-				background-color: white;
-				border-radius: 8px;
-				position: relative;
-			}
-		</style>
-	</head>
-	<body>
+		}
 
-		<div id="navHor" class="container navtop"  >
-			<ul class="nav nav-pills navbar-default" >
-				<li><a href="http://vuk.alwaysdata.net">Old website</a></li>
-				<li><a href="about">About</a></li>
-			</ul>
+		#leftmenu .navbar-collapse {
+			padding-left: 0px;
+			padding-right: 0px;
+		}
+
+		#leftmenu .navbar-default {
+			border-color: transparent;
+		}
+
+		#secFirst {
+			margin-top: 50px;
+			margin-bottom: 1000px;
+		}
+
+		#secApps {
+			background-color: white;
+		}
+
+		#secGames {
+			background1: url("res/gamebck.jpg") repeat scroll 0 0 rgba(0, 0, 0, 0);
+			position: relative;
+		}
+
+		#secGames>.container {
+			background-color: white;
+			border-radius: 8px;
+			position: relative;
+		}
+	</style>
+</head>
+
+<body>
+
+	<div id="navHor" class="container navtop">
+		<ul class="nav nav-pills navbar-default">
+			<!--li><a href="http://vuk.alwaysdata.net">Old website</a></li-->
+			<li><a href="about">About</a></li>
+		</ul>
+	</div>
+
+	<div style="height: 100px;"></div>
+
+	<div class="container ">
+
+
+
+		<div id="leftmenu">
+			<nav class="navbar navbar-default" role="navigation">
+				<div class="container-fluid1">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+							data-target="#leftmenu_colapsed">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<a href="#" class="navbar-brand">Komante</a>
+
+					</div>
+					<div class="clearfix"></div>
+					<div class="collapse navbar-collapse" id="leftmenu_colapsed">
+						<nav>
+							<ul id="sideList" class="nav nav-pills nav-stacked" style="">
+								<li><a href="#secIntro">Introduction</a></li>
+								<li><a href="#secApps">Apps</a></li>
+								<li><a href="#secTools">Tools</a></li>
+								<li><a href="#secGames">Games</a></li>
+								<li><a href="#secBlog">Blog</a></li>
+								<li><a href="#secSrbBlog">Српски блог</a></li>
+							</ul>
+						</nav>
+					</div>
+
+				</div>
+			</nav>
+
 		</div>
+	</div>
+	<section class="section" id="secFirst">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-10 col-md-offset-1 text-center">
 
-		<div style="height: 100px;"></div>
+					<h1 class="title">Programming elegance</h1>
+					<h2 class="subtitle">You'll know your project is going well, if it's fun to work on.</h2>
+					<h3 class="tagline">
+						Professional software development. Ideas, games, projects. <br>
+						Proven web, desktop, and enterprise applications and design. <br>
+						Existing <a href="#secIntro">portfolio</a>
+					</h3>
+					<!-- Nice place to describe your site in a sentence or two -->
+					<p></p>
 
-		<div class="container "  >
+				</div> <!-- /col -->
+			</div> <!-- /row -->
 
+		</div>
+	</section>
 
-
-			<div id="leftmenu" >
-				<nav class="navbar navbar-default" role="navigation">
-					<div class="container-fluid1">
-						<!-- Brand and toggle get grouped for better mobile display -->
-						<div class="navbar-header">
-							<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#leftmenu_colapsed">
-								<span class="sr-only">Toggle navigation</span>
-								<span class="icon-bar"></span>
-								<span class="icon-bar"></span>
-								<span class="icon-bar"></span>
-							</button>
-							<a href="#" class="navbar-brand">Komante</a>
-
-						</div>
-						<div class="clearfix"></div>
-						<div class="collapse navbar-collapse" id="leftmenu_colapsed">
-							<nav>
-								<ul id="sideList" class="nav nav-pills nav-stacked" style="">
-									<li><a href="#secIntro">Introduction</a></li>
-									<li><a href="#secApps">Apps</a></li>
-									<li><a href="#secTools">Tools</a></li>
-									<li><a href="#secGames">Games</a></li>
-									<li><a href="#secBlog">Blog</a></li>
-                  <li><a href="#secSrbBlog">Српски блог</a></li>
-								</ul>
-							</nav>
-						</div>
-
-					</div>
-				</nav>
-
+	<section id="secIntro">
+		<div class="container">
+			<h2 class="col-md-10 col-md-offset-2 bmargin">Introduction</h2>
+			<div class="row">
+				<div class="col-md-10 col-md-offset-2 backed">
+					<p>
+						Komante is dedicated to software development. Programming, new exciting applications and
+						approaches,
+						small web games, with thoughts and logic which drives it. Its goal is to present original
+						software products made by small independent teams and individuals, and to connect
+						them in collaborative and constructive ways, ideas exchange, and business undertakings.
+					</p>
+					<p>
+						Here you can find an overview of already developed products. Most of them are free to use,
+						go ahead and try it.
+						Products are divided into categories, according to their purpose and development technologies
+						used. Apps for desktop
+						applications, Tools for components, libraries and programming tools, and Games for
+						html5 and javascript based web games.
+					</p>
+				</div>
 			</div>
 		</div>
-		<section class="section" id="secFirst">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-10 col-md-offset-1 text-center">	
-						<!-- Site Title, your name, HELLO msg, etc. -->
-						<h1 class="title">Good programming is fun.</h1>
-						<h2 class="subtitle">If it isn't fun, it usually isn't good.</h2>
-						<!-- Short introductory (optional) -->
-						<h3 class="tagline">
-							Professional software development. Cool ideas, games, effects. <br>
-							Proven web, desktop, and enterprise applications and design. <br>
-							Check our existing <a href="#secIntro">portfolio</a>			
-						</h3>
-						<!-- Nice place to describe your site in a sentence or two -->
-						<p></p>
+	</section>
 
-					</div> <!-- /col -->
-				</div> <!-- /row -->
 
-			</div>
-		</section>
-
-		<section id="secIntro">
-			<div class="container" >
-				<h2 class="col-md-10 col-md-offset-2 bmargin">Introduction</h2>
-				<div class="row">
-					<div class="col-md-10 col-md-offset-2 backed">
-						<p>
-							Komante is dedicated to software development. Programming, new exciting applications and approaches, 
-							small web games, with thoughts and logic which drives it. Its goal is to present original 
-							software products made by small independent teams and individuals, and to connect
-							them in collaborative and constructive ways, ideas exchange, and business undertakings.
-						</p>
-						<p>
-							Here you can find an overview of already developed products. Most of them are free to use, 
-							go ahead and try it.
-							Products are divided into categories, according to their purpose and development technologies used. Apps for desktop 
-							applications, Tools for components, libraries and programming tools, and Games for
-							html5 and javascript based web games. 
-						</p>
-					</div>
+	<section id="secApps">
+		<div class="container">
+			<h2 class="col-md-10 col-md-offset-2 bmargin">Apps</h2>
+			<div class="row">
+				<div class="col-md-5 col-md-offset-2 col-sm-6 col-sm-offset-2">
+					<h3 class="section-heading">VD File Searcher </h3>
+					<hr class="section-heading-spacer">
+					<p><strong><a href="filesearcher">VD File Searcher</a></strong> is desktop application for finding
+						local files. </p>
+					<p>It will help you easily and very quickly find files and directories on your local
+						hard discs and other storage drives. Developed in <a href="java.com">Java programming
+							language</a>
+						and based on the fastest open source
+						<a href="lucene.apache.org">Lucene search engine</a>, it runs on every platform and find files
+						in a second no matter how big
+						your file system is,
+						or how many files you have there.
+					</p>
+					<p>Read more about this <a href="filesearcher">free and fast search application</a> or go to
+						<a href="http://sourceforge.net/projects/vdfilesearcher/">download</a> page. </p>
+				</div>
+				<div class="col-md-4 col-md-offset-1 col-sm-4 col-xs-6 ">
+					<a href="filesearcher">
+						<img class="img-responsive img-thumbnail" src="res/filesearcher.png" alt="VD file searcher">
+					</a>
 				</div>
 			</div>
-		</section>
 
+		</div>
+	</section>
 
-		<section id="secApps" >
-			<div class="container">
-				<h2 class="col-md-10 col-md-offset-2 bmargin">Apps</h2>
-				<div class="row">
-					<div class="col-md-5 col-md-offset-2 col-sm-6 col-sm-offset-2">
-						<h3 class="section-heading">VD File Searcher </h3>
-						<hr class="section-heading-spacer">
-						<p><strong><a href="filesearcher">VD File Searcher</a></strong> is desktop application for finding local files. </p>
-						<p>It will help you easily and very quickly find files and directories on your local 
-							hard discs and other storage drives. Developed in <a href="java.com">Java programming language</a> 
-							and based on the fastest open source 
-							<a href="lucene.apache.org">Lucene search engine</a>, it runs on every platform and find files in a second no matter how big 
-							your file system is, 
-							or how many files you have there.
-						</p>
-						<p>Read more about this <a href="filesearcher">free and fast search application</a> or go to 
-							<a href="http://sourceforge.net/projects/vdfilesearcher/">download</a> page. </p>
-					</div>
-					<div class="col-md-4 col-md-offset-1 col-sm-4 col-xs-6 ">
-						<a href="filesearcher">
-							<img class="img-responsive img-thumbnail" src="res/filesearcher.png" alt="VD file searcher">
-						</a>
-					</div>
+	<section id="secTools" class="content-section-a">
+		<div class="container">
+			<h2 class="col-md-10 col-md-offset-2 bmargin">Tools</h2>
+			<div class="row">
+				<div class="col-md-4 col-md-offset-2 col-sm-4 col-xs-6 col-sm-offset-2">
+					<img class="img-responsive img-thumbnail smallerimage" src="res/html_javascript_layout.png"
+						alt="HDIMS Javascript html layout logo">
 				</div>
+				<div class="col-md-5 col-md-offset-1 col-sm-6">
 
-			</div>
-		</section>
-
-		<section id="secTools" class="content-section-a">
-			<div class="container">
-				<h2 class="col-md-10 col-md-offset-2 bmargin">Tools</h2>
-				<div class="row">
-					<div class="col-md-4 col-md-offset-2 col-sm-4 col-xs-6 col-sm-offset-2">
-						<a href="http://vuk.alwaysdata.net/hdims">
-							<img class="img-responsive img-thumbnail smallerimage" src="res/html_javascript_layout.png" alt="HDIMS Javascript html layout logo">
-						</a>
-					</div>
-					<div class="col-md-5 col-md-offset-1 col-sm-6">
-
-						<h3 class="section-heading">HDIMS</h3>
-						<hr class="section-heading-spacer">
-						<p class="lead">HDIMS is small javascript library for HTML layout. It enables setting elements position and
-							dimensions easily and accurately, relieving you from burden to do so in CSS and additional elements tricks and
-							quirks.
-						</p>
-						<p>HDIMS library is still in development. You can find more about it, see examples, and download fully functional
-							first release at <a href="http://vuk.alwaysdata.net/hdims" title="HDIMD HTML layout first release">the old website</a>.</p>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-5 col-md-offset-2 col-sm-6 col-sm-offset-2">
-						<h3 class="section-heading">Cirilicar</h3>
-						<hr class="section-heading-spacer">
-						<p><strong>Cirilicar</strong> is Firefox add-on for Serbian cyrillic. It turns latin letters page 
-							into cyrillic in one click.
-						<p>Read more or add it to you browser at Mozilla <a href="//addons.mozilla.org/firefox/addon/cirilicar/"> Firefox add-on page</a> </p>
-					</div>
-					<div class="col-md-4 col-md-offset-1 col-sm-4 col-xs-6 ">
-						<a href="cirilicar">
-							<img class="img-responsive img-thumbnail" src="res/cirilica.jpg" alt="Cirilicar">
-						</a>
-					</div>
-				</div>	
-			</div>
-		</section>		
-		<section id="secGames" >
-			<div style="position: absolute; height:100%; width: 100%; background: -moz-linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1), rgba(255, 255, 255, 1), rgba(255, 255, 255, 1), rgba(255, 255, 255, 0)) "></div>
-			<div class="container">
-				<div class="row">
-					<div class="col-md-10 col-md-offset-2 bmargin">
-						<h2 class="bmargin">Games</h2>
-						<p >
-							With powerful Javascript HTML 5 possibilities and programming APIs , one of most exciting and challenging things about it 
-							is creation of real and pure web games. Games presented here were started back then as small projects to explore its
-							capabilities for some new ideas and interesting concepts.
-						</p>
-					</div>
-				</div>
-				<div class="row bmargin">
-					<div class="col-md-5 col-md-offset-2 col-sm-6 col-sm-offset-2">
-						<div class="clearfix"></div>
-						<h3 class="section-heading">Maze</h3>
-						<hr class="section-heading-spacer">
-						<p class="">Find your way through paths of complex mazes. All mazes are generated with advanced hand-made algorithm which
-							ensures their versatility and randomness.</p>
-						<p>You can choose between two flavors of mazes, one where you are trying to find exit, and the other where is needed to find
-							key to unlock objects. Use arrow keys to move character around.
-						</p>
-					</div>
-					<div class="col-md-4 col-md-offset-1 col-sm-4 col-xs-6">
-						<a href="http://vuk.alwaysdata.net/maze">
-							<img class="img-responsive img-thumbnail smallerimage" src="res/maze.png" alt="Maze game screenshot">
-						</a>
-					</div>
-				</div>
-				<div class="row bmargin">
-					<div class="col-md-4 col-md-offset-2 col-sm-4 col-xs-6 col-sm-offset-2">
-						<a href="http://vuk.alwaysdata.net/games/gravitaris">
-							<img class="img-responsive img-thumbnail smallerimage" src="res/gravitaris.png" alt="Gravitaris game screenshot"
-								 style="background-color: ivory"
-								 >
-						</a>
-					</div>
-					<div class="col-md-5 col-md-offset-1 col-sm-6">
-
-						<h3 class="section-heading">Gravitaris</h3>
-						<hr class="section-heading-spacer">
-						<p class="1lead">
-							Ever wondered how popular Tetris (or Bricks) game would look like if it was round? Here's the answer. All the
-							standard game rules apply, except you can move bricks all the way round with no right or left boundaries.
-						</p>
-					</div>
-				</div>
-				<div class="row ">
-					<div class="col-md-5 col-md-offset-2 col-sm-6 col-sm-offset-2">
-						<div class="clearfix"></div>
-						<h3 class="section-heading">Flipico</h3>
-						<hr class="section-heading-spacer">
-						<p class="">Exciting picture puzzle game, which will test your observing skills. If you enjoy in picture puzzles
-						and revealing hidden images, you will like this one. 
-						</p>
-						<p><a href="flipico">Learn more...</a>
-						</p>
-					</div>
-					<div class="col-md-4 col-md-offset-1 col-sm-4 col-xs-6">
-						<a href="flipico">
-							<img class="img-responsive img-thumbnail smallerimage" src="res/flipico_botticelli.png" alt="Flipico game">
-						</a>
-					</div>
+					<h3 class="section-heading">HDIMS</h3>
+					<hr class="section-heading-spacer">
+					<p class="lead">HDIMS is small javascript library for HTML layout. It enables setting elements
+						position and
+						dimensions easily and accurately, relieving you from burden to do so in CSS and additional
+						elements tricks and
+						quirks.
+					</p>
+					<p>HDIMS library is still in development. </p>
 				</div>
 			</div>
-		</section>		
-
-		<section id="secBlog" class="content-section-a" >
-			<div class="container" >
-				<h2 class="col-md-10 col-md-offset-2 bmargin">Blog</h2>
-				<div class="row">
-					<div class="col-md-10 col-md-offset-2 ">
-						<p>
-							Tips, tricks and techniques in web programming, java and javascript.
-						</p>
-						<p><a href="blog" class="lead">Go to blog page</a></p>
-						<br>
-						<p class="lead">Most recent</p>
-
-					</div>
+			<div class="row">
+				<div class="col-md-5 col-md-offset-2 col-sm-6 col-sm-offset-2">
+					<h3 class="section-heading">Cirilicar</h3>
+					<hr class="section-heading-spacer">
+					<p><strong>Cirilicar</strong> is Firefox add-on for Serbian cyrillic. It turns latin letters page
+						into cyrillic in one click.
+				</div>
+				<div class="col-md-4 col-md-offset-1 col-sm-4 col-xs-6 ">
+					<a href="cirilicar">
+						<img class="img-responsive img-thumbnail" src="res/cirilica.jpg" alt="Cirilicar">
+					</a>
 				</div>
 			</div>
-		</section>		
-    
-		<section id="secSrbBlog" >
-			<div class="container" >
-				<h2 class="col-md-10 col-md-offset-2 bmargin">Српски блог</h2>
-				<div class="row">
-					<div class="col-md-10 col-md-offset-2 ">
-						<p>
-							Чланци, запажања, и размишљања на српском.
-						</p>
-						<p><a href="srbblog" class="lead">Иди на страницу</a></p>
-						<br>
-						<p class="lead">Most recent</p>
-
-					</div>
+		</div>
+	</section>
+	<section id="secGames">
+		<div
+			style="position: absolute; height:100%; width: 100%; background: -moz-linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1), rgba(255, 255, 255, 1), rgba(255, 255, 255, 1), rgba(255, 255, 255, 0)) ">
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-10 col-md-offset-2 bmargin">
+					<h2 class="bmargin">Games</h2>
+					<p>
+						With powerful Javascript HTML 5 possibilities and programming APIs , one of most exciting and
+						challenging things about it
+						is creation of real and pure web games. Games presented here were started back then as small
+						projects to explore its
+						capabilities for some new ideas and interesting concepts.
+					</p>
 				</div>
 			</div>
-		</section>		
+			<div class="row bmargin">
+				<div class="col-md-5 col-md-offset-2 col-sm-6 col-sm-offset-2">
+					<div class="clearfix"></div>
+					<h3 class="section-heading">Maze</h3>
+					<hr class="section-heading-spacer">
+					<p class="">Find your way through paths of complex mazes. All mazes are generated with advanced
+						hand-made algorithm which
+						ensures their versatility and randomness.</p>
+					<p>You can choose between two flavors of mazes, one where you are trying to find exit, and the other
+						where is needed to find
+						key to unlock objects. Use arrow keys to move character around.
+					</p>
+				</div>
+				<div class="col-md-4 col-md-offset-1 col-sm-4 col-xs-6">
+					<img class="img-responsive img-thumbnail smallerimage" src="res/maze.png"
+						alt="Maze game screenshot">
+				</div>
+			</div>
+			<div class="row bmargin">
+				<div class="col-md-4 col-md-offset-2 col-sm-4 col-xs-6 col-sm-offset-2">
+					<img class="img-responsive img-thumbnail smallerimage" src="res/gravitaris.png"
+						alt="Gravitaris game screenshot" style="background-color: ivory">
+				</div>
+				<div class="col-md-5 col-md-offset-1 col-sm-6">
 
-		<!--GOOGLE ANALYTICS -->
-		<script>
-			if (location.origin.indexOf('komante.com') >= 0) {
-				(function(i, s, o, g, r, a, m) {
-					i['GoogleAnalyticsObject'] = r;
-					i[r] = i[r] || function() {
-						(i[r].q = i[r].q || []).push(arguments)
-					}, i[r].l = 1 * new Date();
-					a = s.createElement(o),
-							m = s.getElementsByTagName(o)[0];
-					a.async = 1;
-					a.src = g;
-					m.parentNode.insertBefore(a, m)
-				})(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+					<h3 class="section-heading">Gravitaris</h3>
+					<hr class="section-heading-spacer">
+					<p class="1lead">
+						Ever wondered how popular Tetris (or Bricks) game would look like if it was round? Here's the
+						answer. All the
+						standard game rules apply, except you can move bricks all the way round with no right or left
+						boundaries.
+					</p>
+				</div>
+			</div>
+			<div class="row ">
+				<div class="col-md-5 col-md-offset-2 col-sm-6 col-sm-offset-2">
+					<div class="clearfix"></div>
+					<h3 class="section-heading">Flipico</h3>
+					<hr class="section-heading-spacer">
+					<p class="">Exciting picture puzzle game, which will test your observing skills. If you enjoy in
+						picture puzzles
+						and revealing hidden images, you will like this one.
+					</p>
+					<p><a href="flipico">Learn more...</a>
+					</p>
+				</div>
+				<div class="col-md-4 col-md-offset-1 col-sm-4 col-xs-6">
+					<a href="flipico">
+						<img class="img-responsive img-thumbnail smallerimage" src="res/flipico_botticelli.png"
+							alt="Flipico game">
+					</a>
+				</div>
+			</div>
+		</div>
+	</section>
 
-				ga('create', 'UA-54433162-1', 'auto');
-				ga('send', 'pageview');
-			}
-		</script>
+	<section id="secBlog" class="content-section-a">
+		<div class="container">
+			<h2 class="col-md-10 col-md-offset-2 bmargin">Blog</h2>
+			<div class="row">
+				<div class="col-md-10 col-md-offset-2 ">
+					<p>
+						Tips, tricks and techniques in web programming, java and javascript.
+					</p>
+					<p><a href="blog" class="lead">Go to blog page</a></p>
+					<br>
 
-		<script>
-			serverRequestlog('komante', 'index');
-		</script>
-	</body>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="secSrbBlog">
+		<div class="container">
+			<h2 class="col-md-10 col-md-offset-2 bmargin">Српски блог</h2>
+			<div class="row">
+				<div class="col-md-10 col-md-offset-2 ">
+					<p>
+						Чланци, запажања, и размишљања на српском.
+					</p>
+					<p><a href="srbblog" class="lead">Иди на страницу</a></p>
+					<br>
+
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!--GOOGLE ANALYTICS -->
+	<script>
+		if (location.origin.indexOf('komante.com') >= 0) {
+			(function (i, s, o, g, r, a, m) {
+				i['GoogleAnalyticsObject'] = r;
+				i[r] = i[r] || function () {
+					(i[r].q = i[r].q || []).push(arguments)
+				}, i[r].l = 1 * new Date();
+				a = s.createElement(o),
+					m = s.getElementsByTagName(o)[0];
+				a.async = 1;
+				a.src = g;
+				m.parentNode.insertBefore(a, m)
+			})(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+			ga('create', 'UA-54433162-1', 'auto');
+			ga('send', 'pageview');
+		}
+	</script>
+
+	<script>
+		serverRequestlog('komante', 'index');
+	</script>
+</body>
+
 </html>
