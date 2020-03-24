@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Komante - Речник стручних рачунарских израза
+</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="Independent software development. Applications, games, web solutions. Complete online comment solution, small Javascript HTML5 games, file searcher">
+		<meta name="keywords" content="  kompjuter, recnik, strucni, izraz, prevod  ">
+
+
+		<script type="text/javascript" src="js/lib/jquery.js"></script>
+		<script src="js/lib/bootstrap.js"></script>
+		<script type="text/javascript" src="js/lib/jquery.colorbox.js"></script>
+		<script src="js/komante.js"></script>	
+
+
+		<link href="css/bootstrap.css" rel="stylesheet">
+		<link href="css/bootstrap-theme.css" rel="stylesheet">
+		<link href="css/komante.css" rel="stylesheet">
+		
+
+		<script type="text/javascript">
+			$.fn.colorbox.settings.transition ='none';
+			$.fn.colorbox.settings.maxWidth ='80%';
+			$.fn.colorbox.settings.maxHeight ='80%';
+			$.fn.colorbox.settings.onLoad =function(){
+				$('#cboxClose').addClass('btn btn-primary');
+			}
+		</script>
+		<script type="text/javascript">
+			$(function() {
+				$('a.colorbox').colorbox();
+			});
+
+			$(window).on('scroll', function() {
+				activateScrolledSection('sideList');
+			});
+		</script>
+		<style>
+			ul.features, dl.features {
+				margin-top: 40px;
+				list-style-type: square;
+			}
+			.dl-horizontal dt{
+				width: auto;
+			}
+			.dl-horizontal dd, .dl-horizontal dt {
+				padding-top: 10px;
+			}
+			.sidebar {
+				background-image: url("res/background.jpg");
+				background-color: #CCCCCC;
+			}
+			@media (min-width: 768px) {
+				.sidebar {
+					position: fixed;
+					top: 0;
+					left: 0;
+					bottom: 0;
+					z-index: 2;
+					display: block;
+					background-color: #CCCCCC;
+				}
+
+			}
+
+			#colorbox {
+				z-index: 100;
+			}
+			.backtitle {
+				width:107%; 
+				height:210px; 
+				position: relative; 
+				left: -16px;
+				border-top: 2px solid black; 
+				border-bottom: 2px solid black; 
+				padding-top:30px;
+				margin-bottom: 80px;
+			}
+
+		</style>
+	</head>
+	<body>
+
+		<!-- FACEBOOK COMMENTS -->
+		<div id="fb-root"></div>
+		<script>(function(d, s, id) {
+		  var js, fjs = d.getElementsByTagName(s)[0];
+		  if (d.getElementById(id)) return;
+		  js = d.createElement(s); js.id = id;
+		  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.4&appId=117313081669978";
+		  fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));</script>	
+		
+		
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-3 col-sm-3 col-xs-12 sidebar ">
+
+					<nav class="navbar-default center-block sidelist navtop" >
+						<ul  class="nav nav-pills nav-stacked" style="">
+							<li><a href="index.html"><strong>Komante</strong><br><small>Fun Solid Elegant</small></a></li>
+						</ul>
+					</nav>
+
+					<nav class="navbar-default center-block sidelist" style="margin-top: 100px;">
+						<ul id="sideList" class="nav nav-pills nav-stacked" style="">
+	<li><a href="#">Речник стручних речи</a><hr style="margin: 0px auto; width: 90%; "></li>
+	<li><a href="#secIntro">Увод</a></li>
+	<li><a href="#secRecnik">Речник</a></li>
+
+						</ul>
+					</nav>
+				</div>
+				<div class="col-md-9 col-md-offset-3 col-sm-9 col-sm-offset-3 col-xs-12 " style="overflow-x: hidden;">
+					<div id="navHor" class="navtop"  >
+						<ul class="nav nav-pills navbar-default" >
+							<li><a href="about">About</a></li>
+							<li><a href="blog.html">Blog</a></li>
+						    <li><a href="srbblog">Блог на српском</a></li>						
+						</ul>
+						<div class="clearfix"></div>
+					</div>
+					<section class="section bg-primary backtitle" >
+	<h1 class="text-center ">Речник стручних рачунарских израза</h1>
+	<h3 class="text-center ">Превод најчешће коришћених енглеских речи у свакодневном говору</h3>
+					</section>
+
+	<section id="secIntro" class="section "  >
+		<div class="row">
+			<div class="col-md-offset-1 col-md-11">
+				<h3 class="subtitle">Увод</h3>
+				<p>	Српски језик пропада незаустављиво. То се дешава у свим областима језика: губитак речи и њихова замена енглеским, потпуно губљење икаквог нормативног 
+				акцента, губљење изворних израза, изворних граматичких облика.
+				<p>Ово је посебно изражено у обласи информационих технологија, где су многи појмови иначе нови. За њих не постоји никакав пример у постојећим речима. 
+				С друге стране не постоји стручна литература нити тело које би утврдило одређене норме. И с треће, не постоји баш никаква жеља и воља код људи да се
+				у области модерних технологија и нових речи држе свог језика.
+				<p>У нади да ће се то некад променити, овде је списак неколико често коришћених речи у области рачунарства, и њихових могућих превода. Без икакве намере
+				да се то представи као једини, или најбољи превод. Само нешто што би могло бити смислени превод, с обзиром да се аутор активно и професионално бави
+				рачунарством дуго времена.  			
+				<p>Овде је становиште да се за поступак превода може вршити овако. Прво за реч наћи њен речнички превод. Па ако он не одговара у потпуности онда применити 
+				неки од начина:
+				<ul>
+					<li>наћи сличну реч која боље одговара
+					<li>ако је реч превише уобичајена, мало је изменити, да би се разликовала од основног појма који није превод задатог и била јединствена у том контексту
+					<li>по смислу појма наћи реч која може да буде потпуно неповезана с речничким преводом
+					<li>извести комбинацију речи које описују појам која добро звучи и у складу је са језиком, која би била нова реч
+					<li>неке речи су толико утемељене да их можда нема смисла мењати или би то било јако тешко, или би захтевало много других промена
+				</ul>
+				<p>Сваки предлог, савет, побољшан превод и додатак нових речи су добродошли.
+			</div>
+			
+		</div>
+
+	</section>
+	<section id="secRecnik" class="section "  >
+		<div class="row">
+			<div class="col-md-offset-1 col-md-11">
+				<h3 class="subtitle">Речник</h3>
+				<table class="table">
+					<tr>
+						<th>Енглеска реч</th>
+						<th>Српски превод</th>
+					</tr>
+					<tr><td>kompjuter</td>		<td>рачунар</td></tr>
+					<tr><td>kalkulator</td>		<td>рачунаљка</td></tr>
+					<tr><td>aplikacija</td>		<td>алатка</td></tr>
+					<tr><td>kod</td>				<td>запис</td></tr>
+					<tr><td>algoritam</td>			<td>поступник, корачник</td></tr>
+					<tr><td>program</td>			<td>извршилац</td></tr>
+					<tr><td>implementirati</td>		<td>спровести</td></tr>
+					<tr><td>implementacija</td>		<td>спровођење</td></tr>
+					<tr><td>instalirati</td>		<td>уградити</td></tr>
+					<tr><td>instalacija</td>		<td>као поступак: уградња. као именица: паковање</td></tr>
+					<tr><td>edit</td>				<td>обрада, уређивање</td></tr>
+					<tr><td>editovati</td>			<td>обрадити, уредити</td></tr>
+					<tr><td>editor</td>		<td>куцаљка</td></tr>
+					<tr><td>cut</td>		<td>измести</td></tr>
+					<tr><td>copy</td>		<td>умножи</td></tr>
+					<tr><td>paste</td>		<td>уметни</td></tr>
+					<tr><td>kompajler</td>		<td>састављач</td></tr>
+					<tr><td>commit</td>		<td>приложити</td></tr>
+					<tr><td>merge</td>		<td>припојити</td></tr>
+					<tr><td>deploy</td>		<td>наместити, разместити</td></tr>
+					<tr><td>server</td>		<td>служитељ</td></tr>
+					<tr><td>servis</td>		<td>услуга</td></tr>
+					<tr><td>mikroservis</td>		<td>услугица</td></tr>
+					<tr><td></td>		<td></td></tr>
+					<tr><td></td>		<td></td></tr>
+				</table>
+			
+
+			</div>
+			
+		</div>
+
+	</section>
+
+
+					<section id="secComments">
+						<div class="row">
+							<div class="col-md-10 col-md-offset-1 backed">
+								<h2 class="bmargin">Comments</h2>
+		
+								<!-- FACEBOOK COMMENTS -->
+								<div class="fb-comments" data-href="http://komante.com/recnik_strucnih_racunarskih_izraza" 
+									data-width="100%" data-numposts="5"></div>	
+		
+		
+								<!-- DISQUS COMMENTS -->
+								<div id="disqus_thread"></div>
+									<script type="text/javascript">
+									    /* * * CONFIGURATION VARIABLES * * */
+									    var disqus_shortname = 'komante';
+									    
+									    /* * * DON'T EDIT BELOW THIS LINE * * */
+									    (function() {
+									        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+									        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+									        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+									    })();
+									</script>	
+							</div>
+						</div>
+					</section>			
+				</div>
+			</div>
+		</div>
+
+		<!--GOOGLE ANALYTICS -->
+		<script>
+			if (location.origin.indexOf('komante.com') >= 0) {
+				(function(i, s, o, g, r, a, m) {
+					i['GoogleAnalyticsObject'] = r;
+					i[r] = i[r] || function() {
+						(i[r].q = i[r].q || []).push(arguments)
+					}, i[r].l = 1 * new Date();
+					a = s.createElement(o),
+							m = s.getElementsByTagName(o)[0];
+					a.async = 1;
+					a.src = g;
+					m.parentNode.insertBefore(a, m)
+				})(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+				ga('create', 'UA-54433162-1', 'auto');
+				ga('send', 'pageview');
+			}
+		</script>
+		
+	</body>
+</html>
